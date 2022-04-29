@@ -8,16 +8,17 @@ namespace RPG
 {
     public class Game1 : Game
     {
+        Menu mn = new Menu();
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D exit;
         Texture2D settings;
         Texture2D play;
         int b = 130;
-        private readonly Rectangle screenBounds;
-        private readonly Matrix screenXform;
-        Vector2 position = Vector2.Zero;
-        float speed = 5f;
+        //private readonly Rectangle screenBounds;
+        //private readonly Matrix screenXform;
+      //  Vector2 position = Vector2.Zero;
+      //  float speed = 5f;
         MouseState lastMouseState;
         int offset = 125;
         int depth = 65;
@@ -26,11 +27,12 @@ namespace RPG
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-          //  var screenScale = graphics.PreferredBackBufferHeight / 1080.0f;
-           // screenXform = Matrix.CreateScale(screenScale, screenScale, 1.0f);
-
+            //  var screenScale = graphics.PreferredBackBufferHeight / 1080.0f;
+            // screenXform = Matrix.CreateScale(screenScale, screenScale, 1.0f);
+            self = this; //селфяшка приравнивается к зису
             IsMouseVisible = true;
         }
+        public static Game1 self; //переменная селфтип
 
         protected override void Initialize()
         {
@@ -55,19 +57,9 @@ namespace RPG
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             Vector3 cursor = new Vector3(Mouse.GetState().X, Mouse.GetState().Y, 0);
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-            {
-                if (cursor.X > (Window.ClientBounds.Width / 2) - 130 & cursor.X < (Window.ClientBounds.Width / 2) + offset)
-                {
-                    if (cursor.Y > (Window.ClientBounds.Height / 3) - offset & cursor.Y < ((Window.ClientBounds.Height / 3) + (Window.ClientBounds.Height / 3) - (offset + depth)))
-                        ; // Играть
-                    else if (cursor.Y > (Window.ClientBounds.Height / 3) * 2 - offset & cursor.Y < ((Window.ClientBounds.Height / 3) + (Window.ClientBounds.Height / 3) * 2 - (offset + depth)))
-                        ; // Настройки(Мб сложность)
-                    else if (cursor.Y > (Window.ClientBounds.Height) - offset & cursor.Y < ((Window.ClientBounds.Height / 3) + (Window.ClientBounds.Height) - (offset + depth)))
-                        Exit(); //Выход
-                }
-                
-            }
+            int w = Window.ClientBounds.Width;
+            int h = Window.ClientBounds.Height;
+            mn.ButtonFunction(cursor, w, h);
             base.Update(gameTime);
         }
 
