@@ -1,3 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/button.jpg","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/button.xnb","TextureProcessor","Texture2DContent",8866,453781,0,302596
-"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/button.png","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/button.xnb","TextureProcessor","Texture2DContent",2124,453781,0,0244306
+"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/button.jpg","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/button.xnb","TextureProcessor","Texture2DContent",8866,453781,1,1938722
+"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/button.png","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/button.xnb","TextureProcessor","Texture2DContent",5213,102885,0,0570203
+"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/play.png","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/play.xnb","TextureProcessor","Texture2DContent",4323,102885,0,0113029
+"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/settings.png","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/settings.xnb","TextureProcessor","Texture2DContent",5669,102885,0,0109587
