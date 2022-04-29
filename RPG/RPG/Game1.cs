@@ -73,17 +73,8 @@ namespace RPG
             Vector2 Vector10 = new Vector2((Window.ClientBounds.Width / 2) - 130, (Window.ClientBounds.Height / 3)- offset);
             Vector2 Vector11 = new Vector2((Window.ClientBounds.Width / 2) - 130, (Window.ClientBounds.Height / 3)+ (Window.ClientBounds.Height / 3) - offset);
             Vector2 Vector12 = new Vector2((Window.ClientBounds.Width / 2) - 130, (Window.ClientBounds.Height / 3)+ ((Window.ClientBounds.Height / 3)*2) - offset);
-            Sprite(Vector10,Vector11,Vector12);
+            mn.Sprite(Vector10,Vector11,Vector12,spriteBatch,exit, settings, play);
             base.Draw(gameTime);
-
-        }
-        protected void Sprite(Vector2 Vector, Vector2 Vector1, Vector2 Vector2)
-        {
-            spriteBatch.Begin();
-            spriteBatch.Draw(play, Vector, Color.WhiteSmoke);
-            spriteBatch.Draw(settings, Vector1, Color.WhiteSmoke);
-            spriteBatch.Draw(exit, Vector2, Color.WhiteSmoke);
-            spriteBatch.End();
         }
     }
 }
