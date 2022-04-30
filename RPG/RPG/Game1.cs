@@ -11,17 +11,15 @@ namespace RPG
         Menu mn = new Menu();
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D exit;
-        Texture2D settings;
-        Texture2D play;
-        int b = 130;
+        int bittonWidth = 130;
         //private readonly Rectangle screenBounds;
         //private readonly Matrix screenXform;
       //  Vector2 position = Vector2.Zero;
       //  float speed = 5f;
         MouseState lastMouseState;
         int offset = 125;
-        int depth = 65;
+        //int depth = 65;
+        
 
         public Game1()
         {
@@ -31,6 +29,18 @@ namespace RPG
             // screenXform = Matrix.CreateScale(screenScale, screenScale, 1.0f);
             self = this; //селфяшка приравнивается к зису
             IsMouseVisible = true;
+
+            int v3Width = 277; //ширина четвертого спрайта
+            int v3Height = 420; //высота четвертого спрайта
+
+            mn.v = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) - offset); // задаем местоположения 3-х кнопок
+            mn.v1 = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + (Window.ClientBounds.Height / 3) - offset);
+            mn.v2 = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + ((Window.ClientBounds.Height / 3) * 2) - offset);
+            mn.v3 = new Vector2((Window.ClientBounds.Width / 2) - v3Width/2, (Window.ClientBounds.Height / 2) - v3Height/ 2);
+            
+            mn.color = Color.WhiteSmoke;
+            mn.newMenuColor = Color.WhiteSmoke;
+
         }
         public static Game1 self; //переменная селфтип
 
@@ -42,9 +52,10 @@ namespace RPG
         protected override void LoadContent()
         {       
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            exit = Content.Load<Texture2D>("button");
-            settings = Content.Load<Texture2D>("settings");
-            play = Content.Load<Texture2D>("play");
+            mn.exit = Content.Load<Texture2D>("button");
+            mn.settings = Content.Load<Texture2D>("settings");
+            mn.play = Content.Load<Texture2D>("play");
+            mn.test = Content.Load<Texture2D>("робокот");
         }
 
         protected override void UnloadContent()
@@ -57,9 +68,10 @@ namespace RPG
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             Vector3 cursor = new Vector3(Mouse.GetState().X, Mouse.GetState().Y, 0);
+
             int w = Window.ClientBounds.Width;
             int h = Window.ClientBounds.Height;
-            mn.ButtonFunction(cursor, w, h);
+            mn.ButtonFunction(cursor, w, h, mn.v, mn.v1, mn.v2, mn.v3, spriteBatch, mn.exit, mn.settings, mn.play, mn.test, mn.color, mn.newMenuColor);
             base.Update(gameTime);
         }
 
@@ -67,13 +79,8 @@ namespace RPG
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             // spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, screenXform);
-
-
-            // отрисовка спрайта
-            Vector2 Vector10 = new Vector2((Window.ClientBounds.Width / 2) - 130, (Window.ClientBounds.Height / 3)- offset);
-            Vector2 Vector11 = new Vector2((Window.ClientBounds.Width / 2) - 130, (Window.ClientBounds.Height / 3)+ (Window.ClientBounds.Height / 3) - offset);
-            Vector2 Vector12 = new Vector2((Window.ClientBounds.Width / 2) - 130, (Window.ClientBounds.Height / 3)+ ((Window.ClientBounds.Height / 3)*2) - offset);
-            mn.Sprite(Vector10,Vector11,Vector12,spriteBatch,exit, settings, play);
+            mn.Sprite(mn.v, mn.v1, mn.v2,mn.v3, spriteBatch, mn.exit, mn.settings, mn.play,mn.test, mn.color, mn.newMenuColor); // отрисовка спрайта
+            mn.SettingsMenu(mn.v3, spriteBatch, mn.test, mn.newMenuColor, mn.isMenuSettings);
             base.Draw(gameTime);
         }
     }

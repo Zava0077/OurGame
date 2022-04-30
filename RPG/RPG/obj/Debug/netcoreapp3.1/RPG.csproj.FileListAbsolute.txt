@@ -50,3 +50,4 @@ C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netco
 C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\File.xnb
 C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\play.xnb
 C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\settings.xnb
+C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\робокот.xnb
