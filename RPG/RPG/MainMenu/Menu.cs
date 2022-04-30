@@ -29,7 +29,7 @@ namespace RPG
         public void Sprite(Vector2 Vector, Vector2 Vector1, Vector2 Vector2, SpriteBatch spriteBatch, Texture2D e ,Texture2D s, Texture2D p)
         {   
             spriteBatch.Begin();
-            spriteBatch.Draw(play, Vector, Color.WhiteSmoke);
+            spriteBatch.Draw(p, Vector, Color.WhiteSmoke);
             spriteBatch.Draw(s, Vector1, Color.WhiteSmoke);
             spriteBatch.Draw(e, Vector2, Color.WhiteSmoke);
             spriteBatch.End();
