@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/back.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/button.jpg</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/button.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/Fight.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/File.spritefont</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/Font.spritefont</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/Heal.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/play.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/settings.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/Treasure.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/робокот.jpg</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/робокот.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

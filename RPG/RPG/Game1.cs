@@ -1,33 +1,156 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using System.Collections.Generic;
+
 namespace RPG
 {
+
+    enum Stat
+    {
+        MainScreen,
+        Game,
+        Settings,
+        Exit,
+        Final
+    }
+
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        static public int[] Random(int min, int max)
+        {
+            Random rnd = new Random();
+            int[] NumberRoom = new int[40];
+
+            for (int i = 0; i < NumberRoom.Length; i++)
+            {
+                int random = rnd.Next(min, max);
+                NumberRoom[i] = random;
+            }
+            return NumberRoom;
+        }
+        public Color _backgroundColour = Color.CornflowerBlue;
+        Menu mn = new Menu();
+        GraphicsDeviceManager graphics;
+        SpriteBatch spriteBatch;
+        int bittonWidth = 130;
+        int bittonHeight = 100;
+        //private readonly Rectangle screenBounds;
+        //private readonly Matrix screenXform;
+      //  Vector2 position = Vector2.Zero;
+      //  float speed = 5f;
+        MouseState lastMouseState;
+        int offset = 125;
+        int depth = 65;
+        Stat status = Stat.MainScreen;
+
+        private State _currentState;
+
+        private State _nextState;
+
+        public void ChangeState(State state)
+        {
+            _nextState = state;
+        }
+
+        private List<Component> _gameComponents; //ура
 
         public Game1()
         {
-            _graphics = new GraphicsDeviceManager(this);
+
+            Button btn = new Button(mn.exit);
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            //  var screenScale = graphics.PreferredBackBufferHeight / 1080.0f;
+            // screenXform = Matrix.CreateScale(screenScale, screenScale, 1.0f);
+            self = this; //селфяшка приравнивается к зису
             IsMouseVisible = true;
+
+            int v3Width = 277; //ширина четвертого спрайта
+            int v3Height = 420; //высота четвертого спрайта
+
+            mn.bittonWidth = bittonWidth;
+            mn.Width = Window.ClientBounds.Width;
+            mn.Height = Window.ClientBounds.Height;
+            mn.texHeight = v3Height;
+            mn.texWidth = v3Width;
+            mn.offset = offset;
+
+            mn.v = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) - offset); // задаем местоположения наших спрайтов
+            mn.v1 = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + (Window.ClientBounds.Height / 3) - offset);
+            mn.v2 = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + ((Window.ClientBounds.Height / 3) * 2) - offset);
+            mn.v3 = new Vector2((Window.ClientBounds.Width / 2) - v3Width/2, (Window.ClientBounds.Height / 2) - v3Height/ 2);
+            mn.backv = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + ((Window.ClientBounds.Height / 3) * 2) - offset); //кнопка назад
+
+            mn.color = Color.WhiteSmoke;
         }
+        public static Game1 self;
 
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
+            base.Initialize();
+            graphics.PreferredBackBufferWidth = 1000;
+            graphics.PreferredBackBufferHeight = 850;
+            graphics.IsFullScreen = false;
+            graphics.ApplyChanges();
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            RoomFight.texture = Content.Load<Texture2D>("Fight");
+            RoomTreasure.texture = Content.Load<Texture2D>("Treasure");
+            RoomHeal.texture = Content.Load<Texture2D>("Heal");
+            Room.NumberRoom = Random(1, 4);
+            for (int i = 0; i < 40; i++)
+            {
+                Room.Ha = i;
+                Room.Init(spriteBatch);
+            }
+            _currentState = new MenuState(this, graphics.GraphicsDevice, Content,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth); //Текущее состояние меню
 
-            // TODO: use this.Content to load your game content here
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            mn.exit = Content.Load<Texture2D>("button");
+            mn.settings = Content.Load<Texture2D>("settings");
+            mn.play = Content.Load<Texture2D>("play");
+            mn.test = Content.Load<Texture2D>("робокот");
+            mn.back = Content.Load<Texture2D>("back");
+            mn.font = Content.Load<SpriteFont>("Font");
+        }
+
+
+
+        private void QuitButton_Click(object sender, System.EventArgs e)
+        {
+            Exit();
+        }
+
+        private void SettingsButton_click(object sender, System.EventArgs e)
+        {
+            
+        }
+
+        protected override void UnloadContent()
+        {
+
+        }
+        private void RoomTreasure_click(object sender, System.EventArgs e)
+        {
+            Random random = new Random();
+            _backgroundColour = new Color(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255));
+        }
+        private void RoomFight_click(object sender, System.EventArgs e)
+        {
+            Random random = new Random();
+            _backgroundColour = new Color(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255));
+        }
+        private void RoomHeal_click(object sender, System.EventArgs e)
+        {
+            Random random = new Random();
+            _backgroundColour = new Color(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255));
         }
 
         protected override void Update(GameTime gameTime)
@@ -35,16 +158,26 @@ namespace RPG
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            if (_nextState != null)
+            {
+                _currentState = _nextState;
+
+                _nextState = null;
+            }
+
+
+            _currentState.Update(gameTime);
+
+            _currentState.PostUpdate(gameTime);
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(_backgroundColour);
 
-            // TODO: Add your drawing code here
+            _currentState.Draw(gameTime, spriteBatch);
 
             base.Draw(gameTime);
         }
