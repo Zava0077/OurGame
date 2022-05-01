@@ -1,0 +1,5 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"D:/Da/github/OurGame/RPG/RPG/Content/Fight.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Fight.xnb","TextureProcessor","Texture2DContent",477,8185,0,1562748
+"D:/Da/github/OurGame/RPG/RPG/Content/File.spritefont","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/File.xnb","FontDescriptionProcessor","SpriteFontContent",2008,21538,0,0939645
+"D:/Da/github/OurGame/RPG/RPG/Content/Heal.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Heal.xnb","TextureProcessor","Texture2DContent",266,8185,0,0018512
+"D:/Da/github/OurGame/RPG/RPG/Content/Treasure.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Treasure.xnb","TextureProcessor","Texture2DContent",2553,8185,0,0016306
