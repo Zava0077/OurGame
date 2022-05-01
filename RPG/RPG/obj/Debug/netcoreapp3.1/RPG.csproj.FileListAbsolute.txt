@@ -51,3 +51,5 @@ C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netco
 C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\play.xnb
 C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\settings.xnb
 C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\робокот.xnb
+C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\back.xnb
+C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Font.xnb
