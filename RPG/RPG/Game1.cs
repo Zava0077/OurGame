@@ -34,6 +34,15 @@ namespace RPG
         int depth = 65;
         Stat status = Stat.MainScreen;
 
+        private State _currentState;
+
+        private State _nextState;
+
+        public void ChangeState(State state)
+        {
+            _nextState = state;
+        }
+
         private List<Component> _gameComponents; //ура
 
         public Game1()
@@ -70,6 +79,7 @@ namespace RPG
         protected override void LoadContent()
         {
 
+            _currentState = new MenuState(this, graphics.GraphicsDevice, Content, mn.play,mn.settings,mn.exit, mn.font,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth);
 
             var playButton = new Button(mn.play, Content.Load<SpriteFont>("Font"))
             {
@@ -127,6 +137,16 @@ namespace RPG
 
         protected override void Update(GameTime gameTime)
         {
+            if (_nextState != null)
+            {
+                _currentState = _nextState;
+
+                _nextState = null;
+            }
+
+            _currentState.Update(gameTime);
+
+            _currentState.PostUpdate(gameTime);
 
             foreach (var component in _gameComponents)
                 component.Update(gameTime);
@@ -208,18 +228,22 @@ namespace RPG
 
         protected override void Draw(GameTime gameTime)
         {
+            /*         GraphicsDevice.Clear(Color.CornflowerBlue);
+                     // spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, screenXform);
+                     // mn.Sprite(mn.v, mn.v1, mn.v2,mn.v3, spriteBatch, mn.exit, mn.settings, mn.play,mn.test, mn.color, mn.newMenuColor, mn.isMousePressed); // отрисовка спрайта
+                     //  mn.SettingsMenu(mn.v3, spriteBatch, mn.test, mn.newMenuColor, mn.isMenuSettings, false);
+                     spriteBatch.Begin();
+
+                     foreach (var component in _gameComponents)
+                         component.Draw(gameTime, spriteBatch);
+
+                     spriteBatch.End();
+
+                     base.Draw(gameTime);*/
+
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            // spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, screenXform);
-            // mn.Sprite(mn.v, mn.v1, mn.v2,mn.v3, spriteBatch, mn.exit, mn.settings, mn.play,mn.test, mn.color, mn.newMenuColor, mn.isMousePressed); // отрисовка спрайта
-            //  mn.SettingsMenu(mn.v3, spriteBatch, mn.test, mn.newMenuColor, mn.isMenuSettings, false);
-            spriteBatch.Begin();
 
-            
-
-            foreach (var component in _gameComponents)
-                component.Draw(gameTime, spriteBatch);
-
-            spriteBatch.End();
+            _currentState.Draw(gameTime, spriteBatch);
 
             base.Draw(gameTime);
         }

@@ -13,6 +13,7 @@ namespace RPG
     {
         #region Fields
 
+        Menu mn = new Menu();
 
         private MouseState _currentMouse;
 
@@ -71,15 +72,8 @@ namespace RPG
             if (_isHovering)
                 colour = Color.Gray;
 
-            spriteBatch.Draw(Game1.self.Content.Load<Texture2D>("button"), Rectangle, colour);
+            spriteBatch.Draw(Game1.self.Content.Load<Texture2D>("settings"), Rectangle, colour);
 
-            if (!string.IsNullOrEmpty(Text))
-            {
-                var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
-                var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
-
-                spriteBatch.DrawString(_font, Text, new Vector2(x, y), PenColour);
-            }
         }
 
         public override void Update(GameTime gameTime)
