@@ -17,6 +17,7 @@ namespace RPG
 
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, int width ,int height, int offset, int bittonWidth) : base(game, graphicsDevice, content)
         {
+
             var PlaybuttonTexture = _content.Load<Texture2D>("play");
             var SettingsbuttonTexture = _content.Load<Texture2D>("settings");
             var ExitbuttonTexture = _content.Load<Texture2D>("button");

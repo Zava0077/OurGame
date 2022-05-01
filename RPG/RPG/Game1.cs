@@ -73,8 +73,6 @@ namespace RPG
             mn.backv = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + ((Window.ClientBounds.Height / 3) * 2) - offset); //кнопка назад
 
             mn.color = Color.WhiteSmoke;
-            mn.newMenuColor = Color.WhiteSmoke;
-
         }
         public static Game1 self;
 
