@@ -59,6 +59,13 @@ namespace RPG
             int v3Width = 277; //ширина четвертого спрайта
             int v3Height = 420; //высота четвертого спрайта
 
+            mn.bittonWidth = bittonWidth;
+            mn.Width = Window.ClientBounds.Width;
+            mn.Height = Window.ClientBounds.Height;
+            mn.texHeight = v3Height;
+            mn.texWidth = v3Width;
+            mn.offset = offset;
+
             mn.v = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) - offset); // задаем местоположения наших спрайтов
             mn.v1 = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + (Window.ClientBounds.Height / 3) - offset);
             mn.v2 = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + ((Window.ClientBounds.Height / 3) * 2) - offset);
@@ -69,45 +76,22 @@ namespace RPG
             mn.newMenuColor = Color.WhiteSmoke;
 
         }
-        public static Game1 self; //переменная селфтип
+        public static Game1 self;
 
         protected override void Initialize()
         {
+            base.Initialize();
+            graphics.PreferredBackBufferWidth = 1000;
+            graphics.PreferredBackBufferHeight = 850;
+            graphics.IsFullScreen = false;
+            graphics.ApplyChanges();
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
 
-            _currentState = new MenuState(this, graphics.GraphicsDevice, Content,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth);
-
-            var playButton = new Button(mn.play)
-            {
-                Position = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) - offset),
-                Text = "Play",
-            };
-
-            var quitButton = new Button(mn.exit)
-            {
-                Position = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + ((Window.ClientBounds.Height / 3) * 2) - offset),
-                Text = "Quit",
-            };
-            var settingsButton = new Button(mn.settings)
-            {
-                Position = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + (Window.ClientBounds.Height / 3) - offset),
-                Text = "Settings",
-            };
-
-            quitButton.Click += QuitButton_Click;
-
-            settingsButton.Click += SettingsButton_click;
-
-            _gameComponents = new List<Component>()
-            {
-                playButton,
-                quitButton,
-                settingsButton,
-            };
+            _currentState = new MenuState(this, graphics.GraphicsDevice, Content,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth); //Текущее состояние меню
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
             mn.exit = Content.Load<Texture2D>("button");
@@ -137,6 +121,9 @@ namespace RPG
 
         protected override void Update(GameTime gameTime)
         {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+
             if (_nextState != null)
             {
                 _currentState = _nextState;
@@ -148,63 +135,21 @@ namespace RPG
 
             _currentState.PostUpdate(gameTime);
 
-            foreach (var component in _gameComponents)
-                component.Update(gameTime);
-
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-            Vector3 cursor = new Vector3(Mouse.GetState().X, Mouse.GetState().Y, 0);
-
-            int w = Window.ClientBounds.Width;
-            int h = Window.ClientBounds.Height;
-
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed)
-            {
-                if (cursor.X > (w / 2) - 130 & cursor.X < (w / 2) + offset)
-                {
-                    if (cursor.Y > (h / 3) - offset & cursor.Y < ((h / 3) + (h / 3) - (offset + depth)))// Играть
-                    {
-                        ;
-                    }
-                    if (cursor.Y > (h / 3) * 2 - offset & cursor.Y < ((h / 3) + (h / 3) * 2 - (offset + depth))) // Настройки(Мб сложность)
-                    {
-                        mn.SettingsMenu(mn.v3, spriteBatch, mn.test, mn.newMenuColor, mn.isMenuSettings, false);
-                    }
-                    if (cursor.Y > (h) - offset & cursor.Y < ((h / 3) + (h) - (offset + depth)))
-                    {
-                        if (mn.CurrentStatus == mn.Stats[0] && mn.clickFromMenu == true)
-                        {
-                            Exit();
-                        }
-                        if (cursor.Y > (h) - offset & cursor.Y < ((h / 3) + (h) - (offset + depth)))
-                        {
-                            mn.BackFromSettings(mn.v3, spriteBatch, mn.exit, mn.settings, mn.play, mn.newMenuColor);
-                        }
-                    }
-                }
-            }
-            
-        
-
             switch (status)
             {
                 case Stat.MainScreen:
                     {
 
-                        mn.ButtonFunction(cursor, w, h, mn.v, mn.v1, mn.v2, mn.v3, spriteBatch, mn.exit, mn.settings, mn.play, mn.test, mn.color, mn.newMenuColor);
                         break;
                     }
                 case Stat.Game:
                     {
+
                         break;
                     }
                 case Stat.Settings:
                     {
-                        mn.isMousePressed = true;
-                        mn.Sprite(mn.v, mn.v1, mn.v2, mn.v3, spriteBatch, mn.exit, mn.settings, mn.play, mn.test, Color.Transparent, mn.newMenuColor, mn.isMousePressed); //стираем меню
-                        mn.isMenuSettings = true;
-                        mn.SettingsMenu(mn.v3, spriteBatch, mn.test, mn.newMenuColor, mn.isMenuSettings, false); //рисуем кота и кнопку
-                        mn.clickFromMenu = false;
+
                         break;
                     }
                 case Stat.Exit:
@@ -218,28 +163,11 @@ namespace RPG
                         break;
                     }
             }
-
-
-            
-
-          //  mn.ButtonFunction(cursor, w, h, mn.v, mn.v1, mn.v2, mn.v3, spriteBatch, mn.exit, mn.settings, mn.play, mn.test, mn.color, mn.newMenuColor);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            /*         GraphicsDevice.Clear(Color.CornflowerBlue);
-                     // spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, screenXform);
-                     // mn.Sprite(mn.v, mn.v1, mn.v2,mn.v3, spriteBatch, mn.exit, mn.settings, mn.play,mn.test, mn.color, mn.newMenuColor, mn.isMousePressed); // отрисовка спрайта
-                     //  mn.SettingsMenu(mn.v3, spriteBatch, mn.test, mn.newMenuColor, mn.isMenuSettings, false);
-                     spriteBatch.Begin();
-
-                     foreach (var component in _gameComponents)
-                         component.Draw(gameTime, spriteBatch);
-
-                     spriteBatch.End();
-
-                     base.Draw(gameTime);*/
 
             GraphicsDevice.Clear(Color.CornflowerBlue);
 

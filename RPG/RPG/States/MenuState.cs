@@ -17,16 +17,13 @@ namespace RPG
 
         public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, int width ,int height, int offset, int bittonWidth) : base(game, graphicsDevice, content)
         {
-            //     var PlaybuttonTexture = play;
             var PlaybuttonTexture = _content.Load<Texture2D>("play");
             var SettingsbuttonTexture = _content.Load<Texture2D>("settings");
             var ExitbuttonTexture = _content.Load<Texture2D>("button");
 
-
             var playButton = new Button(PlaybuttonTexture)
             {
                 Position = new Vector2((width / 2) - bittonWidth, (height / 3) - offset),
-                Text = "",
             };
 
             playButton.Click += NewGameButton_Click;
@@ -66,6 +63,7 @@ namespace RPG
         private void SettingsButton_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Settings menu!");
+            _game.ChangeState(new SettingsState(_game, _graphicsDevice, _content, mn.Width, mn.Height, mn.offset, mn.bittonWidth, 200, 200));
         }
 
         private void NewGameButton_Click(object sender, EventArgs e)
