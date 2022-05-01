@@ -56,11 +56,11 @@ namespace RPG
 
         #region Methods
 
-        public Button(Texture2D texture, SpriteFont font)
+        public Button(Texture2D texture)
         {
             _texture = texture;
 
-            _font = font;
+
 
             PenColour = Color.Black;
         }
@@ -72,7 +72,7 @@ namespace RPG
             if (_isHovering)
                 colour = Color.Gray;
 
-            spriteBatch.Draw(Game1.self.Content.Load<Texture2D>("settings"), Rectangle, colour);
+            spriteBatch.Draw(_texture, Rectangle, colour);
 
         }
 

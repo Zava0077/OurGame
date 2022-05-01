@@ -48,7 +48,7 @@ namespace RPG
         public Game1()
         {
 
-            Button btn = new Button(mn.exit, mn.font);
+            Button btn = new Button(mn.exit);
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             //  var screenScale = graphics.PreferredBackBufferHeight / 1080.0f;
@@ -79,20 +79,20 @@ namespace RPG
         protected override void LoadContent()
         {
 
-            _currentState = new MenuState(this, graphics.GraphicsDevice, Content, mn.play,mn.settings,mn.exit, mn.font,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth);
+            _currentState = new MenuState(this, graphics.GraphicsDevice, Content,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth);
 
-            var playButton = new Button(mn.play, Content.Load<SpriteFont>("Font"))
+            var playButton = new Button(mn.play)
             {
                 Position = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) - offset),
                 Text = "Play",
             };
 
-            var quitButton = new Button(mn.exit, Content.Load<SpriteFont>("Font"))
+            var quitButton = new Button(mn.exit)
             {
                 Position = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + ((Window.ClientBounds.Height / 3) * 2) - offset),
                 Text = "Quit",
             };
-            var settingsButton = new Button(mn.settings, Content.Load<SpriteFont>("Font"))
+            var settingsButton = new Button(mn.settings)
             {
                 Position = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + (Window.ClientBounds.Height / 3) - offset),
                 Text = "Settings",

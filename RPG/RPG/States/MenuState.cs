@@ -15,14 +15,15 @@ namespace RPG
 
         Menu mn = new Menu();
 
-        public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content,Texture2D play, Texture2D settings, Texture2D exit, SpriteFont font, int width ,int height, int offset, int bittonWidth) : base(game, graphicsDevice, content)
+        public MenuState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, int width ,int height, int offset, int bittonWidth) : base(game, graphicsDevice, content)
         {
-            var PlaybuttonTexture = play;
-            var SettingsbuttonTexture = settings;
-            var ExitbuttonTexture = exit;
-            var buttonFont = font;
-            font = mn.font;
-            var playButton = new Button(PlaybuttonTexture, font)
+            //     var PlaybuttonTexture = play;
+            var PlaybuttonTexture = _content.Load<Texture2D>("play");
+            var SettingsbuttonTexture = _content.Load<Texture2D>("settings");
+            var ExitbuttonTexture = _content.Load<Texture2D>("button");
+
+
+            var playButton = new Button(PlaybuttonTexture)
             {
                 Position = new Vector2((width / 2) - bittonWidth, (height / 3) - offset),
                 Text = "",
@@ -30,18 +31,16 @@ namespace RPG
 
             playButton.Click += NewGameButton_Click;
 
-            var settingsButton = new Button(SettingsbuttonTexture, font)
+            var settingsButton = new Button(SettingsbuttonTexture)
             {
                 Position = new Vector2((width / 2) - bittonWidth, (height / 3) + (height / 3) - offset),
-                Text = "",
             };
 
             settingsButton.Click += SettingsButton_Click;
 
-            var quitButton = new Button(ExitbuttonTexture, font)
+            var quitButton = new Button(ExitbuttonTexture)
             {
                 Position = new Vector2((width / 2) - bittonWidth, (height / 3) + ((height / 3) * 2) - offset),
-                Text = "123",
             };
 
             quitButton.Click += QuitGameButton_Click;
