@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/Da/github/OurGame/RPG/Content/Fight.png</SourceFile>
+  <SourceFile>D:/Da/RPG/RPG/Content/Fight.png</SourceFile>
   <SourceTime>2022-05-01T19:44:35.8862274+07:00</SourceTime>
-  <DestFile>D:/Da/github/OurGame/RPG/Content/bin/DesktopGL/Content/Fight.xnb</DestFile>
-  <DestTime>2022-05-01T22:08:19.7803259+07:00</DestTime>
+  <DestFile>D:/Da/RPG/RPG/Content/bin/DesktopGL/Content/Fight.xnb</DestFile>
+  <DestTime>2022-05-01T22:49:05.3126104+07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T23:17:54+07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

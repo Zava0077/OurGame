@@ -4,12 +4,26 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/Da/github/OurGame/RPG/Content/Fight.png</File>
-    <File>D:/Da/github/OurGame/RPG/Content/File.spritefont</File>
-    <File>D:/Da/github/OurGame/RPG/Content/Heal.png</File>
-    <File>D:/Da/github/OurGame/RPG/Content/Treasure.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/back.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/button.jpg</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/button.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/File.spritefont</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/Font.spritefont</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/Heal.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/play.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/settings.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/TextureRoom.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/робокот.jpg</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/робокот.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
