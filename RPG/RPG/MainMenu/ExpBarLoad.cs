@@ -24,7 +24,7 @@ namespace RPG
         public Color PenColour { get; set; }
         public Vector2 Position { get; set; }
 
-        public int maxLenght =344;
+        public int maxLenght = 20000;
 
         private SpriteFont _font;
 
@@ -32,7 +32,7 @@ namespace RPG
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y,maxLenght*(Game1.self.Exp-(Game1.self.Exp*(1- Game1.self.Exp/Game1.self.MaxExp))), _texture.Height);
+                return new Rectangle((int)Position.X, (int)Position.Y,((maxLenght/Game1.self.MaxExp) *Game1.self.Exp) /200, _texture.Height);
             }
         }
 
