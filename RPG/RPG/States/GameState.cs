@@ -38,27 +38,22 @@ namespace RPG
             foreach (RoomTreasure room in Room.TreasureRoom)
             {
                 room.Update();
-                room.Click += room.RoomTreasure_click;
             }
             foreach (Rat room in Rat.Rats)
             {
                 room.Update();
-                room.Click += room.Rat_click;
             }
             foreach (Skeleton room in Skeleton.skeletons)
             {
                 room.Update();
-                room.Click += room.Skeleton_click;
             }
             foreach (Spider room in Spider.Spiders)
             {
                 room.Update();
-                room.Click += room.Spider_click;
             }
             foreach (RoomHeal room in Room.HealRoom)
             {
                 room.Update();
-                room.Click += room.RoomHeal_click;
             }
         }
     }

@@ -12,13 +12,13 @@ namespace RPG
     class RoomHeal : Room
     {
         Vector2 Pos;
-        int idRoom;
         int ButtonPressede;
         public static Texture2D texture { get; set; }
         private MouseState _currentMouse;
         private MouseState _previousMouse;
         public event EventHandler Click;
         private bool _isHovering;
+        int idRoom;
         public bool Clicked { get; private set; }
 
         public RoomHeal(Vector2 pos, int idRoom)
