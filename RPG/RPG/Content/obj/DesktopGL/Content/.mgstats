@@ -1,5 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"D:/Da/github/OurGame/RPG/RPG/Content/button.jpg","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Content/button.xnb","TextureProcessor","Texture2DContent",8866,453781,0,1596473
-"D:/Da/github/OurGame/RPG/RPG/Content/button.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Content/button.xnb","TextureProcessor","Texture2DContent",5213,102885,0,003675
-"D:/Da/github/OurGame/RPG/RPG/Content/робокот.jpg","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Content/робокот.xnb","TextureProcessor","Texture2DContent",291688,3490645,0,1229459
-"D:/Da/github/OurGame/RPG/RPG/Content/робокот.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Content/робокот.xnb","TextureProcessor","Texture2DContent",240721,464337,0,0426269
+"D:/Da/github/OurGame/RPG/RPG/Content/button.jpg","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Content/button.xnb","TextureProcessor","Texture2DContent",8866,453781,0,1544474
+"D:/Da/github/OurGame/RPG/RPG/Content/button.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Content/button.xnb","TextureProcessor","Texture2DContent",5213,102885,0,0039567
+"D:/Da/github/OurGame/RPG/RPG/Content/робокот.jpg","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Content/робокот.xnb","TextureProcessor","Texture2DContent",291688,3490645,0,1139295
+"D:/Da/github/OurGame/RPG/RPG/Content/робокот.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Content/робокот.xnb","TextureProcessor","Texture2DContent",240721,464337,0,0297629

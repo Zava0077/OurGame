@@ -62,8 +62,7 @@ namespace RPG
         public void Draw()
         {
             spriteBatch.Begin();
-            Room.spriteBatch.Draw(texture, Pos,new Rectangle(260,0,64,64), color, 0,Vector2.Zero,1,SpriteEffects.FlipHorizontally,0);
-            //Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth
+            Room.spriteBatch.Draw(texture, Pos,new Rectangle(260,0,64,64), color);
             spriteBatch.End();
         }
     }
