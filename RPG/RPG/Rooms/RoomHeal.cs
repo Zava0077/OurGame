@@ -12,8 +12,7 @@ namespace RPG
     class RoomHeal : Room
     {
         Vector2 Pos;
-        int ButtonPressede;
-        public static Texture2D texture { get; set; }
+        Texture2D texture { get; set; }
         private MouseState _currentMouse;
         private MouseState _previousMouse;
         public event EventHandler Click;
@@ -21,19 +20,23 @@ namespace RPG
         int idRoom;
         public bool Clicked { get; private set; }
 
-        public RoomHeal(Vector2 pos, int idRoom)
+        public RoomHeal(Vector2 pos, int idRoom, Texture2D texture)
         {
             this.Pos = pos;
             this.idRoom = idRoom;
+            this.texture = texture;
         }
         public Rectangle Rectangle
         {
             get
             {
-                return new Rectangle((int)Pos.X, (int)Pos.Y, texture.Width, texture.Height);
+                return new Rectangle((int)Pos.X, (int)Pos.Y, 64, 64);
             }
         }
 
+
+        bool ButtonPressede = false;
+        Color color = Color.White;
         public void Update()
         {
             _previousMouse = _currentMouse;
@@ -42,21 +45,25 @@ namespace RPG
             var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
 
             _isHovering = false;
-
+            if (this.ButtonPressede)
+            {
+                color = Color.Gray;
+            }
             if (mouseRectangle.Intersects(Rectangle))
             {
                 _isHovering = true;
 
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
-
+                    this.ButtonPressede = true;
                 }
             }
         }
         public void Draw()
         {
             spriteBatch.Begin();
-            Room.spriteBatch.Draw(texture, Pos, Color.White);
+            Room.spriteBatch.Draw(texture, Pos,new Rectangle(260,0,64,64), color, 0,Vector2.Zero,1,SpriteEffects.FlipHorizontally,0);
+            //Texture2D texture, Vector2 position, Rectangle? sourceRectangle, Color color, float rotation, Vector2 origin, float scale, SpriteEffects effects, float layerDepth
             spriteBatch.End();
         }
     }

@@ -12,13 +12,10 @@ namespace RPG
     public class GameState : State
     {
         SpriteBatch SpriteBatch;
+
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content,SpriteBatch spriteBatch) : base(game, graphicsDevice, content)
         {
-            Skeleton.texture = _content.Load<Texture2D>("Skeleton");
-            Rat.texture = _content.Load<Texture2D>("Rat");
-            RoomTreasure.texture = _content.Load<Texture2D>("Treasure");
-            RoomHeal.texture = _content.Load<Texture2D>("Heal");
-            Spider.texture = _content.Load<Texture2D>("Spider");
+            Room.textureAllRooms = _content.Load<Texture2D>("TextureRoom");
             Room.Init(spriteBatch);
         }
 
@@ -52,6 +49,14 @@ namespace RPG
                 room.Update();
             }
             foreach (RoomHeal room in Room.HealRoom)
+            {
+                room.Update();
+            }
+            foreach (RoomRandomItem room in RoomRandomItem.RoomRandomItems)
+            {
+                room.Update();
+            }
+            foreach (RoomRandomTrap room in RoomRandomTrap.RoomRandomTraps)
             {
                 room.Update();
             }

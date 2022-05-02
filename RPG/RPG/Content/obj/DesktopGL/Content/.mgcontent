@@ -11,18 +11,12 @@
     <File>D:/Da/github/OurGame/RPG/RPG/Content/Font.spritefont</File>
     <File>D:/Da/github/OurGame/RPG/RPG/Content/Heal.png</File>
     <File>D:/Da/github/OurGame/RPG/RPG/Content/play.png</File>
-    <File>D:/Da/github/OurGame/RPG/RPG/Content/Rat.png</File>
     <File>D:/Da/github/OurGame/RPG/RPG/Content/settings.png</File>
-    <File>D:/Da/github/OurGame/RPG/RPG/Content/Skeleton.png</File>
-    <File>D:/Da/github/OurGame/RPG/RPG/Content/Spider.png</File>
-    <File>D:/Da/github/OurGame/RPG/RPG/Content/Treasure.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/TextureRoom.png</File>
     <File>D:/Da/github/OurGame/RPG/RPG/Content/робокот.jpg</File>
     <File>D:/Da/github/OurGame/RPG/RPG/Content/робокот.png</File>
   </SourceFiles>
   <DestFiles>
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
-    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

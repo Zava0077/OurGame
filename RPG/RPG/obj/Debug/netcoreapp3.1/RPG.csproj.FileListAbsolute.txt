@@ -64,3 +64,5 @@ D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Treasure.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Rat.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Skeleton.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Spider.xnb
+D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Random.xnb
+D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\TextureRoom.xnb

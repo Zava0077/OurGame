@@ -1,15 +1,12 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"D:/Da/github/OurGame/RPG/RPG/Content/back.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/back.xnb","TextureProcessor","Texture2DContent",2727,102885,0,1361174
-"D:/Da/github/OurGame/RPG/RPG/Content/button.jpg","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/button.xnb","TextureProcessor","Texture2DContent",8866,453781,0,0142129
-"D:/Da/github/OurGame/RPG/RPG/Content/button.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/button.xnb","TextureProcessor","Texture2DContent",5213,102885,0,0044336
-"D:/Da/github/OurGame/RPG/RPG/Content/File.spritefont","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/File.xnb","FontDescriptionProcessor","SpriteFontContent",2068,52258,0,0785599
-"D:/Da/github/OurGame/RPG/RPG/Content/Font.spritefont","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Font.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21538,0,0185594
-"D:/Da/github/OurGame/RPG/RPG/Content/Heal.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Heal.xnb","TextureProcessor","Texture2DContent",2105,65621,0,0028026
-"D:/Da/github/OurGame/RPG/RPG/Content/play.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/play.xnb","TextureProcessor","Texture2DContent",4323,102885,0,0052727
-"D:/Da/github/OurGame/RPG/RPG/Content/Rat.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Rat.xnb","TextureProcessor","Texture2DContent",1412,65621,0,0027261
-"D:/Da/github/OurGame/RPG/RPG/Content/settings.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/settings.xnb","TextureProcessor","Texture2DContent",5669,102885,0,0036781
-"D:/Da/github/OurGame/RPG/RPG/Content/Skeleton.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Skeleton.xnb","TextureProcessor","Texture2DContent",2193,65621,0,0024398
-"D:/Da/github/OurGame/RPG/RPG/Content/Spider.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Spider.xnb","TextureProcessor","Texture2DContent",2069,65621,0,004378
-"D:/Da/github/OurGame/RPG/RPG/Content/Treasure.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Treasure.xnb","TextureProcessor","Texture2DContent",2554,65621,0,0053878
-"D:/Da/github/OurGame/RPG/RPG/Content/робокот.jpg","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/робокот.xnb","TextureProcessor","Texture2DContent",291688,3490645,0,1181292
-"D:/Da/github/OurGame/RPG/RPG/Content/робокот.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/робокот.xnb","TextureProcessor","Texture2DContent",240721,464337,0,0170937
+"D:/Da/github/OurGame/RPG/RPG/Content/back.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/back.xnb","TextureProcessor","Texture2DContent",2727,102885,0,1321627
+"D:/Da/github/OurGame/RPG/RPG/Content/button.jpg","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/button.xnb","TextureProcessor","Texture2DContent",8866,453781,0,0134817
+"D:/Da/github/OurGame/RPG/RPG/Content/button.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/button.xnb","TextureProcessor","Texture2DContent",5213,102885,0,0046959
+"D:/Da/github/OurGame/RPG/RPG/Content/File.spritefont","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/File.xnb","FontDescriptionProcessor","SpriteFontContent",2068,52258,0,0788682
+"D:/Da/github/OurGame/RPG/RPG/Content/Font.spritefont","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Font.xnb","FontDescriptionProcessor","SpriteFontContent",2068,21538,0,017391
+"D:/Da/github/OurGame/RPG/RPG/Content/Heal.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Heal.xnb","TextureProcessor","Texture2DContent",1077,16469,0,0015533
+"D:/Da/github/OurGame/RPG/RPG/Content/play.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/play.xnb","TextureProcessor","Texture2DContent",4323,102885,0,003223
+"D:/Da/github/OurGame/RPG/RPG/Content/settings.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/settings.xnb","TextureProcessor","Texture2DContent",5669,102885,0,0049263
+"D:/Da/github/OurGame/RPG/RPG/Content/TextureRoom.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/TextureRoom.xnb","TextureProcessor","Texture2DContent",21883,4851393,0,1399933
+"D:/Da/github/OurGame/RPG/RPG/Content/робокот.jpg","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/робокот.xnb","TextureProcessor","Texture2DContent",291688,3490645,0,0954283
+"D:/Da/github/OurGame/RPG/RPG/Content/робокот.png","D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/робокот.xnb","TextureProcessor","Texture2DContent",240721,464337,0,0142286
