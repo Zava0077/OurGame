@@ -12,8 +12,8 @@ namespace RPG
     class RoomHeal : Room
     {
         Vector2 Pos;
-
-        public static List<Room> typeRooms = new List<Room>();
+        int idRoom;
+        int ButtonPressede;
         public static Texture2D texture { get; set; }
         private MouseState _currentMouse;
         private MouseState _previousMouse;
@@ -21,9 +21,10 @@ namespace RPG
         private bool _isHovering;
         public bool Clicked { get; private set; }
 
-        public RoomHeal(Vector2 pos)
+        public RoomHeal(Vector2 pos, int idRoom)
         {
             this.Pos = pos;
+            this.idRoom = idRoom;
         }
         public Rectangle Rectangle
         {
@@ -48,7 +49,7 @@ namespace RPG
 
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
-                    Click?.Invoke(this, new EventArgs());
+
                 }
             }
         }
@@ -57,12 +58,6 @@ namespace RPG
             spriteBatch.Begin();
             Room.spriteBatch.Draw(texture, Pos, Color.White);
             spriteBatch.End();
-        }
-
-        public void RoomHeal_click(object sender, System.EventArgs e)
-        {
-            Random random = new Random();
-            Game1.self._backgroundColour = new Color(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255));
         }
     }
 }

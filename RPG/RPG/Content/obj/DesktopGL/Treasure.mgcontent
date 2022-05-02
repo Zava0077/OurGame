@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>D:/Da/github/OurGame/RPG/RPG/Content/Treasure.png</SourceFile>
-  <SourceTime>2022-05-01T19:45:48.3338705+07:00</SourceTime>
+  <SourceTime>2022-05-02T15:26:48.493145+07:00</SourceTime>
   <DestFile>D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Treasure.xnb</DestFile>
-  <DestTime>2022-05-01T22:51:09.0679518+07:00</DestTime>
+  <DestTime>2022-05-02T16:07:11.2153012+07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T23:17:54+07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

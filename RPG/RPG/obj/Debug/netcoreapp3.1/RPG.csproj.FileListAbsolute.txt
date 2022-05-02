@@ -59,6 +59,8 @@ D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Font.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\play.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\settings.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\робокот.xnb
-D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Fight.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Heal.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Treasure.xnb
+D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Rat.xnb
+D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Skeleton.xnb
+D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Spider.xnb

@@ -9,22 +9,21 @@ using Microsoft.Xna.Framework.Input;
 
 namespace RPG
 {
-    class RoomTreasure : Room
+    class Skeleton : Room
     {
-        Vector2 Pos;
-        int idRoom;
-
-        public static Texture2D texture { get; set; }
+        public static List<Skeleton> skeletons = new List<Skeleton>();
         private MouseState _currentMouse;
         private MouseState _previousMouse;
         public event EventHandler Click;
         private bool _isHovering;
         public bool Clicked { get; private set; }
-
-        public RoomTreasure(Vector2 pos, int idRoom)
+        public static Texture2D texture { get; set; }
+        int idRoom;
+        Vector2 Pos;
+        public Skeleton(Vector2 Pos, int idRoom)
         {
             this.idRoom = idRoom;
-            this.Pos = pos;
+            this.Pos = Pos;
         }
 
         public Rectangle Rectangle
@@ -50,15 +49,17 @@ namespace RPG
 
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
-
+                    Click?.Invoke(this, new EventArgs());
                 }
             }
         }
+
         public void Draw()
         {
             spriteBatch.Begin();
-            Room.spriteBatch.Draw(texture,Pos,Color.White);
+            Room.spriteBatch.Draw(texture, Pos, Color.White);
             spriteBatch.End();
         }
     }
+}
 }

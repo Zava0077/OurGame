@@ -20,18 +20,6 @@ namespace RPG
 
     public class Game1 : Game
     {
-        static public int[] Random(int min, int max)
-        {
-            Random rnd = new Random();
-            int[] NumberRoom = new int[40];
-
-            for (int i = 0; i < NumberRoom.Length; i++)
-            {
-                int random = rnd.Next(min, max);
-                NumberRoom[i] = random;
-            }
-            return NumberRoom;
-        }
         public Color _backgroundColour = Color.CornflowerBlue;
         Menu mn = new Menu();
         GraphicsDeviceManager graphics;
@@ -92,7 +80,7 @@ namespace RPG
         protected override void Initialize()
         {
             base.Initialize();
-            graphics.PreferredBackBufferWidth = 1000;
+            graphics.PreferredBackBufferWidth = 1200;
             graphics.PreferredBackBufferHeight = 850;
             graphics.IsFullScreen = false;
             graphics.ApplyChanges();
@@ -101,17 +89,8 @@ namespace RPG
 
         protected override void LoadContent()
         {
-            RoomFight.texture = Content.Load<Texture2D>("Fight");
-            RoomTreasure.texture = Content.Load<Texture2D>("Treasure");
-            RoomHeal.texture = Content.Load<Texture2D>("Heal");
-            Room.NumberRoom = Random(1, 4);
-            for (int i = 0; i < 40; i++)
-            {
-                Room.Ha = i;
-                Room.Init(spriteBatch);
-            }
-            _currentState = new MenuState(this, graphics.GraphicsDevice, Content,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth); //Текущее состояние меню
-
+            _currentState = new MenuState(this, graphics.GraphicsDevice, Content,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth,spriteBatch); //Текущее состояние меню
+            //_currentState = new GameState(this, graphics.GraphicsDevice, Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             mn.exit = Content.Load<Texture2D>("button");
             mn.settings = Content.Load<Texture2D>("settings");
@@ -137,22 +116,6 @@ namespace RPG
         {
 
         }
-        private void RoomTreasure_click(object sender, System.EventArgs e)
-        {
-            Random random = new Random();
-            _backgroundColour = new Color(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255));
-        }
-        private void RoomFight_click(object sender, System.EventArgs e)
-        {
-            Random random = new Random();
-            _backgroundColour = new Color(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255));
-        }
-        private void RoomHeal_click(object sender, System.EventArgs e)
-        {
-            Random random = new Random();
-            _backgroundColour = new Color(random.Next(0, 255), random.Next(0, 255), random.Next(0, 255));
-        }
-
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
