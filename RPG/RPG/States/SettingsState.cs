@@ -14,13 +14,15 @@ namespace RPG
         private List<Component> _components;
 
         Menu mn = new Menu();
-
-        public SettingsState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, int width, int height, int offset, int bittonWidth,int texwidth, int texheight) : base(game, graphicsDevice, content)
+        SpriteBatch spriteBatch;
+        public SettingsState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, int width, int height, int offset, int bittonWidth,int texwidth, int texheight,SpriteBatch spriteBatch) : base(game, graphicsDevice, content)
         {
+            this.spriteBatch = spriteBatch;
             var catsprite = _content.Load<Texture2D>("робокот");
             var backButton = _content.Load<Texture2D>("back");
-
-            var sprite = new SpriteLoad(catsprite)
+            var font = _content.Load<SpriteFont>("File");
+            
+            var sprite = new SpriteLoad(catsprite, font)
             {
                 Position = new Vector2((_game.Window.ClientBounds.Width / 2) - 277/2, (_game.Window.ClientBounds.Height / 2) -420/2),
             };
@@ -40,7 +42,7 @@ namespace RPG
 
         public void BackButtonClick(object sender, EventArgs e)
         {
-            _game.ChangeState(new MenuState(_game, _graphicsDevice, _content, _game.Window.ClientBounds.Width, _game.Window.ClientBounds.Height, 125, 130));
+            _game.ChangeState(new MenuState(_game, _graphicsDevice, _content, _game.Window.ClientBounds.Width, _game.Window.ClientBounds.Height, 125, 130,spriteBatch));
         }
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

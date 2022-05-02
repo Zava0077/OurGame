@@ -20,6 +20,7 @@ namespace RPG
 
     public class Game1 : Game
     {
+        public Color _backgroundColour = Color.CornflowerBlue;
         Menu mn = new Menu();
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -33,6 +34,14 @@ namespace RPG
         int offset = 125;
         int depth = 65;
         Stat status = Stat.MainScreen;
+        public int PlayerHP = 100;
+        public int Exp = 1;
+        public int PlayerLVL = 0;
+        public int PrevLVL = 0;
+        public int MaxExp = 344;
+        public int expOffset = 28;
+        public int i = 2;
+
 
         private State _currentState;
 
@@ -79,7 +88,7 @@ namespace RPG
         protected override void Initialize()
         {
             base.Initialize();
-            graphics.PreferredBackBufferWidth = 1000;
+            graphics.PreferredBackBufferWidth = 1200;
             graphics.PreferredBackBufferHeight = 850;
             graphics.IsFullScreen = false;
             graphics.ApplyChanges();
@@ -88,9 +97,8 @@ namespace RPG
 
         protected override void LoadContent()
         {
-
-            _currentState = new MenuState(this, graphics.GraphicsDevice, Content,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth); //Текущее состояние меню
-
+            _currentState = new MenuState(this, graphics.GraphicsDevice, Content,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth,spriteBatch); //Текущее состояние меню
+            //_currentState = new GameState(this, graphics.GraphicsDevice, Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
             mn.exit = Content.Load<Texture2D>("button");
             mn.settings = Content.Load<Texture2D>("settings");
@@ -101,22 +109,10 @@ namespace RPG
         }
 
 
-
-        private void QuitButton_Click(object sender, System.EventArgs e)
-        {
-            Exit();
-        }
-
-        private void SettingsButton_click(object sender, System.EventArgs e)
-        {
-            
-        }
-
         protected override void UnloadContent()
         {
 
         }
-
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -133,43 +129,15 @@ namespace RPG
 
             _currentState.PostUpdate(gameTime);
 
-            switch (status)
-            {
-                case Stat.MainScreen:
-                    {
-
-                        break;
-                    }
-                case Stat.Game:
-                    {
-
-                        break;
-                    }
-                case Stat.Settings:
-                    {
-
-                        break;
-                    }
-                case Stat.Exit:
-                    {
-                        Exit();
-                        break;
-                    }
-                case Stat.Final:
-                    {
-
-                        break;
-                    }
-            }
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(_backgroundColour);
 
             _currentState.Draw(gameTime, spriteBatch);
+
 
             base.Draw(gameTime);
         }

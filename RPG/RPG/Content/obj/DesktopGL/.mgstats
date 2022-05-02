@@ -1,6 +1,6 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/button.jpg","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/button.xnb","TextureProcessor","Texture2DContent",8866,453781,1,6299841
-"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/button.png","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/button.xnb","TextureProcessor","Texture2DContent",5213,102885,0,0420286
-"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/Font.spritefont","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/Font.xnb","FontDescriptionProcessor","SpriteFontContent",2008,21538,0,6097728
-"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/робокот.jpg","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/робокот.xnb","TextureProcessor","Texture2DContent",291688,3490645,0,2367678
-"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/робокот.png","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/робокот.xnb","TextureProcessor","Texture2DContent",240721,464337,0,0506276
+"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/button.jpg","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/button.xnb","TextureProcessor","Texture2DContent",8866,453781,0,4234151
+"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/button.png","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/button.xnb","TextureProcessor","Texture2DContent",5213,102885,0,0133812
+"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/text.spritefont","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/text.xnb","FontDescriptionProcessor","SpriteFontContent",2008,21538,0,2008983
+"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/робокот.jpg","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/робокот.xnb","TextureProcessor","Texture2DContent",291688,3490645,0,2052069
+"C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/робокот.png","C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/робокот.xnb","TextureProcessor","Texture2DContent",240721,464337,0,0385217
