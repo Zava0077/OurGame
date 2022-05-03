@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+<<<<<<< HEAD
     <File>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/back.png</File>
     <File>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/button.jpg</File>
     <File>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/button.png</File>
@@ -22,6 +23,22 @@
     <File>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/Treasure.png</File>
     <File>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/робокот.jpg</File>
     <File>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/робокот.png</File>
+=======
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/back.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/button.jpg</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/button.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/exp-bar.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/File.spritefont</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/Font.spritefont</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/hp-bar.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/levelNumber.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/play.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/settings.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/text.spritefont</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/TextureRoom.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/робокот.jpg</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/робокот.png</File>
+>>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
@@ -38,9 +55,12 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+<<<<<<< HEAD
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+=======
+>>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176
   </DestFiles>
 </SourceFileCollection>

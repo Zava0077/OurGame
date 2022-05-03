@@ -24,7 +24,11 @@ namespace RPG
         public Color PenColour { get; set; }
         public Vector2 Position { get; set; }
 
+<<<<<<< HEAD
         public double maxLenght = 120;
+=======
+        public double maxLenght = 300;
+>>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176
 
         private SpriteFont _font;
 

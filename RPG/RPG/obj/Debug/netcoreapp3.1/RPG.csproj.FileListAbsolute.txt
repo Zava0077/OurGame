@@ -59,11 +59,14 @@ D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Font.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\play.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\settings.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\робокот.xnb
+<<<<<<< HEAD
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Heal.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Treasure.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Rat.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Skeleton.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Spider.xnb
+=======
+>>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176
 C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\hp-bar.xnb
 C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Heal.xnb
 C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Rat.xnb
@@ -73,3 +76,11 @@ C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netco
 C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\exp-bar.xnb
 C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\levelNumber.xnb
 C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\text.xnb
+<<<<<<< HEAD
+=======
+D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\exp-bar.xnb
+D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\hp-bar.xnb
+D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\levelNumber.xnb
+D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\text.xnb
+D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\TextureRoom.xnb
+>>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176

@@ -15,6 +15,7 @@ namespace RPG
         SpriteBatch SpriteBatch;
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, SpriteBatch spriteBatch) : base(game, graphicsDevice, content)
         {
+<<<<<<< HEAD
 
 
             Skeleton.texture = _content.Load<Texture2D>("Skeleton");
@@ -22,6 +23,9 @@ namespace RPG
             RoomTreasure.texture = _content.Load<Texture2D>("Treasure");
             RoomHeal.texture = _content.Load<Texture2D>("Heal");
             Spider.texture = _content.Load<Texture2D>("Spider");
+=======
+            Room.textureAllRooms = _content.Load<Texture2D>("TextureRoom");
+>>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176
             Room.Init(spriteBatch);
             
             var hpBarTexture = _content.Load<Texture2D>("hp-bar");
@@ -111,6 +115,17 @@ namespace RPG
             {
                 room.Update();
             }
+<<<<<<< HEAD
+=======
+            foreach (RoomRandomItem room in RoomRandomItem.RoomRandomItems)
+            {
+                room.Update();
+            }
+            foreach (RoomRandomTrap room in RoomRandomTrap.RoomRandomTraps)
+            {
+                room.Update();
+            }
+>>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176
         }
     }
 }
