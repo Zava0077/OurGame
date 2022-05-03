@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>D:/Da/github/OurGame/RPG/RPG/Content/Heal.png</SourceFile>
-  <SourceTime>2022-05-02T19:36:41.2102439+07:00</SourceTime>
-  <DestFile>D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Heal.xnb</DestFile>
-  <DestTime>2022-05-02T23:56:52.4818581+07:00</DestTime>
+  <SourceFile>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/Heal.png</SourceFile>
+  <SourceTime>2022-05-02T19:06:57.5993211+07:00</SourceTime>
+  <DestFile>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/Heal.xnb</DestFile>
+  <DestTime>2022-05-02T19:13:19.8850082+07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T23:17:54+07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

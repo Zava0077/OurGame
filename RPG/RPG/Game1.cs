@@ -34,6 +34,14 @@ namespace RPG
         int offset = 125;
         int depth = 65;
         Stat status = Stat.MainScreen;
+        public int PlayerHP = 100;
+        public double Exp = 1;
+        public int PlayerLVL = 0;
+        public int PrevLVL = 0;
+        public double MaxExp = 344;
+        public int expOffset = 28;
+        public int i = 2;
+
 
         private State _currentState;
 
@@ -101,17 +109,6 @@ namespace RPG
         }
 
 
-
-        private void QuitButton_Click(object sender, System.EventArgs e)
-        {
-            Exit();
-        }
-
-        private void SettingsButton_click(object sender, System.EventArgs e)
-        {
-            
-        }
-
         protected override void UnloadContent()
         {
 
@@ -128,7 +125,6 @@ namespace RPG
                 _nextState = null;
             }
 
-
             _currentState.Update(gameTime);
 
             _currentState.PostUpdate(gameTime);
@@ -141,6 +137,7 @@ namespace RPG
             GraphicsDevice.Clear(_backgroundColour);
 
             _currentState.Draw(gameTime, spriteBatch);
+
 
             base.Draw(gameTime);
         }

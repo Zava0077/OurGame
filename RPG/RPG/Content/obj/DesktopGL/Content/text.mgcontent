@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>D:/Da/github/OurGame/RPG/RPG/Content/text.spritefont</SourceFile>
+  <SourceTime>2022-05-03T12:27:01.7117604+07:00</SourceTime>
+  <DestFile>D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Content/text.xnb</DestFile>
+  <DestTime>2022-05-03T12:32:32.7823848+07:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2020-08-10T23:17:54+07:00</ImporterTime>
+  <Processor>FontDescriptionProcessor</Processor>
+  <ProcessorTime>2020-08-10T23:17:54+07:00</ProcessorTime>
+  <Parameters>
+    <Key>PremultiplyAlpha</Key>
+    <Value>True</Value>
+  </Parameters>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

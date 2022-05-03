@@ -36,7 +36,7 @@ namespace RPG
             }
         }
 
-
+        Random rnd = new Random();
         bool ButtonPressede = false;
         Color color = Color.White;
         public void Update()
@@ -58,6 +58,8 @@ namespace RPG
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
                     this.ButtonPressede = true;
+                    Game1.self.PlayerHP -= rnd.Next(3, 7);
+                    Game1.self.Exp += rnd.Next(15, 25);
                 }
             }
         }

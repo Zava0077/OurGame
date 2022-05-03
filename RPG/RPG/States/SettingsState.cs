@@ -20,8 +20,9 @@ namespace RPG
             this.spriteBatch = spriteBatch;
             var catsprite = _content.Load<Texture2D>("робокот");
             var backButton = _content.Load<Texture2D>("back");
-
-            var sprite = new SpriteLoad(catsprite)
+            var font = _content.Load<SpriteFont>("File");
+            
+            var sprite = new SpriteLoad(catsprite, font)
             {
                 Position = new Vector2((_game.Window.ClientBounds.Width / 2) - 277/2, (_game.Window.ClientBounds.Height / 2) -420/2),
             };
