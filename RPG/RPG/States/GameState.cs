@@ -67,15 +67,14 @@ namespace RPG
 
             int expOffset = 28;
             if (Game1.self.Exp >= Game1.self.MaxExp)
-            {
+            {     
                 expOffset *= 2;
-                Game1.self.Exp = 1;
+                int ostatok = (int)(Game1.self.Exp - Game1.self.MaxExp);
+                Game1.self.Exp = 0+ostatok;
                 Game1.self.PlayerLVL++;
                 Game1.self.MaxExp += expOffset;
                 //ebl.x = (Game1.self.MaxExp/Game1.self.Exp)*100;
             }
-            
-
             
             Room.Draw();
             spriteBatch.DrawString(textFont, Game1.self.PlayerLVL.ToString(), new Vector2((_game.Window.ClientBounds.Width / 2) - 50, _game.Window.ClientBounds.Height / 2 + 300), Color.Black);
