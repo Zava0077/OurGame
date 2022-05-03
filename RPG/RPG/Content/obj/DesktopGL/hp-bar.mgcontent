@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-<<<<<<< HEAD
-  <SourceFile>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/hp-bar.png</SourceFile>
-  <SourceTime>2022-05-02T14:59:21.1077787+07:00</SourceTime>
-  <DestFile>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/hp-bar.xnb</DestFile>
-  <DestTime>2022-05-02T19:35:50.0756761+07:00</DestTime>
-=======
   <SourceFile>D:/Da/github/OurGame/RPG/RPG/Content/hp-bar.png</SourceFile>
   <SourceTime>2022-05-03T12:27:01.6945734+07:00</SourceTime>
   <DestFile>D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/hp-bar.xnb</DestFile>
   <DestTime>2022-05-03T12:33:34.0927142+07:00</DestTime>
->>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T23:17:54+07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

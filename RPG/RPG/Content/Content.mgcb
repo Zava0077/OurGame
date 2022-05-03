@@ -75,21 +75,6 @@
 /processorParam:TextureFormat=Compressed
 /build:Font.spritefont
 
-<<<<<<< HEAD
-#begin Heal.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Heal.png
-
-=======
->>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176
 #begin hp-bar.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -126,21 +111,6 @@
 /processorParam:TextureFormat=Color
 /build:play.png
 
-<<<<<<< HEAD
-#begin Rat.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Rat.png
-
-=======
->>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176
 #begin settings.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -153,33 +123,6 @@
 /processorParam:TextureFormat=Color
 /build:settings.png
 
-<<<<<<< HEAD
-#begin Skeleton.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Skeleton.png
-
-#begin Spider.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Spider.png
-
-=======
->>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176
 #begin text.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -187,11 +130,7 @@
 /processorParam:TextureFormat=Compressed
 /build:text.spritefont
 
-<<<<<<< HEAD
-#begin Treasure.png
-=======
 #begin TextureRoom.png
->>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -201,11 +140,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-<<<<<<< HEAD
-/build:Treasure.png
-=======
 /build:TextureRoom.png
->>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176
 
 #begin робокот.jpg
 /importer:TextureImporter

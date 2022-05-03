@@ -34,14 +34,20 @@ namespace RPG
         int offset = 125;
         int depth = 65;
         Stat status = Stat.MainScreen;
-        public int PlayerHP = 100;
+        public double PlayerHP = 100;
         public double Exp = 1;
         public int PlayerLVL = 0;
         public int PrevLVL = 0;
         public double MaxExp = 344;
         public int expOffset = 28;
         public int i = 2;
-
+        public double MaxHP = 100;
+        public int squareId;
+        public int rightsquareId;
+        public int leftsquareId;
+        public int upsquareId;
+        public int downsquareId;
+        public bool isFirstsquare = true;
 
         private State _currentState;
 
@@ -75,12 +81,6 @@ namespace RPG
             mn.texWidth = v3Width;
             mn.offset = offset;
 
-            mn.v = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) - offset); // задаем местоположения наших спрайтов
-            mn.v1 = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + (Window.ClientBounds.Height / 3) - offset);
-            mn.v2 = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + ((Window.ClientBounds.Height / 3) * 2) - offset);
-            mn.v3 = new Vector2((Window.ClientBounds.Width / 2) - v3Width/2, (Window.ClientBounds.Height / 2) - v3Height/ 2);
-            mn.backv = new Vector2((Window.ClientBounds.Width / 2) - bittonWidth, (Window.ClientBounds.Height / 3) + ((Window.ClientBounds.Height / 3) * 2) - offset); //кнопка назад
-
             mn.color = Color.WhiteSmoke;
         }
         public static Game1 self;
@@ -100,12 +100,7 @@ namespace RPG
             _currentState = new MenuState(this, graphics.GraphicsDevice, Content,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth,spriteBatch); //Текущее состояние меню
             //_currentState = new GameState(this, graphics.GraphicsDevice, Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            mn.exit = Content.Load<Texture2D>("button");
-            mn.settings = Content.Load<Texture2D>("settings");
-            mn.play = Content.Load<Texture2D>("play");
-            mn.test = Content.Load<Texture2D>("робокот");
-            mn.back = Content.Load<Texture2D>("back");
-            mn.font = Content.Load<SpriteFont>("Font");
+
         }
 
 

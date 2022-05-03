@@ -15,17 +15,7 @@ namespace RPG
         SpriteBatch SpriteBatch;
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, SpriteBatch spriteBatch) : base(game, graphicsDevice, content)
         {
-<<<<<<< HEAD
-
-
-            Skeleton.texture = _content.Load<Texture2D>("Skeleton");
-            Rat.texture = _content.Load<Texture2D>("Rat");
-            RoomTreasure.texture = _content.Load<Texture2D>("Treasure");
-            RoomHeal.texture = _content.Load<Texture2D>("Heal");
-            Spider.texture = _content.Load<Texture2D>("Spider");
-=======
             Room.textureAllRooms = _content.Load<Texture2D>("TextureRoom");
->>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176
             Room.Init(spriteBatch);
             
             var hpBarTexture = _content.Load<Texture2D>("hp-bar");
@@ -70,10 +60,15 @@ namespace RPG
                 component.Draw(gameTime, spriteBatch);
 
             int expOffset = 28;
+            if (Game1.self.PlayerHP >= Game1.self.MaxHP)
+                Game1.self.PlayerHP = Game1.self.MaxHP;
             if (Game1.self.Exp >= Game1.self.MaxExp)
             {     
                 expOffset *= 2;
                 int ostatok = (int)(Game1.self.Exp - Game1.self.MaxExp);
+                Game1.self.MaxHP += 5;
+                if(Game1.self.PlayerLVL % 10 == 0)
+                    Game1.self.MaxHP += 5;
                 Game1.self.Exp = 0+ostatok;
                 Game1.self.PlayerLVL++;
                 Game1.self.MaxExp += expOffset;
@@ -115,8 +110,6 @@ namespace RPG
             {
                 room.Update();
             }
-<<<<<<< HEAD
-=======
             foreach (RoomRandomItem room in RoomRandomItem.RoomRandomItems)
             {
                 room.Update();
@@ -125,7 +118,6 @@ namespace RPG
             {
                 room.Update();
             }
->>>>>>> 1b8b1a74e5d6f648d37441975f36ea9cc3b46176
         }
     }
 }

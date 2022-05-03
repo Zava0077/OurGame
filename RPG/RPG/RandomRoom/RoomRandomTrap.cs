@@ -40,6 +40,7 @@ namespace RPG
 
         bool ButtonPressede = false;
         Color color = Color.White;
+        Random rnd = new Random();
         public void Update()
         {
             _previousMouse = _currentMouse;
@@ -55,10 +56,30 @@ namespace RPG
             if (mouseRectangle.Intersects(Rectangle))
             {
                 _isHovering = true;
-
+                Game1.self.squareId = this.idRoom;
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
-                    this.ButtonPressede = true;
+                    if (Game1.self.isFirstsquare == true)
+                    {
+
+                        Game1.self.rightsquareId = this.idRoom + 1;
+                        Game1.self.leftsquareId = this.idRoom - 1;
+                        Game1.self.upsquareId = this.idRoom - Room.CoutRoomX;
+                        Game1.self.downsquareId = this.idRoom + Room.CoutRoomX;
+                        this.ButtonPressede = true;
+
+                        Game1.self.isFirstsquare = false;
+                    }
+                    else if (this.idRoom == Game1.self.rightsquareId || this.idRoom == Game1.self.leftsquareId || this.idRoom == Game1.self.upsquareId || this.idRoom == Game1.self.downsquareId)
+                    {
+                        if (this.ButtonPressede == false)
+                        {
+                            Game1.self.PlayerHP -= rnd.Next(0, 25);
+                            Game1.self.Exp += rnd.Next(0, 100);
+                        }
+                        this.ButtonPressede = true;
+                    }
+
                 }
             }
         }
