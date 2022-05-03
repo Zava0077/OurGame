@@ -60,10 +60,15 @@ namespace RPG
                 component.Draw(gameTime, spriteBatch);
 
             int expOffset = 28;
+            if (Game1.self.PlayerHP >= Game1.self.MaxHP)
+                Game1.self.PlayerHP = Game1.self.MaxHP;
             if (Game1.self.Exp >= Game1.self.MaxExp)
             {     
                 expOffset *= 2;
                 int ostatok = (int)(Game1.self.Exp - Game1.self.MaxExp);
+                Game1.self.MaxHP += 5;
+                if(Game1.self.PlayerLVL % 10 == 0)
+                    Game1.self.MaxHP += 5;
                 Game1.self.Exp = 0+ostatok;
                 Game1.self.PlayerLVL++;
                 Game1.self.MaxExp += expOffset;
@@ -84,35 +89,7 @@ namespace RPG
         {
             foreach (var component in _components)
                 component.Update(gameTime);
-
-            foreach (RoomTreasure room in Room.TreasureRoom)
-            {
-                room.Update();
-            }
-            foreach (Rat room in Rat.Rats)
-            {
-                room.Update();
-            }
-            foreach (Skeleton room in Skeleton.skeletons)
-            {
-                room.Update();
-            }
-            foreach (Spider room in Spider.Spiders)
-            {
-                room.Update();
-            }
-            foreach (RoomHeal room in Room.HealRoom)
-            {
-                room.Update();
-            }
-            foreach (RoomRandomItem room in RoomRandomItem.RoomRandomItems)
-            {
-                room.Update();
-            }
-            foreach (RoomRandomTrap room in RoomRandomTrap.RoomRandomTraps)
-            {
-                room.Update();
-            }
+            Room.Update();
         }
     }
 }
