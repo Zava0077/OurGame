@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/Font.spritefont</SourceFile>
-  <SourceTime>2022-05-02T01:47:15.0441791+07:00</SourceTime>
+  <SourceTime>2022-05-03T22:14:02.2881868+07:00</SourceTime>
   <DestFile>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/Content/Font.xnb</DestFile>
-  <DestTime>2022-05-03T12:54:31.3248065+07:00</DestTime>
+  <DestTime>2022-05-03T22:19:47.6982582+07:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2020-08-10T23:17:54+07:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

@@ -52,14 +52,6 @@ namespace RPG
             var colour = Color.White;
 
             spriteBatch.Draw(_texture,new Vector2 ((int)Position.X, (int)Position.Y),Rectangle, colour,0,Vector2.Zero,0.8f ,SpriteEffects.None,0);
-
-            if (!string.IsNullOrEmpty(Text))
-            {
-                var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
-                var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
-
-                spriteBatch.DrawString(_font, Text, new Vector2(x, y), PenColour);
-            }
         }
 
         public override void Update(GameTime gameTime)

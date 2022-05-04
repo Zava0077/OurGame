@@ -1,27 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace RPG
 {
     public class GameState : State
     {
         private List<Component> _components;
-        SpriteBatch SpriteBatch;
+
+        SpriteBatch spriteBatch;
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, SpriteBatch spriteBatch) : base(game, graphicsDevice, content)
         {
             Room.textureAllRooms = _content.Load<Texture2D>("TextureRoom");
+            Inventory.textureAllSlots = _content.Load<Texture2D>("TextureRoom");
             Room.Init(spriteBatch);
+            Inventory.Init(spriteBatch);
             
             var hpBarTexture = _content.Load<Texture2D>("hp-bar");
             var expBarTexture = _content.Load<Texture2D>("exp-bar");
             var textFont = _content.Load<SpriteFont>("text");
-            var levelBoxTexture = _content.Load<Texture2D>("levelNumber");
 
             var hpBar = new SpriteLoad2(hpBarTexture, textFont)
             {
@@ -34,21 +40,13 @@ namespace RPG
                 Text = "",
             };
 
-            var levelBox = new SpriteLoad(levelBoxTexture, textFont)
-            {
-                Position = new Vector2((_game.Window.ClientBounds.Width / 2) - 50, _game.Window.ClientBounds.Height / 2 + 300),
-                Text = "",
-            };
-
-            
             _components = new List<Component>()
             {
                 hpBar,
                 expBar,
-                levelBox,
             };
         }
-
+        
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
 
@@ -58,7 +56,6 @@ namespace RPG
             spriteBatch.Begin(); 
             foreach (var component in _components)
                 component.Draw(gameTime, spriteBatch);
-
             int expOffset = 28;
             if (Game1.self.PlayerHP >= Game1.self.MaxHP)
                 Game1.self.PlayerHP = Game1.self.MaxHP;
@@ -72,10 +69,9 @@ namespace RPG
                 Game1.self.Exp = 0+ostatok;
                 Game1.self.PlayerLVL++;
                 Game1.self.MaxExp += expOffset;
-                //ebl.x = (Game1.self.MaxExp/Game1.self.Exp)*100;
             }
-            
             Room.Draw();
+            Inventory.Draw();
             spriteBatch.DrawString(textFont, Game1.self.PlayerLVL.ToString(), new Vector2((_game.Window.ClientBounds.Width / 2) - 50, _game.Window.ClientBounds.Height / 2 + 300), Color.Black);
             spriteBatch.End();
         }
@@ -89,35 +85,8 @@ namespace RPG
         {
             foreach (var component in _components)
                 component.Update(gameTime);
-
-            foreach (RoomTreasure room in Room.TreasureRoom)
-            {
-                room.Update();
-            }
-            foreach (Rat room in Rat.Rats)
-            {
-                room.Update();
-            }
-            foreach (Skeleton room in Skeleton.skeletons)
-            {
-                room.Update();
-            }
-            foreach (Spider room in Spider.Spiders)
-            {
-                room.Update();
-            }
-            foreach (RoomHeal room in Room.HealRoom)
-            {
-                room.Update();
-            }
-            foreach (RoomRandomItem room in RoomRandomItem.RoomRandomItems)
-            {
-                room.Update();
-            }
-            foreach (RoomRandomTrap room in RoomRandomTrap.RoomRandomTraps)
-            {
-                room.Update();
-            }
+            Room.Update();
+            Inventory.Update();
         }
     }
 }

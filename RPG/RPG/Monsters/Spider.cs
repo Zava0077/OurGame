@@ -37,7 +37,9 @@ namespace RPG
 
         Random rnd = new Random();
         bool ButtonPressede = false;
-        Color color = Color.White;
+        Color color = Color.Transparent;
+        static int d = 0;
+        static int c = 0;
         public void Update()
         {
             _previousMouse = _currentMouse;
@@ -45,6 +47,10 @@ namespace RPG
 
             var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
 
+            if (Game1.self.upsquareId == this.idRoom || Game1.self.downsquareId == this.idRoom || Game1.self.leftsquareId == this.idRoom || Game1.self.rightsquareId == this.idRoom)
+            {
+                color = Color.White;
+            }
             _isHovering = false;
             if (this.ButtonPressede)
             {
@@ -62,10 +68,23 @@ namespace RPG
                         Game1.self.leftsquareId = this.idRoom - 1;
                         Game1.self.upsquareId = this.idRoom - Room.CoutRoomX;
                         Game1.self.downsquareId = this.idRoom + Room.CoutRoomX;
-                        Game1.self.PlayerHP -= rnd.Next(8, 15);
-                        Game1.self.Exp += rnd.Next(40, 100);
+                        Game1.self.PlayerHP -= rnd.Next(8, 10);
+                        Game1.self.Exp += rnd.Next(20, 60);
                         this.ButtonPressede = true;
                         Game1.self.isFirstsquare = false;
+                        if (this.idRoom % CoutRoomX == 0)
+                        {
+                            d = this.idRoom / CoutRoomX;
+                        }
+                        if (this.idRoom == Room.CoutRoomX * d)
+                        {
+                            Game1.self.leftsquareId = 0;
+                        }
+                        if (this.idRoom == (CoutRoomX - 1) + (CoutRoomX * (int)((double)this.idRoom / 11.0) - CoutRoomX))
+                        {
+                            Game1.self.rightsquareId = 0;
+                        }
+
                     }
                     else if (this.idRoom == Game1.self.rightsquareId || this.idRoom == Game1.self.leftsquareId || this.idRoom == Game1.self.upsquareId || this.idRoom == Game1.self.downsquareId)
                     {
@@ -74,15 +93,26 @@ namespace RPG
                         Game1.self.leftsquareId = this.idRoom - 1;
                         Game1.self.upsquareId = this.idRoom - Room.CoutRoomX;
                         Game1.self.downsquareId = this.idRoom + Room.CoutRoomX;
+                        if (this.idRoom % CoutRoomX == 0)
+                        {
+                            d = this.idRoom / CoutRoomX;
+                        }
+                        if (this.idRoom == Room.CoutRoomX * d)
+                        {
+                            Game1.self.leftsquareId = 0;
+                        }
+                        if (this.idRoom == (CoutRoomX - 1) + (CoutRoomX * (int)((double)this.idRoom / 11.0) - CoutRoomX))
+                        {
+                            Game1.self.rightsquareId = 0;
+                        }
                         if (this.ButtonPressede == false)
                         {
-                            Game1.self.PlayerHP -= rnd.Next(8, 15);
-                            Game1.self.Exp += rnd.Next(40, 100);
+                            Game1.self.PlayerHP -= rnd.Next(8, 10);
+                            Game1.self.Exp += rnd.Next(20, 60);
                         }
                         this.ButtonPressede = true;
                     }
                 }
-
             }
         }
 

@@ -106,6 +106,37 @@ namespace RPG
             }
         }
 
+        static public void Update()
+        {
+            foreach (RoomTreasure room in Room.TreasureRoom)
+            {
+                room.Update();
+            }
+            foreach (Rat room in Rat.Rats)
+            {
+                room.Update();
+            }
+            foreach (Skeleton room in Skeleton.skeletons)
+            {
+                room.Update();
+            }
+            foreach (Spider room in Spider.Spiders)
+            {
+                room.Update();
+            }
+            foreach (RoomHeal room in Room.HealRoom)
+            {
+                room.Update();
+            }
+            foreach (RoomRandomItem room in RoomRandomItem.RoomRandomItems)
+            {
+                room.Update();
+            }
+            foreach (RoomRandomTrap room in RoomRandomTrap.RoomRandomTraps)
+            {
+                room.Update();
+            }
+        }
         static public void Draw()
         {
             foreach (RoomTreasure room in TreasureRoom)

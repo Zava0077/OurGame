@@ -47,7 +47,10 @@ namespace RPG
         public int leftsquareId;
         public int upsquareId;
         public int downsquareId;
+        public int id = 0;
+        public int connst = 64;
         public bool isFirstsquare = true;
+
 
         private State _currentState;
 
@@ -84,6 +87,7 @@ namespace RPG
             mn.color = Color.WhiteSmoke;
         }
         public static Game1 self;
+
 
         protected override void Initialize()
         {
