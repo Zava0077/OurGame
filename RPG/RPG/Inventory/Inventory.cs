@@ -14,11 +14,12 @@ namespace RPG
         public static int CountSlotX = 7;
         public static int CountSlotY = 9;
         static public SpriteBatch spriteBatch { get; set; }
-
+        public static MouseState currentMouse;
+        public static MouseState previousMouse;
         static public SpriteFont spriteFont { get; set; }
-        public static int[] NumberRoom;
         public static int idSlot { get; set; }
         public static Texture2D textureAllSlots { get; set; }
+
 
         static public int[] Random(int min, int max)
         {
@@ -37,7 +38,7 @@ namespace RPG
             int x = 0;
             int y = -1;
             idSlot = 0;
-            int Otstup = 36;
+            int Otstup = 32;
             int das = 20;
             Inventory.spriteBatch = spriteBatch;
             for (; idSlot < CountSlotX * CountSlotY; idSlot++)
@@ -49,12 +50,14 @@ namespace RPG
                     y++;
                 }
 
-                Slot.Slots.Add(new Slot(new Vector2(((x * Otstup)) + Game1.self.Window.ClientBounds.Width - CountSlotX * 32 - Otstup * 2, das + (y * Otstup)), idSlot, textureAllSlots));
+                Slot.Slots.Add(new Slot(new Vector2(((x * Otstup)) + Game1.self.Window.ClientBounds.Width - CountSlotX * 32 - Otstup * 2, das + (y * Otstup)), idSlot, textureAllSlots,new Rectangle(8 * Game1.self.connst + 8, 0, 32, 32)));
             }
         }
 
         static public void Update()
         {
+            previousMouse = currentMouse;
+            currentMouse = Mouse.GetState();
             foreach (Slot slot in Slot.Slots)
             {
                 slot.Update();
@@ -65,7 +68,7 @@ namespace RPG
             foreach (Slot slot in Slot.Slots)
             {
                 slot.Draw();
-            }
+            } 
         }
 
     }

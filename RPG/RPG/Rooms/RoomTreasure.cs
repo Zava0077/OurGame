@@ -20,6 +20,7 @@ namespace RPG
         public event EventHandler Click;
         private bool _isHovering;
         public bool Clicked { get; private set; }
+        public static int count = 0;
 
         public RoomTreasure(Vector2 pos, int idRoom, Texture2D texture)
         {
@@ -73,10 +74,6 @@ namespace RPG
                         Game1.self.Exp += rnd.Next(20, 50);
                         this.ButtonPressede = true;
                         Game1.self.isFirstsquare = false;
-                        if (Slot.idSlot == 0)
-                        {
-                            Slot.Displacement = 32;
-                        }
                         if (this.idRoom % CoutRoomX == 0)
                         {
                             d = this.idRoom / CoutRoomX;
@@ -89,7 +86,7 @@ namespace RPG
                         {
                             Game1.self.rightsquareId = 0;
                         }
-
+                        SlotChecker.idSlotForCheck = 0;
                     }
                     else if (this.idRoom == Game1.self.rightsquareId || this.idRoom == Game1.self.leftsquareId || this.idRoom == Game1.self.upsquareId || this.idRoom == Game1.self.downsquareId)
                     {
@@ -98,6 +95,8 @@ namespace RPG
                         Game1.self.leftsquareId = this.idRoom - 1;
                         Game1.self.upsquareId = this.idRoom - Room.CoutRoomX;
                         Game1.self.downsquareId = this.idRoom + Room.CoutRoomX;
+                        Slot.row = 0;
+                        Slot.collumn = 0;
                         if (this.idRoom % CoutRoomX == 0)
                         {
                             d = this.idRoom / CoutRoomX;
@@ -112,6 +111,7 @@ namespace RPG
                         }
                         if (this.ButtonPressede == false)
                         {
+                            count++;
                             Game1.self.Exp += rnd.Next(20, 50);
                         }
                         this.ButtonPressede = true;

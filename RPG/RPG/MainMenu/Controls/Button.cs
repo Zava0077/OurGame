@@ -11,7 +11,7 @@ namespace RPG
 {
     public class Button : Component
     {
-        #region Fields
+        #region Поля
 
         Menu mn = new Menu();
 
@@ -27,7 +27,7 @@ namespace RPG
 
         #endregion
 
-        #region Properties
+        #region Свойства
 
         public event EventHandler Click;
 
@@ -54,7 +54,7 @@ namespace RPG
 
         #endregion
 
-        #region Methods
+        #region Методы
 
         public Button(Texture2D texture)
         {
