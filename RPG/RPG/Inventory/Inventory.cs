@@ -20,19 +20,6 @@ namespace RPG
         public static int idSlot { get; set; }
         public static Texture2D textureAllSlots { get; set; }
 
-
-        static public int[] Random(int min, int max)
-        {
-            Random rnd = new Random();
-            int[] NumberRoom = new int[CountSlotX * CountSlotY];
-
-            for (int i = 0; i < NumberRoom.Length; i++)
-            {
-                int random = rnd.Next(min, max);
-                NumberRoom[i] = random;
-            }
-            return NumberRoom;
-        }
         static public void Init(SpriteBatch spriteBatch)
         {
             int x = 0;
@@ -49,11 +36,9 @@ namespace RPG
                     x = 0;
                     y++;
                 }
-
-                Slot.Slots.Add(new Slot(new Vector2(((x * Otstup)) + Game1.self.Window.ClientBounds.Width - CountSlotX * 32 - Otstup * 2, das + (y * Otstup)), idSlot, textureAllSlots,new Rectangle(8 * Game1.self.connst + 8, 0, 32, 32)));
+                Slot.Slots.Add(new Slot(new Vector2(((x * Otstup)) + Game1.self.Window.ClientBounds.Width - CountSlotX * 32 - Otstup * 2, das + (y * Otstup)), idSlot, textureAllSlots, new Rectangle(8 * Game1.self.connst + 8, 0, 32, 32), true, 0, 0));
             }
         }
-
         static public void Update()
         {
             previousMouse = currentMouse;
@@ -68,9 +53,7 @@ namespace RPG
             foreach (Slot slot in Slot.Slots)
             {
                 slot.Draw();
-            } 
+            }
         }
-
     }
-
 }

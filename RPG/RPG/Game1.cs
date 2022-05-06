@@ -71,7 +71,7 @@ namespace RPG
             Content.RootDirectory = "Content";
             //  var screenScale = graphics.PreferredBackBufferHeight / 1080.0f;
             // screenXform = Matrix.CreateScale(screenScale, screenScale, 1.0f);
-            self = this; //селфяшка приравнивается к зису
+            self = this;
             IsMouseVisible = true;
 
             int v3Width = 277; //ширина четвертого спрайта

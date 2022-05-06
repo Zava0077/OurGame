@@ -43,6 +43,7 @@ namespace RPG
         Color color = Color.Transparent;
         static int d = 0;
         static int c = 0;
+        int idSlotForCheck = 0;
         public void Update()
         {
             _previousMouse = _currentMouse;
@@ -86,7 +87,6 @@ namespace RPG
                         {
                             Game1.self.rightsquareId = 0;
                         }
-                        SlotChecker.idSlotForCheck = 0;
                     }
                     else if (this.idRoom == Game1.self.rightsquareId || this.idRoom == Game1.self.leftsquareId || this.idRoom == Game1.self.upsquareId || this.idRoom == Game1.self.downsquareId)
                     {
@@ -97,6 +97,17 @@ namespace RPG
                         Game1.self.downsquareId = this.idRoom + Room.CoutRoomX;
                         Slot.row = 0;
                         Slot.collumn = 0;
+                        idSlotForCheck = Slot.self.GetEmptySlot();
+                        int rndItem = rnd.Next(0,100);
+                        Slot.Slots[idSlotForCheck].currentClassOfItem = 3;
+
+                        if (rndItem > 0 && rndItem < 70)
+                        {
+                            Slot.self.ClassOfItem(3, 0);
+                        }
+                        else
+                            Slot.self.ClassOfItem(3, 1);
+
                         if (this.idRoom % CoutRoomX == 0)
                         {
                             d = this.idRoom / CoutRoomX;
@@ -119,13 +130,12 @@ namespace RPG
                 }
             }
         }
-
-
         public void Draw()
         {
             spriteBatch.Begin();
             Room.spriteBatch.Draw(texture, Pos, new Rectangle(325, 0, 64, 64), color);
             spriteBatch.End();
         }
+        
     }
 }
