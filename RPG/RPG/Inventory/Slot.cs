@@ -44,7 +44,7 @@ namespace RPG
         {
             get
             {
-                return new Rectangle((int)Pos.X, (int)Pos.Y, 32, 32);
+                return new Rectangle((int)Pos.X, (int)Pos.Y, 64, 64);
             }
         }
 
@@ -95,6 +95,10 @@ namespace RPG
         public void Draw()
         {
             spriteBatch.Begin();
+            if (_isHovering)
+                color = Color.Gray;
+            else
+                color = Color.White;
             Inventory.spriteBatch.Draw(texture, new Vector2 (Pos.X,Pos.Y), Rectangle2, color);
             Inventory.spriteBatch.Draw(texture, new Vector2((Game1.self.Window.ClientBounds.Width - 288) + SlotChecker.constt * Slot.collumn, 20 + SlotChecker.constt * Slot.row), new Rectangle(0, 0, 5, 5), Color.White); //прорисовка Слотчекера
             spriteBatch.End();
@@ -113,7 +117,6 @@ namespace RPG
                         i = (CountSlotX * CountSlotY) - 1;
                 }
             }
-            
             if (Slots[0].isEmpty == true)
                 idSlotForCheck = 0;
         }
@@ -128,18 +131,18 @@ namespace RPG
             switch (currentClassOfItem)
             {
                 case 0:
-                    Slots[idSlotForCheck].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 0, 32, 32);
+                    Slots[idSlotForCheck].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 0, 64, 64);
                     Slots[idSlotForCheck].isEmpty = false;
                     break;
                 case 3:
                     switch (currentTypeOfPotion)
                     {
                         case 0:
-                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 32, 32, 32);
+                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(0, 65, 64, 64);
                             Slots[idSlotForCheck].isEmpty = false;
                             break;
                         case 1:
-                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8 + 32, 0, 32, 32);
+                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8 + 65, 0, 64, 64);
                             Slots[idSlotForCheck].isEmpty = false;
                             break;
                     }
@@ -153,19 +156,19 @@ namespace RPG
             switch (i)
             {
                 case 0:
-                    Slots[currentId].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 0, 32, 32);
+                    Slots[currentId].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 0, 64, 64);
                     Slots[currentId].isEmpty = true;
                     break;
                 case 3:
                     switch (j)
                     {
                         case 0:
-                            Slots[currentId].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 0, 32, 32);
+                            Slots[currentId].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 0, 64, 64);
                             Game1.self.PlayerHP += 20;
                             Slots[currentId].isEmpty = true;
                             break;
                         case 1:
-                            Slots[currentId].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 0, 32, 32);
+                            Slots[currentId].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 0, 64, 64);
                             Slots[currentId].isEmpty = true;
                             Game1.self.PlayerHP += 45;
                             break;
