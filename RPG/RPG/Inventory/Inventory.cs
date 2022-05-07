@@ -36,7 +36,7 @@ namespace RPG
                     x = 0;
                     y++;
                 }
-                Slot.Slots.Add(new Slot(new Vector2(((x * Otstup)) + Game1.self.Window.ClientBounds.Width - CountSlotX * 32 - Otstup * 2 - das, das + (y * Otstup)+ Otstup+das+120), idSlot, textureAllSlots, new Rectangle(8 * Game1.self.connst + 8, 0, 64, 64), true, 0, 0));
+                Slot.Slots.Add(new Slot(new Vector2(((x * Otstup)) + Game1.self.Window.ClientBounds.Width - CountSlotX * 32 - Otstup * 2 - das, das + (y * Otstup) + Otstup + das + 120), idSlot, textureAllSlots, new Rectangle(8 * Game1.self.connst + 8, 0, 64, 64), true, 0, 0, new Rectangle(8 * Game1.self.connst + 8, 0, 64, 64)));
             }
         }
         static public void Update()

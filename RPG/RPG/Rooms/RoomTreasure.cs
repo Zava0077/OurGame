@@ -101,11 +101,11 @@ namespace RPG
                         int rndItem = rnd.Next(0,100);
                         Slot.Slots[idSlotForCheck].currentClassOfItem = 3;
 
-                        if (rndItem > 0 && rndItem < 70)
+                        if (rndItem > 40 && rndItem < 70)
                         {
                             Slot.self.ClassOfItem(3, 0);
                         }
-                        else
+                        else if (rndItem <= 70 && rndItem > 100)
                             Slot.self.ClassOfItem(3, 1);
 
                         if (this.idRoom % CoutRoomX == 0)

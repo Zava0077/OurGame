@@ -23,13 +23,19 @@ namespace RPG
         public static int collumn = 0;
         public static int constt = 32;
         public static int idSlotForCheck = 99;
+        public bool isCheckerEmpty;
         public static Vector2 OldPos = Vector2.Zero;
         public static Vector2 Pos { get; set; }
-        public SlotChecker(int idSlot, Vector2 vector)
+        public string[] classOfItem = Slot.self.classOfItem;
+        public int currentClassOfItem = Slot.self.currentClassOfItem;
+        public string[] typeOfPotion = Slot.self.typeOfPotion;
+        public int currentTypeOfItem = Slot.self.currentTypeOfItem;
+        public SlotChecker(int idSlot, Vector2 vector, bool isCheckerEmpty)
         {
             idSlotForCheck = idSlot;
             self = this;
             Pos = vector;
+            this.isCheckerEmpty = isCheckerEmpty;
         }
 
         public static Rectangle Rectangle
@@ -50,22 +56,22 @@ namespace RPG
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
 
+
             var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1,1);
             if (_isHovering)
             {
-                color = Color.Gray;
-                Displacement = 0;
+
             }
             _isHovering = false;
-            if (mouseRectangle.Intersects(Rectangle))
+            if (Rectangle.Intersects(Slot.self.Rectangle))
             {
                 _isHovering = true;
-                color = Color.Gray;
+                color = Color.Red;
 
 
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
-                    
+
                 }
             }
         }
