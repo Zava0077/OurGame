@@ -97,15 +97,14 @@ namespace RPG
                         Game1.self.downsquareId = this.idRoom + Room.CoutRoomX;
                         Slot.row = 0;
                         Slot.collumn = 0;
-                        idSlotForCheck = Slot.self.GetEmptySlot();
                         int rndItem = rnd.Next(0,100);
-                        Slot.Slots[idSlotForCheck].currentClassOfItem = 3;
-
-                        if (rndItem > 40 && rndItem < 70)
+                        if (rndItem < 40)
+                            ;
+                        else if (rndItem < 70)
                         {
                             Slot.self.ClassOfItem(3, 0);
                         }
-                        else if (rndItem <= 70 && rndItem > 100)
+                        else
                             Slot.self.ClassOfItem(3, 1);
 
                         if (this.idRoom % CoutRoomX == 0)

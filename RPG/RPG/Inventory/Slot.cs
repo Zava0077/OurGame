@@ -76,7 +76,8 @@ namespace RPG
             _currentMouse = Mouse.GetState();
 
             SlotChecker sltchk = new SlotChecker(SlotChecker.idSlotForCheck, new Vector2(_currentMouse.X, _currentMouse.Y), true);
-
+            if(Slots[idSlot].currentClassOfItem == 0)
+                Slots[idSlot].isEmpty = true;
             var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
             var checkerRectangle = new Rectangle((Game1.self.Window.ClientBounds.Width - 288) + SlotChecker.constt * Slot.collumn, 20 + SlotChecker.constt * Slot.row, 1, 1);
             _isCheckerHovering = false;
@@ -91,12 +92,9 @@ namespace RPG
                 _isHovering = true;
                 if (_currentMouse.RightButton == ButtonState.Released && _previousMouse.RightButton == ButtonState.Pressed)
                 {
-                    if (Slots[currentId].isEmpty == false)
-                    {
-                        SlotReact(Slots[idSlotForCheck].currentClassOfItem, Slots[idSlotForCheck].currentTypeOfItem, this.idSlot);
-                    }
-                    if(wasScrambled)
-                        SlotReact(checkerCurrentClassOfItem, checkerCurrentTypeOfItem, this.idSlot);
+
+                    SlotReact(Slots[currentId].currentClassOfItem, Slots[currentId].currentTypeOfItem, this.idSlot);
+
                 }
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
@@ -111,6 +109,8 @@ namespace RPG
                 color = Color.Gray;
             else
                 color = Color.White;
+            if (checkerCurrentClassOfItem == 0)
+                SlotCheckerRectangleValue = new Rectangle(8 * 64 + 8, 0, 64, 64);
             Inventory.spriteBatch.Draw(texture, new Vector2(Pos.X, Pos.Y), Rectangle2, color);
             Inventory.spriteBatch.Draw(texture, new Vector2(_currentMouse.X, _currentMouse.Y), SlotCheckerRectangleValue, Color.White); //прорисовка Слотчекера
             spriteBatch.End();
@@ -118,36 +118,22 @@ namespace RPG
         public void EmptySlot()
         {
             int i = 0;
-            if (wasScrambled)
-            {
+            if (Slots[i].isEmpty == false)
                 while (Slots[i].isEmpty == false)
                 {
                     for (i = 0; i < (CountSlotX * CountSlotY) - 1;)
                     {
                         i++;
-                        idSlotForCheck = i;
-                        if (checkerCurrentClassOfItem == 0)
+                        if (Slots[i].isEmpty == true)
                             Slots[i].isEmpty = true;
+                        idSlotForCheck = i;
                         if (Slots[i].isEmpty == true)
                             i = (CountSlotX * CountSlotY) - 1;
                     }
                 }
-            }
-            while (Slots[i].isEmpty == false)
-            {
-                for (i = 0; i < (CountSlotX * CountSlotY) - 1;)
-                {
-                    i++;
-                    idSlotForCheck = i;
-                    if (Slots[i].currentClassOfItem == 0)
-                        Slots[i].isEmpty = true;
-                    if (Slots[i].isEmpty == true)
-                        i = (CountSlotX * CountSlotY) - 1;
-                }
-            }
-            if (Slots[0].isEmpty == true)
-                idSlotForCheck = 0;
+            else idSlotForCheck = 0;
         }
+    
         public int GetEmptySlot()
         {
             EmptySlot();
@@ -166,7 +152,7 @@ namespace RPG
             varCurrentTypeOfItem = Slots[currentId].currentTypeOfItem;
             Slots[currentId].currentTypeOfItem = checkerCurrentTypeOfItem;
             checkerCurrentTypeOfItem = varCurrentTypeOfItem;
-            wasScrambled = true;
+            GetEmptySlot();
         }
         public void ClassOfItem(int currentClassOfItem, int currentTypeOfItem)
         {
@@ -174,7 +160,7 @@ namespace RPG
             switch (currentClassOfItem)
             {
                 case 0:
-                    Slots[idSlotForCheck].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 0, 64, 64);
+                    Slots[idSlotForCheck].Rectangle2 = new Rectangle(8 * Game1.self.connst, 0, 64, 64);
                     Slots[idSlotForCheck].isEmpty = true;
                     break;
                 case 3:
@@ -183,10 +169,14 @@ namespace RPG
                         case 0:
                             Slots[idSlotForCheck].Rectangle2 = new Rectangle(0, 65, 64, 64);
                             Slots[idSlotForCheck].isEmpty = false;
+                            Slots[idSlotForCheck].currentClassOfItem = 3;
+                            Slots[idSlotForCheck].currentTypeOfItem = 0;
                             break;
                         case 1:
-                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8 + 65, 0, 64, 64);
+                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(8 * 65 + 65, 0, 64, 64);
                             Slots[idSlotForCheck].isEmpty = false;
+                            Slots[idSlotForCheck].currentClassOfItem = 3;
+                            Slots[idSlotForCheck].currentTypeOfItem = 1;
                             break;
                     }
                     break;
@@ -194,8 +184,6 @@ namespace RPG
         }
         public void SlotReact(int i, int j, int currentId)
         {
-            i = Slots[currentId].currentClassOfItem;
-            j = Slots[currentId].currentTypeOfItem;
             switch (i)
             {
                 case 0:
