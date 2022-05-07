@@ -35,8 +35,10 @@ namespace RPG
         public Rectangle SlotCheckerRectangle;
         public static Rectangle SlotCheckerRectangleValue;
         public bool isEmpty;
-
+        public bool checkerIsEmpty = true;
+        public bool varCheckerIsEmpty;
         public static List<Slot> ChangeList = new List<Slot>();
+
         public Slot(Vector2 Pos, int idSlot, Texture2D texture, Rectangle Rectangle2, bool isEmpty, int classOfItem, int currentTypeOfItem, Rectangle SlotCheckerRectangle)
         {
             this.idSlot = idSlot;
@@ -152,6 +154,10 @@ namespace RPG
             varCurrentTypeOfItem = Slots[currentId].currentTypeOfItem;
             Slots[currentId].currentTypeOfItem = checkerCurrentTypeOfItem;
             checkerCurrentTypeOfItem = varCurrentTypeOfItem;
+
+            varCheckerIsEmpty = Slots[currentId].isEmpty;
+            Slots[currentId].isEmpty = checkerIsEmpty;
+            checkerIsEmpty = varCheckerIsEmpty;
             GetEmptySlot();
         }
         public void ClassOfItem(int currentClassOfItem, int currentTypeOfItem)
