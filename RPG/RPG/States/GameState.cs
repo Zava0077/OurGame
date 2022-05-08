@@ -23,6 +23,7 @@ namespace RPG
             Room.textureAllRooms = _content.Load<Texture2D>("TextureRoom");
             Inventory.textureAllSlots = _content.Load<Texture2D>("TextureRoom");
             Room.Init(spriteBatch);
+            SecondInventory.Init(spriteBatch);
             Inventory.Init(spriteBatch);
             
             var hpBarTexture = _content.Load<Texture2D>("hp-bar");
@@ -71,6 +72,7 @@ namespace RPG
                 Game1.self.MaxExp += expOffset;
             }
             Room.Draw();
+            SecondInventory.Draw();
             Inventory.Draw();
             spriteBatch.DrawString(textFont, Game1.self.PlayerLVL.ToString(), new Vector2((_game.Window.ClientBounds.Width / 2) - 50, _game.Window.ClientBounds.Height / 2 + 300), Color.Black);
             spriteBatch.End();
@@ -86,6 +88,7 @@ namespace RPG
             foreach (var component in _components)
                 component.Update(gameTime);
             Room.Update();
+            SecondInventory.Update();
             Inventory.Update();
         }
     }

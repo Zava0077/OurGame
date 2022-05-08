@@ -24,6 +24,7 @@ namespace RPG
         public static int varCurrentClassOfItem = 0;
         public static int checkerCurrentClassOfItem;
         public string[] typeOfPotion = new string[] { "Small HealthPotion", "HealthPotion","RandomPotion" };
+        public string[] typeOrArmor = new string[] { "Iron Armor" };
         public int currentTypeOfItem = 0;
         public int varCurrentTypeOfItem = 0;
         public static int checkerCurrentTypeOfItem = 0;
@@ -87,7 +88,7 @@ namespace RPG
             _isHovering = false;
             if (checkerRectangle.Intersects(Rectangle))
             {
-                _isCheckerHovering = true;
+                _isCheckerHovering = true;      
             }
             if (mouseRectangle.Intersects(Rectangle))
             {
@@ -95,9 +96,7 @@ namespace RPG
                 _isHovering = true;
                 if (_currentMouse.RightButton == ButtonState.Released && _previousMouse.RightButton == ButtonState.Pressed)
                 {
-
                     SlotReact(Slots[currentId].currentClassOfItem, Slots[currentId].currentTypeOfItem, this.idSlot);
-
                 }
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
@@ -115,7 +114,7 @@ namespace RPG
             if (checkerCurrentClassOfItem == 0)
                 SlotCheckerRectangleValue = new Rectangle(8 * 64 + 8, 0, 64, 64);
             Inventory.spriteBatch.Draw(texture, new Vector2(Pos.X, Pos.Y), Rectangle2, color);
-            Inventory.spriteBatch.Draw(texture, new Vector2(_currentMouse.X, _currentMouse.Y), SlotCheckerRectangleValue, Color.White); //прорисовка Слотчекера
+            Inventory.spriteBatch.Draw(texture, new Vector2(_currentMouse.X - 32, _currentMouse.Y - 32), SlotCheckerRectangleValue, Color.White); //прорисовка Невидимого слота
             spriteBatch.End();
         }
         public void EmptySlot()
@@ -170,6 +169,17 @@ namespace RPG
                     Slots[idSlotForCheck].Rectangle2 = new Rectangle(8 * Game1.self.connst, 0, 64, 64);
                     Slots[idSlotForCheck].isEmpty = true;
                     break;
+                case 2:
+                    switch(currentTypeOfItem)
+                    {
+                        case 0:
+                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(65 * 2, 65, 64, 64);
+                            Slots[idSlotForCheck].isEmpty = false;
+                            Slots[idSlotForCheck].currentClassOfItem = 2;
+                            Slots[idSlotForCheck].currentTypeOfItem = 0;
+                            break;
+                    }
+                    break;
                 case 3:
                     switch (currentTypeOfItem)
                     {
@@ -204,6 +214,8 @@ namespace RPG
                     Slots[currentId].Rectangle2 = new Rectangle(8 * 65, 0, 64, 64);
                     Slots[currentId].isEmpty = true;
                     Slots[currentId].currentClassOfItem = 0;
+                    break;
+                case 2:
                     break;
                 case 3:
                     switch (j)

@@ -62,6 +62,7 @@ namespace RPG
             }
             if (mouseRectangle.Intersects(Rectangle))
             {
+                int rndItem = rnd.Next(0, 100);
                 _isHovering = true;
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
@@ -75,6 +76,18 @@ namespace RPG
                         Game1.self.Exp += rnd.Next(20, 50);
                         this.ButtonPressede = true;
                         Game1.self.isFirstsquare = false;
+
+                        if (rndItem < 40)
+                            Slot.self.ClassOfItem(3, 2);
+                        else if (rndItem < 70)
+                        {
+                            Slot.self.ClassOfItem(3, 0);
+                        }
+                        else if (rndItem > 80)
+                            Slot.self.ClassOfItem(3, 1);
+                        else
+                            Slot.self.ClassOfItem(2, 0);
+
                         if (this.idRoom % CoutRoomX == 0)
                         {
                             d = this.idRoom / CoutRoomX;
@@ -97,15 +110,6 @@ namespace RPG
                         Game1.self.downsquareId = this.idRoom + Room.CoutRoomX;
                         Slot.row = 0;
                         Slot.collumn = 0;
-                        int rndItem = rnd.Next(0,100);
-                        if (rndItem < 40)
-                            Slot.self.ClassOfItem(3,2);
-                        else if (rndItem < 70)
-                        {
-                            Slot.self.ClassOfItem(3, 0);
-                        }
-                        else
-                            Slot.self.ClassOfItem(3, 1);
 
                         if (this.idRoom % CoutRoomX == 0)
                         {
@@ -123,6 +127,16 @@ namespace RPG
                         {
                             count++;
                             Game1.self.Exp += rnd.Next(20, 50);
+                            if (rndItem < 40)
+                                Slot.self.ClassOfItem(3, 2);
+                            else if (rndItem < 70)
+                            {
+                                Slot.self.ClassOfItem(3, 0);
+                            }
+                            else if (rndItem > 80)
+                                Slot.self.ClassOfItem(3, 1);
+                            else
+                                Slot.self.ClassOfItem(2, 0);
                         }
                         this.ButtonPressede = true;
                     }
