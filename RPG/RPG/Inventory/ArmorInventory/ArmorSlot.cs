@@ -26,9 +26,13 @@ namespace RPG
         public bool varCheckerIsEmpty;
         public int currentClassOfItem;
         public int currentTypeOfItem;
+        bool isBreastPlateSlot;
+        bool isHelmetSlot;
+        int currentId;
+        bool isSlotsAreAble = true;
         public static List<ArmorSlot> ChangeList = new List<ArmorSlot>();
 
-        public ArmorSlot(Vector2 Pos, int idSlot, Texture2D texture, Rectangle Rectangle2, bool isEmpty, int currentClassOfItem, int currentTypeOfItem)
+        public ArmorSlot(Vector2 Pos, int idSlot, Texture2D texture, Rectangle Rectangle2, bool isEmpty, int currentClassOfItem, int currentTypeOfItem, bool isBreastPlateSlot, bool isHelmetSlot)
         {
             this.idSlot = idSlot;
             this.Pos = Pos;
@@ -37,6 +41,8 @@ namespace RPG
             this.isEmpty = isEmpty;
             this.currentClassOfItem = currentClassOfItem;
             this.currentTypeOfItem = currentTypeOfItem;
+            this.isBreastPlateSlot = isBreastPlateSlot;
+            this.isHelmetSlot = isHelmetSlot;
         }
         public Rectangle CollisionRectangle
         {
@@ -51,20 +57,43 @@ namespace RPG
         {
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
-
-            if (ArmorSlots[this.idSlot].currentClassOfItem != 0)
-                ArmorSlots[this.idSlot].isEmpty = false;
+            ArmorSlots[0].isHelmetSlot = true;
+            ArmorSlots[4].isBreastPlateSlot = true;
             var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
             _isHovering = false;
             if (mouseRectangle.Intersects(CollisionRectangle))
             {
                 _isHovering = true;
-
+                currentId = this.idSlot;
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
-                    if (Slot.checkerCurrentClassOfItem == 2 || Slot.checkerCurrentClassOfItem == 0)
-                        ItemScramble(this.idSlot, Rectangle2);
+                    if ((Slot.checkerCurrentClassOfItem == 2 || Slot.checkerCurrentClassOfItem == 0) )
+                    {
+                        if (Slot.checkerCurrentClassOfItem == 2 && Slot.checkerCurrentTypeOfItem == 0)
+                        {
+                            if (Slot.checkerCurrentTypeOfItem == 0 && ArmorSlots[currentId].isHelmetSlot == true)
+                            {
+                                ItemScramble(this.idSlot, Rectangle2);
+                            }
+                            if (Slot.checkerCurrentTypeOfItem == 1 && ArmorSlots[currentId].isBreastPlateSlot == true)
+                            {
+                                ItemScramble(this.idSlot, Rectangle2);
+                            }
+                        }
+                        else
+                            ItemScramble(this.idSlot, Rectangle2);
+                    }
                 }
+                if (Keyboard.GetState().IsKeyDown(Keys.LeftShift) || Keyboard.GetState().IsKeyDown(Keys.RightShift))
+                    if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
+                    {
+                /*        if (Slot.checkerCurrentClassOfItem == 2 || Slot.checkerCurrentClassOfItem == 0)
+                            if (Slot.Slots[Slot.currentId].currentClassOfItem == 2)
+                                if (Slot.Slots[Slot.currentId].currentTypeOfItem == 0)
+                                    ShiftItemScramble(Slot.currentId, 0);
+                        if (Slot.Slots[Slot.currentId].currentTypeOfItem == 1)
+                            ShiftItemScramble(Slot.currentId, 4); */
+                    }
             }
         }
         public void Draw()
@@ -90,6 +119,20 @@ namespace RPG
             Slot.self.varCurrentTypeOfItem = ArmorSlots[currentId].currentTypeOfItem;
             ArmorSlots[currentId].currentTypeOfItem = Slot.checkerCurrentTypeOfItem;
             Slot.checkerCurrentTypeOfItem = Slot.self.varCurrentTypeOfItem;
+        }
+        public void ShiftItemScramble(int currentId, int idSlotForCheck)
+        {
+            Slot.self.VarRectangle = Slot.Slots[currentId].Rectangle2;
+            Slot.Slots[currentId].Rectangle2 = ArmorSlots[idSlotForCheck].Rectangle2;
+            ArmorSlots[idSlotForCheck].Rectangle2 = VarRectangle;
+
+            Slot.varCurrentClassOfItem = Slot.Slots[currentId].currentClassOfItem;
+            Slot.Slots[currentId].currentClassOfItem = ArmorSlots[idSlotForCheck].currentClassOfItem;
+            ArmorSlots[idSlotForCheck].currentClassOfItem = Slot.varCurrentClassOfItem;
+
+            Slot.self.varCurrentTypeOfItem = Slot.Slots[currentId].currentTypeOfItem;
+            Slot.Slots[currentId].currentTypeOfItem = ArmorSlots[idSlotForCheck].currentTypeOfItem;
+            ArmorSlots[idSlotForCheck].currentTypeOfItem = Slot.self.varCurrentTypeOfItem;
         }
     }
 }

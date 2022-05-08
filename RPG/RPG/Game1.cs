@@ -61,7 +61,7 @@ namespace RPG
             _nextState = state;
         }
 
-        private List<Component> _gameComponents; //ура
+        private List<Component> _gameComponents;
 
         public Game1()
         {
@@ -101,7 +101,7 @@ namespace RPG
 
         protected override void LoadContent()
         {
-            _currentState = new MenuState(this, graphics.GraphicsDevice, Content,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth,spriteBatch); //Текущее состояние меню
+            _currentState = new MenuState(this, graphics.GraphicsDevice, Content,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth,spriteBatch); //Текущее состояние игры
             //_currentState = new GameState(this, graphics.GraphicsDevice, Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
 

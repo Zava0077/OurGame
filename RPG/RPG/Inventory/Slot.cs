@@ -80,8 +80,10 @@ namespace RPG
             _currentMouse = Mouse.GetState();
 
             SlotChecker sltchk = new SlotChecker(SlotChecker.idSlotForCheck, new Vector2(_currentMouse.X, _currentMouse.Y), true);
-            if(Slots[idSlot].currentClassOfItem != 0)
+            if (Slots[idSlot].currentClassOfItem != 0)
                 Slots[idSlot].isEmpty = false;
+            else
+                Slots[idSlot].isEmpty = true;
             var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
             var checkerRectangle = new Rectangle((Game1.self.Window.ClientBounds.Width - 288) + SlotChecker.constt * Slot.collumn, 20 + SlotChecker.constt * Slot.row, 1, 1);
             _isCheckerHovering = false;
@@ -100,7 +102,15 @@ namespace RPG
                 }
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
-                    ItemScramble(this.idSlot);
+                    if (Keyboard.GetState().IsKeyDown(Keys.LeftShift) || Keyboard.GetState().IsKeyDown(Keys.RightShift))
+                    {
+                        if (Slots[currentId].currentClassOfItem != 2)
+                            ShiftItemScramble(currentId, GetEmptySlot());
+                        else
+                            ;
+                    }
+                    else
+                        ItemScramble(this.idSlot);
                 }
             }
         }
@@ -158,7 +168,25 @@ namespace RPG
             varCheckerIsEmpty = Slots[currentId].isEmpty;
             Slots[currentId].isEmpty = checkerIsEmpty;
             checkerIsEmpty = varCheckerIsEmpty;
-            GetEmptySlot();
+            
+        }
+        public void ShiftItemScramble(int currentId, int idSlotForCheck)
+        {
+            VarRectangle = Slots[currentId].Rectangle2;
+            Slots[currentId].Rectangle2 = Slots[idSlotForCheck].Rectangle2;
+            Slots[idSlotForCheck].Rectangle2 = VarRectangle;
+
+            varCurrentClassOfItem = Slots[currentId].currentClassOfItem;
+            Slots[currentId].currentClassOfItem = Slots[idSlotForCheck].currentClassOfItem;
+            Slots[idSlotForCheck].currentClassOfItem = varCurrentClassOfItem;
+
+            varCurrentTypeOfItem = Slots[currentId].currentTypeOfItem;
+            Slots[currentId].currentTypeOfItem = Slots[idSlotForCheck].currentTypeOfItem;
+            Slots[idSlotForCheck].currentTypeOfItem = varCurrentTypeOfItem;
+
+            varCheckerIsEmpty = Slots[currentId].isEmpty;
+            Slots[currentId].isEmpty = Slots[idSlotForCheck].isEmpty;
+            checkerIsEmpty = varCheckerIsEmpty;
         }
         public void ClassOfItem(int currentClassOfItem, int currentTypeOfItem)
         {
