@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/TextureRoom.png</SourceFile>
-  <SourceTime>2022-05-06T22:07:03.2891799+07:00</SourceTime>
+  <SourceTime>2022-05-08T00:38:49.6492475+07:00</SourceTime>
   <DestFile>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/Content/TextureRoom.xnb</DestFile>
-  <DestTime>2022-05-06T22:07:15.5219938+07:00</DestTime>
+  <DestTime>2022-05-08T00:38:57.182384+07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T23:17:54+07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

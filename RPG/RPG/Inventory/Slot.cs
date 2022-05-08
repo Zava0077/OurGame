@@ -16,13 +16,14 @@ namespace RPG
         private MouseState _currentMouse;
         private MouseState _previousMouse;
         public event EventHandler Click;
+        Random rnd = new Random();
         private bool _isHovering;
         private bool _isCheckerHovering;
         public string[] classOfItem = new string[] { "Null", "Weapon", "Armor", "Potion" };
         public int currentClassOfItem;
         public static int varCurrentClassOfItem = 0;
         public static int checkerCurrentClassOfItem;
-        public string[] typeOfPotion = new string[] { "Small HealthPotion", "HealthPotion" };
+        public string[] typeOfPotion = new string[] { "Small HealthPotion", "HealthPotion","RandomPotion" };
         public int currentTypeOfItem = 0;
         public int varCurrentTypeOfItem = 0;
         public static int checkerCurrentTypeOfItem = 0;
@@ -78,8 +79,8 @@ namespace RPG
             _currentMouse = Mouse.GetState();
 
             SlotChecker sltchk = new SlotChecker(SlotChecker.idSlotForCheck, new Vector2(_currentMouse.X, _currentMouse.Y), true);
-            if(Slots[idSlot].currentClassOfItem == 0)
-                Slots[idSlot].isEmpty = true;
+            if(Slots[idSlot].currentClassOfItem != 0)
+                Slots[idSlot].isEmpty = false;
             var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
             var checkerRectangle = new Rectangle((Game1.self.Window.ClientBounds.Width - 288) + SlotChecker.constt * Slot.collumn, 20 + SlotChecker.constt * Slot.row, 1, 1);
             _isCheckerHovering = false;
@@ -184,16 +185,23 @@ namespace RPG
                             Slots[idSlotForCheck].currentClassOfItem = 3;
                             Slots[idSlotForCheck].currentTypeOfItem = 1;
                             break;
+                        case 2:
+                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(65, 65, 64, 64);
+                            Slots[idSlotForCheck].isEmpty = false;
+                            Slots[idSlotForCheck].currentClassOfItem = 3;
+                            Slots[idSlotForCheck].currentTypeOfItem = 2;
+                            break;
                     }
                     break;
             }
         }
         public void SlotReact(int i, int j, int currentId)
         {
+            int Randomness = rnd.Next(0, 1000);
             switch (i)
             {
                 case 0:
-                    Slots[currentId].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 0, 64, 64);
+                    Slots[currentId].Rectangle2 = new Rectangle(8 * 65, 0, 64, 64);
                     Slots[currentId].isEmpty = true;
                     Slots[currentId].currentClassOfItem = 0;
                     break;
@@ -201,16 +209,25 @@ namespace RPG
                     switch (j)
                     {
                         case 0:
-                            Slots[currentId].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 0, 64, 64);
+                            Slots[currentId].Rectangle2 = new Rectangle(8 * 65, 0, 64, 64);
                             Game1.self.PlayerHP += 20;
                             Slots[currentId].isEmpty = true;
                             Slots[currentId].currentClassOfItem = 0;
                             break;
                         case 1:
-                            Slots[currentId].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 0, 64, 64);
+                            Slots[currentId].Rectangle2 = new Rectangle(8 * 65, 0, 64, 64);
                             Slots[currentId].isEmpty = true;
                             Slots[currentId].currentClassOfItem = 0;
                             Game1.self.PlayerHP += 45;
+                            break;
+                        case 2:
+                            Slots[currentId].Rectangle2 = new Rectangle(8 * 65, 0, 64, 64);
+                            Slots[currentId].isEmpty = true;
+                            Slots[currentId].currentClassOfItem = 0;
+                            if (Randomness < 1000 && Randomness > 400)
+                                Game1.self.PlayerHP = Game1.self.MaxHP - rnd.Next(0, 10);
+                            else
+                                Game1.self.PlayerHP = rnd.Next(0, 10);
                             break;
                     }
                     break;

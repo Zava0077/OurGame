@@ -99,7 +99,7 @@ namespace RPG
                         Slot.collumn = 0;
                         int rndItem = rnd.Next(0,100);
                         if (rndItem < 40)
-                            ;
+                            Slot.self.ClassOfItem(3,2);
                         else if (rndItem < 70)
                         {
                             Slot.self.ClassOfItem(3, 0);
