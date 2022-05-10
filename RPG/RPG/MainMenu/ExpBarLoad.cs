@@ -24,7 +24,7 @@ namespace RPG
         public Color PenColour { get; set; }
         public Vector2 Position { get; set; }
 
-        public double maxLenght = 300;
+        public double maxLenght = 200;
 
         private SpriteFont _font;
 
@@ -32,7 +32,7 @@ namespace RPG
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y,(int)((maxLenght/Game1.self.MaxExp) *Game1.self.Exp), _texture.Height);
+                return new Rectangle((int)Position.X, (int)Position.Y,(int)((maxLenght/Player.player.MaxExp) * Player.player.Exp), _texture.Height);
             }
         }
 
@@ -52,14 +52,6 @@ namespace RPG
             var colour = Color.White;
 
             spriteBatch.Draw(_texture,new Vector2 ((int)Position.X, (int)Position.Y),Rectangle, colour,0,Vector2.Zero,0.8f ,SpriteEffects.None,0);
-
-            if (!string.IsNullOrEmpty(Text))
-            {
-                var x = (Rectangle.X + (Rectangle.Width / 2)) - (_font.MeasureString(Text).X / 2);
-                var y = (Rectangle.Y + (Rectangle.Height / 2)) - (_font.MeasureString(Text).Y / 2);
-
-                spriteBatch.DrawString(_font, Text, new Vector2(x, y), PenColour);
-            }
         }
 
         public override void Update(GameTime gameTime)

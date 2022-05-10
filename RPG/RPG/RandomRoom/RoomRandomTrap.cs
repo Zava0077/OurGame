@@ -71,8 +71,8 @@ namespace RPG
                         Game1.self.leftsquareId = this.idRoom - 1;
                         Game1.self.upsquareId = this.idRoom - Room.CoutRoomX;
                         Game1.self.downsquareId = this.idRoom + Room.CoutRoomX;
-                        Game1.self.PlayerHP -= rnd.Next(8, 15);
-                        Game1.self.Exp += rnd.Next(40, 100);
+                        Game1.self.PlayerHP -= rnd.Next(0, 45);
+                        Game1.self.Exp += rnd.Next(0, 50);
                         this.ButtonPressede = true;
                         Game1.self.isFirstsquare = false;
                         if (this.idRoom % CoutRoomX == 0)
@@ -81,11 +81,11 @@ namespace RPG
                         }
                         if (this.idRoom == Room.CoutRoomX * d)
                         {
-                            Game1.self.leftsquareId = 0;
+                            Game1.self.leftsquareId = -1;
                         }
                         if (this.idRoom == (CoutRoomX - 1) + (CoutRoomX * (int)((double)this.idRoom / 11.0) - CoutRoomX))
                         {
-                            Game1.self.rightsquareId = 0;
+                            Game1.self.rightsquareId = -1;
                         }
 
                     }
@@ -102,16 +102,16 @@ namespace RPG
                         }
                         if (this.idRoom == Room.CoutRoomX * d)
                         {
-                            Game1.self.leftsquareId = 0;
+                            Game1.self.leftsquareId = -1;
                         }
                         if (this.idRoom == (CoutRoomX - 1) + (CoutRoomX * (int)((double)this.idRoom / 11.0) - CoutRoomX))
                         {
-                            Game1.self.rightsquareId = 0;
+                            Game1.self.rightsquareId = -1;
                         }
                         if (this.ButtonPressede == false)
                         {
-                            Game1.self.PlayerHP -= rnd.Next(8, 15);
-                            Game1.self.Exp += rnd.Next(40, 100);
+                            Game1.self.PlayerHP -= rnd.Next(0, 45);
+                            Game1.self.Exp += rnd.Next(0, 50);
                         }
                         this.ButtonPressede = true;
                     }
@@ -122,7 +122,16 @@ namespace RPG
         public void Draw()
         {
             spriteBatch.Begin();
-            Room.spriteBatch.Draw(texture, Pos, new Rectangle(65, 0, 64, 64), color);
+            if (Game1.self.squareId == this.idRoom)
+            {
+                Room.spriteBatch.Draw(texture, Pos, new Rectangle(65, 0, 64, 64), Color.Gray);
+                Player.Draw(spriteBatch, Pos, texture, Color.White);
+            }
+            else
+            {
+                Player.Draw(spriteBatch, Pos, texture, Color.Transparent);
+                Room.spriteBatch.Draw(texture, Pos, new Rectangle(65, 0, 64, 64), color);
+            }
             spriteBatch.End();
         }
     }

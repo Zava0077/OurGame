@@ -82,3 +82,4 @@ D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Skeleton.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Spider.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Treasure.xnb
 D:\Da\github\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\TextureRoom.xnb
+C:\Users\Пользователь\Desktop\MyGame\OurGame\RPG\RPG\bin\Debug\netcoreapp3.1\Content\Fight.xnb

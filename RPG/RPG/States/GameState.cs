@@ -1,27 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace RPG
 {
     public class GameState : State
     {
         private List<Component> _components;
-        SpriteBatch SpriteBatch;
+        public Player player = new Player();
+        SpriteBatch spriteBatch;
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, SpriteBatch spriteBatch) : base(game, graphicsDevice, content)
         {
             Room.textureAllRooms = _content.Load<Texture2D>("TextureRoom");
+            Inventory.textureAllSlots = _content.Load<Texture2D>("TextureRoom");
+            Fight.texture = _content.Load<Texture2D>("TextureRoom");
+            Floor.spriteBatch = spriteBatch;
             Room.Init(spriteBatch);
+            SecondInventory.Init(spriteBatch);
+            Inventory.Init(spriteBatch);
             
             var hpBarTexture = _content.Load<Texture2D>("hp-bar");
             var expBarTexture = _content.Load<Texture2D>("exp-bar");
             var textFont = _content.Load<SpriteFont>("text");
-            var levelBoxTexture = _content.Load<Texture2D>("levelNumber");
 
             var hpBar = new SpriteLoad2(hpBarTexture, textFont)
             {
@@ -34,21 +43,13 @@ namespace RPG
                 Text = "",
             };
 
-            var levelBox = new SpriteLoad(levelBoxTexture, textFont)
-            {
-                Position = new Vector2((_game.Window.ClientBounds.Width / 2) - 50, _game.Window.ClientBounds.Height / 2 + 300),
-                Text = "",
-            };
-
-            
             _components = new List<Component>()
             {
                 hpBar,
                 expBar,
-                levelBox,
             };
         }
-
+        
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
 
@@ -58,25 +59,21 @@ namespace RPG
             spriteBatch.Begin(); 
             foreach (var component in _components)
                 component.Draw(gameTime, spriteBatch);
-
-            int expOffset = 28;
-            if (Game1.self.PlayerHP >= Game1.self.MaxHP)
-                Game1.self.PlayerHP = Game1.self.MaxHP;
-            if (Game1.self.Exp >= Game1.self.MaxExp)
-            {     
-                expOffset *= 2;
-                int ostatok = (int)(Game1.self.Exp - Game1.self.MaxExp);
-                Game1.self.MaxHP += 5;
-                if(Game1.self.PlayerLVL % 10 == 0)
-                    Game1.self.MaxHP += 5;
-                Game1.self.Exp = 0+ostatok;
-                Game1.self.PlayerLVL++;
-                Game1.self.MaxExp += expOffset;
-                //ebl.x = (Game1.self.MaxExp/Game1.self.Exp)*100;
+            if (player.PlayerHP >= player.MaxHP)
+                player.PlayerHP = player.MaxHP;
+            if (player.Exp >= player.MaxExp)
+            {
+                Player.LevelUP();
             }
-            
+            if (Fight.isFight == true)
+            {
+                Fight.Draw(spriteBatch);
+            }
+            Nothing.nothing.Draw();
             Room.Draw();
-            spriteBatch.DrawString(textFont, Game1.self.PlayerLVL.ToString(), new Vector2((_game.Window.ClientBounds.Width / 2) - 50, _game.Window.ClientBounds.Height / 2 + 300), Color.Black);
+            SecondInventory.Draw();
+            Inventory.Draw();
+            spriteBatch.DrawString(textFont, Player.player.PlayerLVL.ToString(), new Vector2((_game.Window.ClientBounds.Width / 2) - 50, _game.Window.ClientBounds.Height / 2 + 300), Color.Black);
             spriteBatch.End();
         }
 
@@ -87,9 +84,22 @@ namespace RPG
 
         public override void Update(GameTime gameTime)
         {
+            if (Fight.isFight == true && Fight.Timer == false)
+            {
+                Fight.Update();
+            }
+            if (Fight.isFight == false && Fight.Timer == true)
+            {
+                Fight.AM.Dispose();
+                Fight.AP.Dispose();
+                Fight.Timer = false;
+            }
             foreach (var component in _components)
                 component.Update(gameTime);
+            Nothing.nothing.Update();
             Room.Update();
+            SecondInventory.Update();
+            Inventory.Update();
         }
     }
 }
