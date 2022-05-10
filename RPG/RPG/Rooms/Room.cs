@@ -43,6 +43,7 @@ namespace RPG
             int das = 40;
             Room.spriteBatch = spriteBatch;
             Random rnd = new Random();
+            int Prohod = rnd.Next(1, CoutRoomX * CoutRoomY);
             NumberRoom = Random(1, 4+1);
             for (; idRoom < CoutRoomX*CoutRoomY; idRoom++)
             {
@@ -54,60 +55,68 @@ namespace RPG
                 }
                 int idMonstra = rnd.Next(1, 3+1);
                 int idRandom = rnd.Next(1, 3);
-                switch (NumberRoom[idRoom])
+                if (Prohod == idRoom)
                 {
-                    case 1:
-                        TreasureRoom.Add(new RoomTreasure(new Vector2(das + (x * Otstup), das+(y*Otstup)), idRoom, textureAllRooms));
-                        break;
-                    case 2:
-                        switch (idMonstra)
-                        {
-                            case 1:
-                                {
-                                    Rat.Rats.Add(new Rat(new Vector2(das + (x * Otstup), das + (y * Otstup)), idRoom, textureAllRooms));
-                                    break;
-                                }
-                            case 2:
-                                {
-                                    Skeleton.skeletons.Add(new Skeleton(new Vector2(das + (x * Otstup), das + (y * Otstup)), idRoom, textureAllRooms));
-                                    break;
-                                }
-                            case 3:
-                                {
-                                    Spider.Spiders.Add(new Spider(new Vector2(das + (x * Otstup), das + (y * Otstup)), idRoom, textureAllRooms));
-                                    break;
-                                }
-                        }
-                        break;
-                    case 3:
-                        HealRoom.Add(new RoomHeal(new Vector2(das + (x * Otstup), das + (y * Otstup)), idRoom, textureAllRooms));
-                        break;
-                    case 4:
-                        switch (idRandom)
-                        {
-                            case 1:
-                                {
-                                    RoomRandomTrap.RoomRandomTraps.Add(new RoomRandomTrap(new Vector2(das + (x * Otstup), das + (y * Otstup)), idRoom, textureAllRooms));
-                                    break;
-                                }
-                            case 2:
-                                {
-                                    RoomRandomItem.RoomRandomItems.Add(new RoomRandomItem(new Vector2(das + (x * Otstup), das + (y * Otstup)), idRoom, textureAllRooms));
-                                    break;
-                                }
-                            case 3:
-                                {
+                    Gate.gate = new Gate(new Vector2(das + (x*Otstup), das + (y * Otstup)), idRoom, textureAllRooms);
+                }
+                else
+                {
+                    switch (NumberRoom[idRoom])
+                    {
+                        case 1:
+                            TreasureRoom.Add(new RoomTreasure(new Vector2(das + (x * Otstup), das + (y * Otstup)), idRoom, textureAllRooms));
+                            break;
+                        case 2:
+                            switch (idMonstra)
+                            {
+                                case 1:
+                                    {
+                                        Rat.Rats.Add(new Rat(new Vector2(das + (x * Otstup), das + (y * Otstup)), idRoom, textureAllRooms));
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        Skeleton.skeletons.Add(new Skeleton(new Vector2(das + (x * Otstup), das + (y * Otstup)), idRoom, textureAllRooms));
+                                        break;
+                                    }
+                                case 3:
+                                    {
+                                        Spider.Spiders.Add(new Spider(new Vector2(das + (x * Otstup), das + (y * Otstup)), idRoom, textureAllRooms));
+                                        break;
+                                    }
+                            }
+                            break;
+                        case 3:
+                            HealRoom.Add(new RoomHeal(new Vector2(das + (x * Otstup), das + (y * Otstup)), idRoom, textureAllRooms));
+                            break;
+                        case 4:
+                            switch (idRandom)
+                            {
+                                case 1:
+                                    {
+                                        RoomRandomTrap.RoomRandomTraps.Add(new RoomRandomTrap(new Vector2(das + (x * Otstup), das + (y * Otstup)), idRoom, textureAllRooms));
+                                        break;
+                                    }
+                                case 2:
+                                    {
+                                        RoomRandomItem.RoomRandomItems.Add(new RoomRandomItem(new Vector2(das + (x * Otstup), das + (y * Otstup)), idRoom, textureAllRooms));
+                                        break;
+                                    }
+                                case 3:
+                                    {
 
-                                    break;
-                                }
-                        }
-                        break;
+                                        break;
+                                    }
+                            }
+                            break;
+                    }
                 }
             }
         }
 
         static public void Update()
         {
+            Gate.gate.Update();
             foreach (RoomTreasure room in Room.TreasureRoom)
             {
                 room.Update();
@@ -139,6 +148,7 @@ namespace RPG
         }
         static public void Draw()
         {
+            Gate.gate.Draw();
             foreach (RoomTreasure room in TreasureRoom)
             {
                 room.Draw();

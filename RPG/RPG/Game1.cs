@@ -34,14 +34,8 @@ namespace RPG
         int offset = 125;
         int depth = 65;
         Stat status = Stat.MainScreen;
-        public double PlayerHP = 100;
-        public double Exp = 1;
-        public int PlayerLVL = 0;
-        public int PrevLVL = 0;
-        public double MaxExp = 344;
         public int expOffset = 28;
         public int i = 2;
-        public double MaxHP = 100;
         public int squareId;
         public int rightsquareId;
         public int leftsquareId;

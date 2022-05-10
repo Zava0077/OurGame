@@ -20,6 +20,9 @@ namespace RPG
         public bool Clicked { get; private set; }
         Texture2D texture { get; set; }
         int idRoom;
+        public double Hp = 10;
+        public double Attack = 1;
+        public double AttackSpeed = 1000;
         Vector2 Pos; //пози
         public Rat(Vector2 Pos,int idRoom,Texture2D texture)
         {
@@ -53,7 +56,7 @@ namespace RPG
                 color = Color.White;
             }
             _isHovering = false;
-            if (this.ButtonPressede)
+            if (this.ButtonPressede || Game1.self.squareId == this.idRoom)
             {
                 color = Color.Gray;
             }
@@ -69,8 +72,8 @@ namespace RPG
                         Game1.self.leftsquareId = this.idRoom - 1;
                         Game1.self.upsquareId = this.idRoom - Room.CoutRoomX;
                         Game1.self.downsquareId = this.idRoom + Room.CoutRoomX;
-                        Game1.self.PlayerHP -= rnd.Next(3,5);
-                        Game1.self.Exp += rnd.Next(10, 25);
+                        Player.player.PlayerHP -= rnd.Next(3,5);
+                        Player.player.Exp += rnd.Next(10, 25);
                         this.ButtonPressede = true;
                         Game1.self.isFirstsquare = false;
                         if (this.idRoom % CoutRoomX == 0)
@@ -108,8 +111,8 @@ namespace RPG
                         }
                         if (this.ButtonPressede == false)
                         {
-                            Game1.self.PlayerHP -= rnd.Next(3, 5);
-                            Game1.self.Exp += rnd.Next(10, 25);
+                            Fight fight = new Fight(this.AttackSpeed,this.Hp,this.Attack,rnd.Next(10,25));
+                            Fight.isFight = true;
                         }
                         this.ButtonPressede = true;
                     }
@@ -122,6 +125,11 @@ namespace RPG
         {
             spriteBatch.Begin();
             Room.spriteBatch.Draw(texture, Pos,new Rectangle(130,0,64,64), color);
+            if (Game1.self.squareId == this.idRoom)
+            {
+                Player.Draw(spriteBatch, Pos, texture, Color.White);
+            }
+            else { Player.Draw(spriteBatch, Pos, texture, Color.Transparent); }
             spriteBatch.End();
         }
     }

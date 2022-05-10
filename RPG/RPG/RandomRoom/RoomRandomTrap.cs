@@ -55,7 +55,7 @@ namespace RPG
                 color = Color.White;
             }
             _isHovering = false;
-            if (this.ButtonPressede)
+            if (this.ButtonPressede || Game1.self.squareId == this.idRoom)
             {
                 color = Color.Gray;
             }
@@ -71,8 +71,8 @@ namespace RPG
                         Game1.self.leftsquareId = this.idRoom - 1;
                         Game1.self.upsquareId = this.idRoom - Room.CoutRoomX;
                         Game1.self.downsquareId = this.idRoom + Room.CoutRoomX;
-                        Game1.self.PlayerHP -= rnd.Next(0, 45);
-                        Game1.self.Exp += rnd.Next(0, 50);
+                        Player.player.PlayerHP -= rnd.Next(0, 45);
+                        Player.player.Exp += rnd.Next(0, 50);
                         this.ButtonPressede = true;
                         Game1.self.isFirstsquare = false;
                         if (this.idRoom % CoutRoomX == 0)
@@ -110,8 +110,8 @@ namespace RPG
                         }
                         if (this.ButtonPressede == false)
                         {
-                            Game1.self.PlayerHP -= rnd.Next(0, 45);
-                            Game1.self.Exp += rnd.Next(0, 50);
+                            Player.player.PlayerHP -= rnd.Next(0, 45);
+                            Player.player.Exp += rnd.Next(0, 50);
                         }
                         this.ButtonPressede = true;
                     }
@@ -123,6 +123,11 @@ namespace RPG
         {
             spriteBatch.Begin();
             Room.spriteBatch.Draw(texture, Pos, new Rectangle(65, 0, 64, 64), color);
+            if (Game1.self.squareId == this.idRoom)
+            {
+                Player.Draw(spriteBatch, Pos, texture, Color.White);
+            }
+            else { Player.Draw(spriteBatch, Pos, texture, Color.Transparent); }
             spriteBatch.End();
         }
     }

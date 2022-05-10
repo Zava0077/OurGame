@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/settings.png</SourceFile>
-  <SourceTime>2022-05-02T01:47:15.6128126+07:00</SourceTime>
-  <DestFile>C:/Users/Пользователь/Desktop/MyGame/OurGame/RPG/RPG/Content/bin/DesktopGL/Content/settings.xnb</DestFile>
-  <DestTime>2022-05-03T22:19:47.7362571+07:00</DestTime>
+  <SourceFile>D:/Da/github/OurGame/RPG/RPG/Content/settings.png</SourceFile>
+  <SourceTime>2022-05-06T17:58:39.7746773+07:00</SourceTime>
+  <DestFile>D:/Da/github/OurGame/RPG/RPG/Content/bin/DesktopGL/Content/settings.xnb</DestFile>
+  <DestTime>2022-05-06T17:58:57.6990463+07:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T23:17:54+07:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
