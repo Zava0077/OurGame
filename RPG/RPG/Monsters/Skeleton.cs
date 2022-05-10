@@ -107,7 +107,7 @@ namespace RPG
                         }
                         if (this.ButtonPressede == false)
                         {
-                            Game1.self.PlayerHP -= rnd.Next(8, 15);
+                            Game1.self.PlayerHP -= rnd.Next(8, 15) - Game1.self.PlayerDefence/2;
                             Game1.self.Exp += rnd.Next(40, 100);
                         }
                         this.ButtonPressede = true;

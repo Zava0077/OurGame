@@ -67,7 +67,7 @@ namespace RPG
                 currentId = this.idSlot;
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
-                    if ((Slot.checkerCurrentClassOfItem == 2 || Slot.checkerCurrentClassOfItem == 0) )
+                    if ((Slot.checkerCurrentClassOfItem == 2 || Slot.checkerCurrentClassOfItem == 0))
                     {
                         if (Slot.checkerCurrentClassOfItem == 2 && Slot.checkerCurrentTypeOfItem == 0)
                         {
@@ -82,17 +82,18 @@ namespace RPG
                         }
                         else
                             ItemScramble(this.idSlot, Rectangle2);
+                        IsArmorOn(this.idSlot);
                     }
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.LeftShift) || Keyboard.GetState().IsKeyDown(Keys.RightShift))
                     if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                     {
-                /*        if (Slot.checkerCurrentClassOfItem == 2 || Slot.checkerCurrentClassOfItem == 0)
-                            if (Slot.Slots[Slot.currentId].currentClassOfItem == 2)
-                                if (Slot.Slots[Slot.currentId].currentTypeOfItem == 0)
-                                    ShiftItemScramble(Slot.currentId, 0);
-                        if (Slot.Slots[Slot.currentId].currentTypeOfItem == 1)
-                            ShiftItemScramble(Slot.currentId, 4); */
+                        /*        if (Slot.checkerCurrentClassOfItem == 2 || Slot.checkerCurrentClassOfItem == 0)
+                                    if (Slot.Slots[Slot.currentId].currentClassOfItem == 2)
+                                        if (Slot.Slots[Slot.currentId].currentTypeOfItem == 0)
+                                            ShiftItemScramble(Slot.currentId, 0);
+                                if (Slot.Slots[Slot.currentId].currentTypeOfItem == 1)
+                                    ShiftItemScramble(Slot.currentId, 4); */
                     }
             }
         }
@@ -133,6 +134,19 @@ namespace RPG
             Slot.self.varCurrentTypeOfItem = Slot.Slots[currentId].currentTypeOfItem;
             Slot.Slots[currentId].currentTypeOfItem = ArmorSlots[idSlotForCheck].currentTypeOfItem;
             ArmorSlots[idSlotForCheck].currentTypeOfItem = Slot.self.varCurrentTypeOfItem;
+        }
+        public void IsArmorOn(int currentId)
+        {
+            if (currentClassOfItem == 2)
+                switch (ArmorSlots[currentId].currentTypeOfItem)
+                {
+                    case 0:
+                        Game1.self.PlayerDefence = 50;
+                        break;
+                    case 1:
+                        Game1.self.PlayerDefence = 10;
+                        break;
+                }
         }
     }
 }

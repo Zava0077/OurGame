@@ -35,6 +35,7 @@ namespace RPG
         int depth = 65;
         Stat status = Stat.MainScreen;
         public double PlayerHP = 100;
+        public double PlayerDefence = 0;
         public double Exp = 1;
         public int PlayerLVL = 0;
         public int PrevLVL = 0;
@@ -120,7 +121,6 @@ namespace RPG
             if (_nextState != null)
             {
                 _currentState = _nextState;
-
                 _nextState = null;
             }
 
