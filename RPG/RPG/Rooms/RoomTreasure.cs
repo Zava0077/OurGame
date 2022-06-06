@@ -76,29 +76,28 @@ namespace RPG
                         Game1.self.Exp += rnd.Next(20, 50);
                         this.ButtonPressede = true;
                         Game1.self.isFirstsquare = false;
-
-                        if (rndItem < 40)
-                            Slot.self.ClassOfItem(3, 2);
-                        else if (rndItem < 70)
-                        {
-                            Slot.self.ClassOfItem(3, 0);
-                        }
-                        else if (rndItem > 80)
-                            Slot.self.ClassOfItem(3, 1);
-                        else
-                            Slot.self.ClassOfItem(2, 0);
-
+                        if(!Slot.self.isInventoryFull)
+                            if (rndItem < 40)
+                                Slot.self.ClassOfItem(3, 2);
+                            else if (rndItem < 70)
+                            {
+                                Slot.self.ClassOfItem(3, 0);
+                            }
+                            else if (rndItem > 80)
+                                Slot.self.ClassOfItem(3, 1);
+                            else
+                                Slot.self.ClassOfItem(2, 0);
                         if (this.idRoom % CoutRoomX == 0)
                         {
                             d = this.idRoom / CoutRoomX;
                         }
                         if (this.idRoom == Room.CoutRoomX * d)
                         {
-                            Game1.self.leftsquareId = 0;
+                            Game1.self.leftsquareId = -1;
                         }
                         if (this.idRoom == (CoutRoomX - 1) + (CoutRoomX * (int)((double)this.idRoom / 11.0) - CoutRoomX))
                         {
-                            Game1.self.rightsquareId = 0;
+                            Game1.self.rightsquareId = -1;
                         }
                     }
                     else if (this.idRoom == Game1.self.rightsquareId || this.idRoom == Game1.self.leftsquareId || this.idRoom == Game1.self.upsquareId || this.idRoom == Game1.self.downsquareId)
@@ -117,26 +116,27 @@ namespace RPG
                         }
                         if (this.idRoom == Room.CoutRoomX * d)
                         {
-                            Game1.self.leftsquareId = 0;
+                            Game1.self.leftsquareId = -1;
                         }
                         if (this.idRoom == (CoutRoomX - 1) + (CoutRoomX * (int)((double)this.idRoom / 11.0) - CoutRoomX))
                         {
-                            Game1.self.rightsquareId = 0;
+                            Game1.self.rightsquareId = -1;
                         }
                         if (this.ButtonPressede == false)
                         {
                             count++;
                             Game1.self.Exp += rnd.Next(20, 50);
-                            if (rndItem < 40)
-                                Slot.self.ClassOfItem(3, 2);
-                            else if (rndItem < 70)
-                            {
-                                Slot.self.ClassOfItem(3, 0);
-                            }
-                            else if (rndItem > 80)
-                                Slot.self.ClassOfItem(3, 1);
-                            else
-                                Slot.self.ClassOfItem(2, 0);
+                            if (!Slot.self.isInventoryFull)
+                                if (rndItem < 40)
+                                    Slot.self.ClassOfItem(3, 2);
+                                else if (rndItem < 70)
+                                {
+                                    Slot.self.ClassOfItem(3, 0);
+                                }
+                                else if (rndItem > 80)
+                                    Slot.self.ClassOfItem(3, 1);
+                                else
+                                    Slot.self.ClassOfItem(2, 0);
                         }
                         this.ButtonPressede = true;
                     }
@@ -146,7 +146,16 @@ namespace RPG
         public void Draw()
         {
             spriteBatch.Begin();
-            Room.spriteBatch.Draw(texture, Pos, new Rectangle(325, 0, 64, 64), color);
+            if (Game1.self.squareId == this.idRoom)
+            {
+                Room.spriteBatch.Draw(texture, Pos, new Rectangle(325, 0, 64, 64), Color.Gray);
+                Player.Draw(spriteBatch, Pos, texture, Color.White);
+            }
+            else
+            {
+                Player.Draw(spriteBatch, Pos, texture, Color.Transparent);
+                Room.spriteBatch.Draw(texture, Pos, new Rectangle(325, 0, 64, 64), color);
+            }
             spriteBatch.End();
         }
         

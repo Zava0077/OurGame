@@ -9,26 +9,24 @@ using Microsoft.Xna.Framework.Input;
 
 namespace RPG
 {
-    class RoomRandomItem : Room
+    class Nothing : Room
     {
-        public static List<RoomRandomItem> RoomRandomItems = new List<RoomRandomItem>();
+        public static Nothing nothing;
+        Vector2 Pos;
+        Texture2D texture { get; set; }
         private MouseState _currentMouse;
         private MouseState _previousMouse;
         public event EventHandler Click;
         private bool _isHovering;
-        public bool Clicked { get; private set; }
-        Texture2D texture;
         int idRoom;
-        Vector2 Pos;
+        public bool Clicked { get; private set; }
 
-
-        public RoomRandomItem(Vector2 Pos, int idRoom, Texture2D texture)
+        public Nothing(Vector2 pos, int idRoom, Texture2D texture)
         {
+            this.Pos = pos;
             this.idRoom = idRoom;
-            this.Pos = Pos;
             this.texture = texture;
         }
-
         public Rectangle Rectangle
         {
             get
@@ -36,7 +34,6 @@ namespace RPG
                 return new Rectangle((int)Pos.X, (int)Pos.Y, 64, 64);
             }
         }
-
 
         Random rnd = new Random();
         bool ButtonPressede = false;
@@ -55,10 +52,6 @@ namespace RPG
                 color = Color.White;
             }
             _isHovering = false;
-            if (this.ButtonPressede)
-            {
-                color = Color.Gray;
-            }
             if (mouseRectangle.Intersects(Rectangle))
             {
                 _isHovering = true;
@@ -71,8 +64,7 @@ namespace RPG
                         Game1.self.leftsquareId = this.idRoom - 1;
                         Game1.self.upsquareId = this.idRoom - Room.CoutRoomX;
                         Game1.self.downsquareId = this.idRoom + Room.CoutRoomX;
-                        Game1.self.PlayerHP -= rnd.Next(8, 15);
-                        Game1.self.Exp += rnd.Next(40, 100);
+                        Game1.self.PlayerHP += rnd.Next(10, 25);
                         this.ButtonPressede = true;
                         Game1.self.isFirstsquare = false;
                         if (this.idRoom % CoutRoomX == 0)
@@ -110,30 +102,28 @@ namespace RPG
                         }
                         if (this.ButtonPressede == false)
                         {
-                            Game1.self.PlayerHP -= rnd.Next(8, 15);
-                            Game1.self.Exp += rnd.Next(40, 100);
+                            Game1.self.PlayerHP += rnd.Next(10, 25);
                         }
-                        this.ButtonPressede = true;
                     }
                 }
             }
         }
+
 
         public void Draw()
         {
             spriteBatch.Begin();
             if (Game1.self.squareId == this.idRoom)
             {
-                Room.spriteBatch.Draw(texture, Pos, new Rectangle(65, 0, 64, 64), Color.Gray);
+                Room.spriteBatch.Draw(texture, Pos, new Rectangle(65, 195, 64, 64), Color.White);
                 Player.Draw(spriteBatch, Pos, texture, Color.White);
             }
             else
             {
                 Player.Draw(spriteBatch, Pos, texture, Color.Transparent);
-                Room.spriteBatch.Draw(texture, Pos, new Rectangle(65, 0, 64, 64), color);
+                Room.spriteBatch.Draw(texture, Pos, new Rectangle(65, 195, 64, 64), color);
             }
             spriteBatch.End();
         }
-
     }
 }

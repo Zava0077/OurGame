@@ -17,7 +17,7 @@ namespace RPG
         private MouseState _previousMouse;
         public event EventHandler Click;
         Random rnd = new Random();
-        private bool _isHovering;
+        public bool _isHovering;
         private bool _isCheckerHovering;
         public string[] classOfItem = new string[] { "Null", "Weapon", "Armor", "Potion" };
         public int currentClassOfItem;
@@ -39,7 +39,7 @@ namespace RPG
         public bool isEmpty;
         public bool checkerIsEmpty = true;
         public bool varCheckerIsEmpty;
-        public static List<Slot> ChangeList = new List<Slot>();
+        public bool isInventoryFull = false;
 
         public Slot(Vector2 Pos, int idSlot, Texture2D texture, Rectangle Rectangle2, bool isEmpty, int classOfItem, int currentTypeOfItem, Rectangle SlotCheckerRectangle)
         {
@@ -73,17 +73,17 @@ namespace RPG
         public static int row = (int)(currentId / CountSlotX);
         public static int collumn = currentId % CountSlotX;
         static bool wasScrambled;
+        public Vector2 _lastMousePos = new Vector2(0,0);
         Menu mn = new Menu();
         public void Update()
         {
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
-
-            SlotChecker sltchk = new SlotChecker(SlotChecker.idSlotForCheck, new Vector2(_currentMouse.X, _currentMouse.Y), true);
             if (Slots[idSlot].currentClassOfItem != 0)
                 Slots[idSlot].isEmpty = false;
             else
                 Slots[idSlot].isEmpty = true;
+            IsInventoryFull();
             var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
             var checkerRectangle = new Rectangle((Game1.self.Window.ClientBounds.Width - 288) + SlotChecker.constt * Slot.collumn, 20 + SlotChecker.constt * Slot.row, 1, 1);
             _isCheckerHovering = false;
@@ -94,23 +94,30 @@ namespace RPG
             }
             if (mouseRectangle.Intersects(Rectangle))
             {
-                currentId = this.idSlot;
                 _isHovering = true;
+                currentId = this.idSlot;
                 if (_currentMouse.RightButton == ButtonState.Released && _previousMouse.RightButton == ButtonState.Pressed)
                 {
                     SlotReact(Slots[currentId].currentClassOfItem, Slots[currentId].currentTypeOfItem, this.idSlot);
                 }
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
-                    if (Keyboard.GetState().IsKeyDown(Keys.LeftShift) || Keyboard.GetState().IsKeyDown(Keys.RightShift))
-                    {
-                        if (Slots[currentId].currentClassOfItem != 2)
-                            ShiftItemScramble(currentId, GetEmptySlot());
+                    _lastMousePos = new Vector2(_currentMouse.X, _currentMouse.Y);
+                /*    for (int i = 0; i < MiniMenu.maxButtons; i++)
+                        if (!ChoosingMenu.Buttons[i]._isHovering)
+                            ChoosingMenu.self.ClickChecker(_lastMousePos, true);
                         else
-                            ;
-                    }
-                    else
-                        ItemScramble(this.idSlot);
+                        { */
+                            if (Keyboard.GetState().IsKeyDown(Keys.LeftShift))
+                            {
+                                if (Slots[currentId].currentClassOfItem != 2)
+                                    ShiftItemScramble(currentId, GetEmptySlot());
+                                else
+                                    ;
+                            }
+                            else
+                                ItemScramble(this.idSlot);
+                      //  } прорисовка меню
                 }
             }
         }
@@ -131,8 +138,8 @@ namespace RPG
         {
             int i = 0;
             if (Slots[i].isEmpty == false)
-                while (Slots[i].isEmpty == false)
-                {
+              //while (Slots[i].isEmpty == false)
+              //  {
                     for (i = 0; i < (CountSlotX * CountSlotY) - 1;)
                     {
                         i++;
@@ -140,11 +147,37 @@ namespace RPG
                             Slots[i].isEmpty = true;
                         idSlotForCheck = i;
                         if (Slots[i].isEmpty == true)
+                        {
                             i = (CountSlotX * CountSlotY) - 1;
+                        }
                     }
-                }
+                //}
             else idSlotForCheck = 0;
         }
+        public void IsInventoryFull()
+        {
+            int i;
+            int repeat = 0;
+            for (i = 0; i < (CountSlotX * CountSlotY); i++)
+            {
+                if (Slots[i].isEmpty == true)
+                {
+                    i = (CountSlotX * CountSlotY);
+                    repeat = 0;
+                    this.isInventoryFull = false;
+                }
+                else
+                    if (i == CountSlotX * CountSlotY - 1)
+                {
+                    repeat++;
+                }
+                if (repeat > 0)
+                {
+                    this.isInventoryFull = true;
+                }
+            }
+       }
+
     
         public int GetEmptySlot()
         {
@@ -194,7 +227,7 @@ namespace RPG
             switch (currentClassOfItem)
             {
                 case 0:
-                    Slots[idSlotForCheck].Rectangle2 = new Rectangle(8 * Game1.self.connst, 0, 64, 64);
+                    Slots[idSlotForCheck].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 0, 64, 64);
                     Slots[idSlotForCheck].isEmpty = true;
                     break;
                 case 2:
@@ -250,7 +283,7 @@ namespace RPG
                     {
                         case 0:
                             Slots[currentId].Rectangle2 = new Rectangle(8 * 65, 0, 64, 64);
-                            Game1.self.PlayerHP += 20;
+                            Player.player.PlayerHP += 20;
                             Slots[currentId].isEmpty = true;
                             Slots[currentId].currentClassOfItem = 0;
                             break;
@@ -258,16 +291,16 @@ namespace RPG
                             Slots[currentId].Rectangle2 = new Rectangle(8 * 65, 0, 64, 64);
                             Slots[currentId].isEmpty = true;
                             Slots[currentId].currentClassOfItem = 0;
-                            Game1.self.PlayerHP += 45;
+                            Player.player.PlayerHP += 45;
                             break;
                         case 2:
                             Slots[currentId].Rectangle2 = new Rectangle(8 * 65, 0, 64, 64);
                             Slots[currentId].isEmpty = true;
                             Slots[currentId].currentClassOfItem = 0;
                             if (Randomness < 1000 && Randomness > 400)
-                                Game1.self.PlayerHP = Game1.self.MaxHP - rnd.Next(0, 10);
+                                Player.player.PlayerHP = Player.player.MaxHP - rnd.Next(0, 10);
                             else
-                                Game1.self.PlayerHP = rnd.Next(0, 10);
+                                Player.player.PlayerHP = rnd.Next(0, 10);
                             break;
                     }
                     break;

@@ -11,32 +11,16 @@ namespace RPG
 {
     public class Button : Component
     {
-        #region Поля
-
         Menu mn = new Menu();
-
         private MouseState _currentMouse;
-
         private SpriteFont _font;
-
         private bool _isHovering;
-
         private MouseState _previousMouse;
-
         private Texture2D _texture;
-
-        #endregion
-
-        #region Свойства
-
         public event EventHandler Click;
-
         public bool Clicked { get; private set; }
-
         public Color PenColour { get; set; }
-
         public Vector2 Position { get; set; }
-
         public Rectangle Rectangle
         {
             get
@@ -44,27 +28,16 @@ namespace RPG
                 return new Rectangle((int)Position.X, (int)Position.Y, 256, 100);
             }
         }
-
         public void Exit()
         {
-            Game1.self.Exit(); //и типо выход))) БОЖЕ ИЗИ!!
+            Game1.self.Exit();
         }
-
         public string Text { get; set; }
-
-        #endregion
-
-        #region Методы
-
         public Button(Texture2D texture)
         {
             _texture = texture;
-
-
-
             PenColour = Color.Black;
         }
-
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             var colour = Color.White;
@@ -75,7 +48,6 @@ namespace RPG
             spriteBatch.Draw(_texture, Rectangle, colour);
 
         }
-
         public override void Update(GameTime gameTime)
         {
             _previousMouse = _currentMouse;
@@ -96,6 +68,5 @@ namespace RPG
             }
         }
 
-        #endregion
     }
 }
