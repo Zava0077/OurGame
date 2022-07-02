@@ -73,6 +73,7 @@ namespace RPG
             ArmorSlots[5].isBreastPlateSlot = true;
             ArmorSlots[6].isShieldSlot = true;
             ArmorSlots[9].isLeggingsSlot = true;
+            IsArmorOn();
             for (int id = 0; id < SecondInventory.CountSlotX * SecondInventory.CountSlotY; id++)
             {
                 if (id == 0 || id == 2 || id == 8 || id == 10)
@@ -105,17 +106,17 @@ namespace RPG
                         {
                             if (Slot.checkerCurrentTypeOfItem == 0 && ArmorSlots[currentId].isAtrefactSlot == true)
                                 ItemScramble(this.idSlot, Rectangle2);
-                            IsArmorOn(this.idSlot);
+                            IsArmorOn();
                         }
                         else if (Slot.checkerCurrentClassOfItem == 1)
                         {
                             if (Slot.checkerCurrentTypeOfItem == 0 && ArmorSlots[currentId].isWeaponSlot == true)
                                 ItemScramble(this.idSlot, Rectangle2);
-                            IsArmorOn(this.idSlot);
+                            IsArmorOn();
                         }
                         else
                         ItemScramble(this.idSlot, Rectangle2);
-                        IsArmorOn(this.idSlot);
+                        IsArmorOn();
                     }
                 /*    if (Slot.checkerCurrentClassOfItem == 4 || Slot.checkerCurrentClassOfItem == 0)
                     {
@@ -181,17 +182,20 @@ namespace RPG
             Slot.Slots[currentId].currentTypeOfItem = ArmorSlots[idSlotForCheck].currentTypeOfItem;
             ArmorSlots[idSlotForCheck].currentTypeOfItem = Slot.self.varCurrentTypeOfItem;
         }
-        public void IsArmorOn(int currentId)
+        public void IsArmorOn()
         {
             for(int id = 0; id < SecondInventory.CountSlotX * SecondInventory.CountSlotY; id++)
             {
-                switch (ArmorSlots[currentId].currentClassOfItem)
+                switch (ArmorSlots[id].currentClassOfItem)
                 {
                     case 0:
                         Game1.self.PlayerDefence = 0;
                         break;
+                    case 1:
+                        Player.player.Attack += 5;
+                        break;
                     case 2:
-                        switch (ArmorSlots[currentId].currentTypeOfItem)
+                        switch (ArmorSlots[id].currentTypeOfItem)
                         {
                             case 0:
                                 Player.headDefense = 2;
@@ -205,11 +209,11 @@ namespace RPG
                         }
                         break;
                     case 4:
-                        switch (ArmorSlots[currentId].currentTypeOfItem)
+                        switch (ArmorSlots[id].currentTypeOfItem)
                         {
                             case 0:
                                 Game1.self.PlayerDefence /= 2;
-                                Player.player.Attack *= 2;
+                                Player.player.AttackSpeed -= 500;
                                 break;
                         }
                         break;

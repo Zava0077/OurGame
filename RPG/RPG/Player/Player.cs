@@ -23,7 +23,7 @@ namespace RPG
         public int PlayerLVL = 0;
         public int PrevLVL = 0;
         public double MaxExp = 100;
-        public double Attack = 5;
+        public double Attack = 5; //добавить изменяемые переменные totalAttack, totalAttackSpeed, и т.д, вычисляемые по формулам
         public double AttackSpeed = 2000;
         public int PlayerMoney = 0;
         private int expOffset = 28;
