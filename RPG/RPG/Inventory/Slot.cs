@@ -19,13 +19,17 @@ namespace RPG
         Random rnd = new Random();
         public bool _isHovering;
         private bool _isCheckerHovering;
-        public string[] classOfItem = new string[] { "Null", "Weapon", "Armor", "Potion" };
+        public string[] classOfItem = new string[] { "Null", "Weapon", "Armor", "Potion", "Artefacts" };
         public int currentClassOfItem;
         public static int varCurrentClassOfItem = 0;
         public static int checkerCurrentClassOfItem;
         public string[] typeOfPotion = new string[] { "Small HealthPotion", "HealthPotion","RandomPotion" };
-        public string[] typeOrArmor = new string[] { "Iron Armor" };
+        public string[] typeOfArmor = new string[] { "Iron Armor", "Shields"};
+        public string[] typeOfWeapon = new string[] { "WoodenSword" };
         public int currentTypeOfItem = 0;
+        public int currentKindOfItem = 0; //
+        public int varCurrentKindOfItem = 0; //
+        public int checkerCurrentKindOfItem = 0; //
         public int varCurrentTypeOfItem = 0;
         public static int checkerCurrentTypeOfItem = 0;
         public bool Clicked { get; private set; }
@@ -41,7 +45,7 @@ namespace RPG
         public bool varCheckerIsEmpty;
         public bool isInventoryFull = false;
 
-        public Slot(Vector2 Pos, int idSlot, Texture2D texture, Rectangle Rectangle2, bool isEmpty, int classOfItem, int currentTypeOfItem, Rectangle SlotCheckerRectangle)
+        public Slot(Vector2 Pos, int idSlot, Texture2D texture, Rectangle Rectangle2, bool isEmpty, int classOfItem, int currentTypeOfItem, Rectangle SlotCheckerRectangle, int currentKindOfItem)
         {
             this.idSlot = idSlot;
             this.Pos = Pos;
@@ -52,6 +56,7 @@ namespace RPG
             this.currentClassOfItem = classOfItem;
             this.currentTypeOfItem = currentTypeOfItem;
             this.SlotCheckerRectangle = SlotCheckerRectangle;
+            this.currentKindOfItem = currentKindOfItem;
         }
         public Rectangle Rectangle
         {
@@ -65,6 +70,7 @@ namespace RPG
         static int d = 0;
         static int c = 0;
         public int count = 0;
+        int clickCount = 0;
         public static int id = 8;
         public static int Displacement = 0;
         public static Slot self;
@@ -75,16 +81,22 @@ namespace RPG
         static bool wasScrambled;
         public Vector2 _lastMousePos = new Vector2(0,0);
         Menu mn = new Menu();
+        bool isButtonClicked= false;
         public void Update()
         {
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
+          
             if (Slots[idSlot].currentClassOfItem != 0)
                 Slots[idSlot].isEmpty = false;
             else
                 Slots[idSlot].isEmpty = true;
             IsInventoryFull();
-            var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
+            if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
+            {
+                ;
+            }
+                var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
             var checkerRectangle = new Rectangle((Game1.self.Window.ClientBounds.Width - 288) + SlotChecker.constt * Slot.collumn, 20 + SlotChecker.constt * Slot.row, 1, 1);
             _isCheckerHovering = false;
             _isHovering = false;
@@ -96,14 +108,23 @@ namespace RPG
             {
                 _isHovering = true;
                 currentId = this.idSlot;
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Q))
+                    SlotReact(0, 0, this.idSlot); //удаление предмета
                 if (_currentMouse.RightButton == ButtonState.Released && _previousMouse.RightButton == ButtonState.Pressed)
                 {
                     SlotReact(Slots[currentId].currentClassOfItem, Slots[currentId].currentTypeOfItem, this.idSlot);
                 }
+                if(GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyUp(Keys.Q))
+                    isButtonClicked = true;
+                if (Keyboard.GetState().IsKeyDown(Keys.Q) && isButtonClicked)
+                {
+                    isButtonClicked = false;
+                    clickCount++;
+                }
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
-                    _lastMousePos = new Vector2(_currentMouse.X, _currentMouse.Y);
-                /*    for (int i = 0; i < MiniMenu.maxButtons; i++)
+                  /*  _lastMousePos = new Vector2(_currentMouse.X, _currentMouse.Y);
+                    for (int i = 0; i < MiniMenu.maxButtons; i++)
                         if (!ChoosingMenu.Buttons[i]._isHovering)
                             ChoosingMenu.self.ClickChecker(_lastMousePos, true);
                         else
@@ -177,8 +198,6 @@ namespace RPG
                 }
             }
        }
-
-    
         public int GetEmptySlot()
         {
             EmptySlot();
@@ -221,27 +240,60 @@ namespace RPG
             Slots[currentId].isEmpty = Slots[idSlotForCheck].isEmpty;
             checkerIsEmpty = varCheckerIsEmpty;
         }
-        public void ClassOfItem(int currentClassOfItem, int currentTypeOfItem)
+        public void ClassOfItem(int currentClassOfItem, int currentTypeOfItem, int kindOfItem)
         {
             idSlotForCheck = GetEmptySlot();
             switch (currentClassOfItem)
             {
-                case 0:
+                case 0: //EMPTY SLOT
                     Slots[idSlotForCheck].Rectangle2 = new Rectangle(8 * Game1.self.connst + 8, 0, 64, 64);
                     Slots[idSlotForCheck].isEmpty = true;
                     break;
-                case 2:
-                    switch(currentTypeOfItem)
+                case 1: //WEAPON
+                    switch (currentTypeOfItem)
+                    {
+                        case 0:
+                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(65 * 4, 65, 64, 64);
+                            Slots[idSlotForCheck].isEmpty = false;
+                            Slots[idSlotForCheck].currentClassOfItem = 1;
+                            Slots[idSlotForCheck].currentTypeOfItem = 0;
+                            break;
+                    }    
+                    break;
+                case 2: //ARMOUR
+                    switch (currentTypeOfItem)
                     {
                         case 0:
                             Slots[idSlotForCheck].Rectangle2 = new Rectangle(65 * 2, 65, 64, 64);
                             Slots[idSlotForCheck].isEmpty = false;
                             Slots[idSlotForCheck].currentClassOfItem = 2;
                             Slots[idSlotForCheck].currentTypeOfItem = 0;
+                            Slots[idSlotForCheck].currentKindOfItem = 0;
+                            break;
+                        case 1: //iron shield
+                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(65 * 5, 65, 64, 64);
+                            Slots[idSlotForCheck].isEmpty = false;
+                            Slots[idSlotForCheck].currentClassOfItem = 2;
+                            Slots[idSlotForCheck].currentTypeOfItem = 1;
+                            Slots[idSlotForCheck].currentKindOfItem = 0;
+                            break;
+                        case 2: //breastplate
+                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(65 * 6, 65, 64, 64);
+                            Slots[idSlotForCheck].isEmpty = false;
+                            Slots[idSlotForCheck].currentClassOfItem = 2;
+                            Slots[idSlotForCheck].currentTypeOfItem = 2;
+                            Slots[idSlotForCheck].currentKindOfItem = 0;
+                            break;
+                        case 3: //leggins
+                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(65 * 7, 65, 64, 64);
+                            Slots[idSlotForCheck].isEmpty = false;
+                            Slots[idSlotForCheck].currentClassOfItem = 2;
+                            Slots[idSlotForCheck].currentTypeOfItem = 3;
+                            Slots[idSlotForCheck].currentKindOfItem = 0;
                             break;
                     }
                     break;
-                case 3:
+                case 3: //POTIONS
                     switch (currentTypeOfItem)
                     {
                         case 0:
@@ -261,6 +313,18 @@ namespace RPG
                             Slots[idSlotForCheck].isEmpty = false;
                             Slots[idSlotForCheck].currentClassOfItem = 3;
                             Slots[idSlotForCheck].currentTypeOfItem = 2;
+                            break;
+                    }
+                    break;
+                case 4:
+                    switch (currentTypeOfItem)
+                    {
+                        case 0:
+                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(65 * 8, 65, 64, 64);
+                            Slots[idSlotForCheck].isEmpty = false;
+                            Slots[idSlotForCheck].currentClassOfItem = 4;
+                            Slots[idSlotForCheck].currentTypeOfItem = 0;
+                            Slots[idSlotForCheck].currentKindOfItem = 0;
                             break;
                     }
                     break;

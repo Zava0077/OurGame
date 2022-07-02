@@ -28,7 +28,6 @@ namespace RPG
             SecondInventory.Init(spriteBatch);
             Inventory.Init(spriteBatch);
             MiniMenu.Init(spriteBatch);
-            
             var hpBarTexture = _content.Load<Texture2D>("hp-bar");
             var expBarTexture = _content.Load<Texture2D>("exp-bar");
             var textFont = _content.Load<SpriteFont>("text");
@@ -56,6 +55,7 @@ namespace RPG
 
             var expBarTexture = _content.Load<Texture2D>("exp-bar");
             var textFont = _content.Load<SpriteFont>("text");
+            var moneyTexture = _content.Load<Texture2D>("TextureRoom");
             ExpBarLoad ebl = new ExpBarLoad(expBarTexture, textFont);
             spriteBatch.Begin(); 
             foreach (var component in _components)
@@ -76,6 +76,8 @@ namespace RPG
             Inventory.Draw();
             MiniMenu.Draw();
             spriteBatch.DrawString(textFont, Player.player.PlayerLVL.ToString(), new Vector2((_game.Window.ClientBounds.Width / 2) - 50, _game.Window.ClientBounds.Height / 2 + 300), Color.Black);
+            spriteBatch.Draw(moneyTexture, new Rectangle(480+18, 730+18 / 2, 32, 32), new Rectangle(65*3, 65, 32, 32), Color.White);
+            spriteBatch.DrawString(textFont, Player.player.PlayerMoney.ToString(), new Vector2(480 - 10, 730 + 15), Color.Gold);
             spriteBatch.End();
         }
 

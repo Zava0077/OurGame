@@ -25,7 +25,12 @@ namespace RPG
         public double MaxExp = 100;
         public double Attack = 5;
         public double AttackSpeed = 2000;
+        public int PlayerMoney = 0;
         private int expOffset = 28;
+        public static int headDefense = 0;
+        public static int bodyDefense = 0;
+        public static int leggingsDefense = 0;
+        public static int wholeDefense = headDefense + bodyDefense + leggingsDefense;
 
         public static void LevelUP()
         {
@@ -35,7 +40,7 @@ namespace RPG
             player.PlayerLVL++;
             player.MaxHP += 10;
             player.Attack += 2;
-            player.Exp = 0+ostatok;
+            player.Exp = 0 + ostatok;
         }
 
         public static void Draw(SpriteBatch sprite,Vector2 Pos,Texture2D texture,Color color)

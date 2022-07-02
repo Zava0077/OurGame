@@ -111,7 +111,7 @@ namespace RPG
                         }
                         if (this.ButtonPressede == false)
                         {
-                            Fight fight = new Fight(this.AttackSpeed, this.Hp, this.Attack, rnd.Next(50, 100));
+                            Fight fight = new Fight(this.AttackSpeed, this.Hp, this.Attack - (Player.leggingsDefense + Player.headDefense+ Player.bodyDefense), rnd.Next(50, 100)); //юзаю дефенс как ёбок!!
                             Fight.isFight = true;
                         }
                         this.ButtonPressede = true;

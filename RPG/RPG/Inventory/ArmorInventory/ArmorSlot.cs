@@ -30,9 +30,14 @@ namespace RPG
         bool isHelmetSlot;
         int currentId;
         bool isSlotsAreAble = true;
+        bool isLeggingsSlot;
+        bool isWeaponSlot;
+        bool isShieldSlot;
+        bool isAtrefactSlot;
+        bool isRuneSlot;
         public static List<ArmorSlot> ChangeList = new List<ArmorSlot>();
 
-        public ArmorSlot(Vector2 Pos, int idSlot, Texture2D texture, Rectangle Rectangle2, bool isEmpty, int currentClassOfItem, int currentTypeOfItem, bool isBreastPlateSlot, bool isHelmetSlot)
+        public ArmorSlot(Vector2 Pos, int idSlot, Texture2D texture, Rectangle Rectangle2, bool isEmpty, int currentClassOfItem, int currentTypeOfItem, bool isBreastPlateSlot, bool isHelmetSlot, bool isLeggingsSlot, bool isWeaponSlot, bool isShieldSlot, bool isAtrefactSlot, bool isRuneSlot)
         {
             this.idSlot = idSlot;
             this.Pos = Pos;
@@ -43,6 +48,11 @@ namespace RPG
             this.currentTypeOfItem = currentTypeOfItem;
             this.isBreastPlateSlot = isBreastPlateSlot;
             this.isHelmetSlot = isHelmetSlot;
+            this.isLeggingsSlot = isLeggingsSlot;
+            this.isWeaponSlot = isWeaponSlot;
+            this.isShieldSlot = isShieldSlot;
+            this.isAtrefactSlot = isAtrefactSlot;
+            this.isRuneSlot = isRuneSlot;
         }
         public Rectangle CollisionRectangle
         {
@@ -57,9 +67,19 @@ namespace RPG
         {
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
-            ArmorSlots[0].isHelmetSlot = true;
-            ArmorSlots[4].isBreastPlateSlot = true;
             var mouseRectangle = new Rectangle(_currentMouse.X, _currentMouse.Y, 1, 1);
+            ArmorSlots[1].isHelmetSlot = true;
+            ArmorSlots[4].isWeaponSlot = true;
+            ArmorSlots[5].isBreastPlateSlot = true;
+            ArmorSlots[6].isShieldSlot = true;
+            ArmorSlots[9].isLeggingsSlot = true;
+            for (int id = 0; id < SecondInventory.CountSlotX * SecondInventory.CountSlotY; id++)
+            {
+                if (id == 0 || id == 2 || id == 8 || id == 10)
+                    ArmorSlots[id].isAtrefactSlot = true;
+                if (id % 4 == 0)
+                    ArmorSlots[id].isRuneSlot = true;
+            }
             _isHovering = false;
             if (mouseRectangle.Intersects(CollisionRectangle))
             {
@@ -67,23 +87,49 @@ namespace RPG
                 currentId = this.idSlot;
                 if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
                 {
-                    if ((Slot.checkerCurrentClassOfItem == 2 || Slot.checkerCurrentClassOfItem == 0))
+                    if ((Slot.checkerCurrentClassOfItem == 2 || Slot.checkerCurrentClassOfItem == 4 || Slot.checkerCurrentClassOfItem == 1 || Slot.checkerCurrentClassOfItem == 0))
                     {
-                        if (Slot.checkerCurrentClassOfItem == 2 && Slot.checkerCurrentTypeOfItem == 0)
+                        if (Slot.checkerCurrentClassOfItem == 2)
                         {
                             if (Slot.checkerCurrentTypeOfItem == 0 && ArmorSlots[currentId].isHelmetSlot == true)
-                            {
                                 ItemScramble(this.idSlot, Rectangle2);
-                            }
-                            if (Slot.checkerCurrentTypeOfItem == 1 && ArmorSlots[currentId].isBreastPlateSlot == true)
-                            {
+
+                            if (Slot.checkerCurrentTypeOfItem == 1 && ArmorSlots[currentId].isShieldSlot == true)
                                 ItemScramble(this.idSlot, Rectangle2);
-                            }
+                            if (Slot.checkerCurrentTypeOfItem == 2 && ArmorSlots[currentId].isBreastPlateSlot == true)
+                                ItemScramble(this.idSlot, Rectangle2);
+                            if (Slot.checkerCurrentTypeOfItem == 3 && ArmorSlots[currentId].isLeggingsSlot == true)
+                                ItemScramble(this.idSlot, Rectangle2);
+                        }
+                        else if (Slot.checkerCurrentClassOfItem == 4)
+                        {
+                            if (Slot.checkerCurrentTypeOfItem == 0 && ArmorSlots[currentId].isAtrefactSlot == true)
+                                ItemScramble(this.idSlot, Rectangle2);
+                            IsArmorOn(this.idSlot);
+                        }
+                        else if (Slot.checkerCurrentClassOfItem == 1)
+                        {
+                            if (Slot.checkerCurrentTypeOfItem == 0 && ArmorSlots[currentId].isWeaponSlot == true)
+                                ItemScramble(this.idSlot, Rectangle2);
+                            IsArmorOn(this.idSlot);
                         }
                         else
+                        ItemScramble(this.idSlot, Rectangle2);
+                        IsArmorOn(this.idSlot);
+                    }
+                /*    if (Slot.checkerCurrentClassOfItem == 4 || Slot.checkerCurrentClassOfItem == 0)
+                    {
+                        if (Slot.checkerCurrentTypeOfItem == 0 && ArmorSlots[currentId].isAtrefactSlot == true)
                             ItemScramble(this.idSlot, Rectangle2);
                         IsArmorOn(this.idSlot);
                     }
+                    else
+                             if (Slot.checkerCurrentClassOfItem == 1)
+                    {
+                        if (Slot.checkerCurrentTypeOfItem == 0 && ArmorSlots[currentId].isWeaponSlot == true)
+                            ItemScramble(this.idSlot, Rectangle2);
+                        IsArmorOn(this.idSlot);
+                    } */
                 }
                 if (Keyboard.GetState().IsKeyDown(Keys.LeftShift) || Keyboard.GetState().IsKeyDown(Keys.RightShift))
                     if (_currentMouse.LeftButton == ButtonState.Released && _previousMouse.LeftButton == ButtonState.Pressed)
@@ -137,16 +183,38 @@ namespace RPG
         }
         public void IsArmorOn(int currentId)
         {
-            if (currentClassOfItem == 2)
-                switch (ArmorSlots[currentId].currentTypeOfItem)
+            for(int id = 0; id < SecondInventory.CountSlotX * SecondInventory.CountSlotY; id++)
+            {
+                switch (ArmorSlots[currentId].currentClassOfItem)
                 {
                     case 0:
-                        Game1.self.PlayerDefence = 50;
+                        Game1.self.PlayerDefence = 0;
                         break;
-                    case 1:
-                        Game1.self.PlayerDefence = 10;
+                    case 2:
+                        switch (ArmorSlots[currentId].currentTypeOfItem)
+                        {
+                            case 0:
+                                Player.headDefense = 2;
+                                break;
+                            case 2:
+                                Player.bodyDefense = 4;
+                                break;
+                            case 3:
+                                Player.leggingsDefense = 2;
+                                break;
+                        }
+                        break;
+                    case 4:
+                        switch (ArmorSlots[currentId].currentTypeOfItem)
+                        {
+                            case 0:
+                                Game1.self.PlayerDefence /= 2;
+                                Player.player.Attack *= 2;
+                                break;
+                        }
                         break;
                 }
+            }
         }
     }
 }
