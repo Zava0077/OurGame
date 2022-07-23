@@ -63,7 +63,6 @@ namespace RPG
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("Settings menu!");
             _game.ChangeState(new SettingsState(_game, _graphicsDevice, _content, mn.Width, mn.Height, mn.offset, mn.bittonWidth, 200, 200,spriteBatch));
         }
 

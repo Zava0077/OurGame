@@ -121,7 +121,7 @@ namespace RPG
         public void Draw()
         {
             spriteBatch.Begin();
-            Room.spriteBatch.Draw(texture, Pos, new Rectangle(0, 65, 64, 64), color);
+            Room.spriteBatch.Draw(texture, Pos, new Rectangle(0, 195, 64, 64), color);
             if (Game1.self.squareId == this.idRoom)
             {
                 Player.Draw(spriteBatch, Pos, texture, Color.White);

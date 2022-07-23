@@ -30,7 +30,7 @@ namespace RPG
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, (int)((100/ Player.player.MaxHP)* Player.player.PlayerHP), _texture.Height);
+                return new Rectangle((int)Position.X, (int)Position.Y, (int)((200/Player.player.MaxHP)* Player.player.PlayerHP), _texture.Height);
             }
         }
 

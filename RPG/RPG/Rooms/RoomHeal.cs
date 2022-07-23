@@ -18,7 +18,6 @@ namespace RPG
         public event EventHandler Click;
         private bool _isHovering;
         int idRoom;
-        bool PlayerHere;
         public bool Clicked { get; private set; }
         
         public RoomHeal(Vector2 pos, int idRoom, Texture2D texture)
@@ -39,6 +38,7 @@ namespace RPG
         bool ButtonPressede = false;
         Color color = Color.Transparent;
         static int d = 0;
+        static int c = 0;
         public void Update()
         {
             _previousMouse = _currentMouse;
@@ -51,7 +51,7 @@ namespace RPG
                 color = Color.White;
             }
             _isHovering = false;
-            if (this.ButtonPressede || Game1.self.squareId == this.idRoom)
+            if (this.ButtonPressede)
             {
                 color = Color.Gray;
             }
@@ -62,13 +62,12 @@ namespace RPG
                 {
                     if (Game1.self.isFirstsquare == true)
                     {
-                        PlayerHere = true;
                         Game1.self.squareId = this.idRoom;
                         Game1.self.rightsquareId = this.idRoom + 1;
                         Game1.self.leftsquareId = this.idRoom - 1;
                         Game1.self.upsquareId = this.idRoom - Room.CoutRoomX;
                         Game1.self.downsquareId = this.idRoom + Room.CoutRoomX;
-                        Player.player.PlayerHP += rnd.Next(10, 25);
+                        Game1.self.PlayerHP += rnd.Next(10, 25);
                         this.ButtonPressede = true;
                         Game1.self.isFirstsquare = false;
                         if (this.idRoom % CoutRoomX == 0)
@@ -77,17 +76,16 @@ namespace RPG
                         }
                         if (this.idRoom == Room.CoutRoomX * d)
                         {
-                            Game1.self.leftsquareId = 0;
+                            Game1.self.leftsquareId = -1;
                         }
-                        if (this.idRoom == (CoutRoomX - 1) + (CoutRoomX * (int)((double)this.idRoom / (CoutRoomX-1)) - CoutRoomX))
+                        if (this.idRoom == (CoutRoomX - 1) + (CoutRoomX * (int)((double)this.idRoom / 11.0) - CoutRoomX))
                         {
-                            Game1.self.rightsquareId = 0;
+                            Game1.self.rightsquareId = -1;
                         }
 
                     }
                     else if (this.idRoom == Game1.self.rightsquareId || this.idRoom == Game1.self.leftsquareId || this.idRoom == Game1.self.upsquareId || this.idRoom == Game1.self.downsquareId)
                     {
-                        PlayerHere = true;
                         Game1.self.squareId = this.idRoom;
                         Game1.self.rightsquareId = this.idRoom + 1;
                         Game1.self.leftsquareId = this.idRoom - 1;
@@ -99,11 +97,11 @@ namespace RPG
                         }
                         if (this.idRoom == Room.CoutRoomX * d)
                         {
-                            Game1.self.leftsquareId = 0;
+                            Game1.self.leftsquareId = -1;
                         }
-                        if(this.idRoom == (CoutRoomX - 1) + (CoutRoomX * (int)((double)this.idRoom / (CoutRoomX - 1)) -CoutRoomX))
+                        if(this.idRoom == (CoutRoomX - 1) + (CoutRoomX * (int)((double)this.idRoom / 11.0)-CoutRoomX))
                         {
-                            Game1.self.rightsquareId = 0;
+                            Game1.self.rightsquareId = -1;
                         }
                         if (this.ButtonPressede == false)
                         {
@@ -121,11 +119,11 @@ namespace RPG
             spriteBatch.Begin();
             if (Game1.self.squareId == this.idRoom)
             {
-                Room.spriteBatch.Draw(texture, Pos, new Rectangle(260, 0, 64, 64), Color.White);
+                Room.spriteBatch.Draw(texture, Pos, new Rectangle(260, 0, 64, 64), Color.Gray);
                 Player.Draw(spriteBatch, Pos, texture, Color.White);
             }
-            else 
-            { 
+            else
+            {
                 Player.Draw(spriteBatch, Pos, texture, Color.Transparent);
                 Room.spriteBatch.Draw(texture, Pos, new Rectangle(260, 0, 64, 64), color);
             }

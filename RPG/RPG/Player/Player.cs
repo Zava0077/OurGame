@@ -23,24 +23,26 @@ namespace RPG
         public int PlayerLVL = 0;
         public int PrevLVL = 0;
         public double MaxExp = 100;
-        public double Attack = 5;
+        public double AttackMax = 5;
+        public double AttackMin = 3;
         public double AttackSpeed = 2000;
-        private int expOffset = 28;
+        private int expOffset = 38;
 
         public static void LevelUP()
         {
             int ostatok = (int)(player.Exp - player.MaxExp);
-            player.expOffset *= 2;
+            player.expOffset *= (Player.player.PlayerLVL/5);
             player.MaxExp = player.MaxExp + player.expOffset;
             player.PlayerLVL++;
             player.MaxHP += 10;
-            player.Attack += 2;
+            player.AttackMax += 2;
+            player.AttackMin += 1;
             player.Exp = 0+ostatok;
         }
 
         public static void Draw(SpriteBatch sprite,Vector2 Pos,Texture2D texture,Color color)
         {
-            sprite.Draw(texture,Pos - new Vector2(-16,-16),new Rectangle(32,130,32,32),color);
+            sprite.Draw(texture, Pos - new Vector2(-16, -16), new Rectangle(33, 130, 31, 31), color);
         }
     }
 }

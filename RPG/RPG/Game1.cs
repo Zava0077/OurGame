@@ -34,8 +34,15 @@ namespace RPG
         int offset = 125;
         int depth = 65;
         Stat status = Stat.MainScreen;
+        public double PlayerHP = 100;
+        public double PlayerDefence = 0;
+        public double Exp = 1;
+        public int PlayerLVL = 0;
+        public int PrevLVL = 0;
+        public double MaxExp = 344;
         public int expOffset = 28;
         public int i = 2;
+        public double MaxHP = 100;
         public int squareId;
         public int rightsquareId;
         public int leftsquareId;
@@ -55,7 +62,7 @@ namespace RPG
             _nextState = state;
         }
 
-        private List<Component> _gameComponents; //ура
+        private List<Component> _gameComponents;
 
         public Game1()
         {
@@ -65,7 +72,7 @@ namespace RPG
             Content.RootDirectory = "Content";
             //  var screenScale = graphics.PreferredBackBufferHeight / 1080.0f;
             // screenXform = Matrix.CreateScale(screenScale, screenScale, 1.0f);
-            self = this; //селфяшка приравнивается к зису
+            self = this;
             IsMouseVisible = true;
 
             int v3Width = 277; //ширина четвертого спрайта
@@ -95,7 +102,7 @@ namespace RPG
 
         protected override void LoadContent()
         {
-            _currentState = new MenuState(this, graphics.GraphicsDevice, Content,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth,spriteBatch); //Текущее состояние меню
+            _currentState = new MenuState(this, graphics.GraphicsDevice, Content,Window.ClientBounds.Width, Window.ClientBounds.Height, offset, bittonWidth,spriteBatch); //Текущее состояние игры
             //_currentState = new GameState(this, graphics.GraphicsDevice, Content);
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -114,7 +121,6 @@ namespace RPG
             if (_nextState != null)
             {
                 _currentState = _nextState;
-
                 _nextState = null;
             }
 

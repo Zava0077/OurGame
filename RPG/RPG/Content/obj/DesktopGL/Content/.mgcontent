@@ -4,7 +4,9 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/Animation.png</File>
     <File>D:/Da/github/OurGame/RPG/RPG/Content/back.png</File>
+    <File>D:/Da/github/OurGame/RPG/RPG/Content/battleroom.png</File>
     <File>D:/Da/github/OurGame/RPG/RPG/Content/button.jpg</File>
     <File>D:/Da/github/OurGame/RPG/RPG/Content/button.png</File>
     <File>D:/Da/github/OurGame/RPG/RPG/Content/exp-bar.png</File>
@@ -20,6 +22,8 @@
     <File>D:/Da/github/OurGame/RPG/RPG/Content/робокот.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

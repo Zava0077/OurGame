@@ -24,6 +24,7 @@ namespace RPG
             RoomRandomItem.RoomRandomItems.Clear();
             RoomRandomTrap.RoomRandomTraps.Clear();
             numberFloor++;
+            Room.spriteBatch = spriteBatch;
             Room.Init(spriteBatch);
         }
     }
