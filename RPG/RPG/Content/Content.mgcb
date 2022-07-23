@@ -130,6 +130,13 @@
 /processorParam:TextureFormat=Compressed
 /build:text.spritefont
 
+#begin TextFont2.spritefont
+/importer:FontDescriptionImporter
+/processor:LocalizedFontProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:TextFont2.spritefont
+
 #begin TextureRoom.png
 /importer:TextureImporter
 /processor:TextureProcessor

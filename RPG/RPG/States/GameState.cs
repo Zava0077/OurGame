@@ -16,7 +16,7 @@ namespace RPG
     public class GameState : State
     {
         private List<Component> _components;
-        public Player player = new Player();
+        public Player player = new Player(0, 0, 0, 0, 0, 0, 0, 0, 0);
         SpriteBatch spriteBatch;
         public GameState(Game1 game, GraphicsDevice graphicsDevice, ContentManager content, SpriteBatch spriteBatch) : base(game, graphicsDevice, content)
         {

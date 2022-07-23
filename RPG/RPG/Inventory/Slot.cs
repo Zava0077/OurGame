@@ -34,6 +34,7 @@ namespace RPG
         public static int checkerCurrentTypeOfItem = 0;
         public bool Clicked { get; private set; }
         Texture2D texture { get; set; }
+        public SpriteFont font;
         public int idSlot;
         public Vector2 Pos;
         public Rectangle Rectangle2;
@@ -44,8 +45,9 @@ namespace RPG
         public bool checkerIsEmpty = true;
         public bool varCheckerIsEmpty;
         public bool isInventoryFull = false;
+        public string description;
 
-        public Slot(Vector2 Pos, int idSlot, Texture2D texture, Rectangle Rectangle2, bool isEmpty, int classOfItem, int currentTypeOfItem, Rectangle SlotCheckerRectangle, int currentKindOfItem)
+        public Slot(Vector2 Pos, int idSlot, Texture2D texture, Rectangle Rectangle2, bool isEmpty, int classOfItem, int currentTypeOfItem, Rectangle SlotCheckerRectangle, int currentKindOfItem, string description)
         {
             this.idSlot = idSlot;
             this.Pos = Pos;
@@ -57,6 +59,7 @@ namespace RPG
             this.currentTypeOfItem = currentTypeOfItem;
             this.SlotCheckerRectangle = SlotCheckerRectangle;
             this.currentKindOfItem = currentKindOfItem;
+            this.description = description;
         }
         public Rectangle Rectangle
         {
@@ -84,9 +87,11 @@ namespace RPG
         bool isButtonClicked= false;
         public void Update()
         {
+            descriptionColour = Color.Transparent;
+            descriptionTipColour = Color.Transparent;
             _previousMouse = _currentMouse;
             _currentMouse = Mouse.GetState();
-          
+            font = Game1.self.Content.Load<SpriteFont>("TextFont");
             if (Slots[idSlot].currentClassOfItem != 0)
                 Slots[idSlot].isEmpty = false;
             else
@@ -138,22 +143,39 @@ namespace RPG
                             }
                             else
                                 ItemScramble(this.idSlot);
-                      //  } прорисовка меню
+                    //  } прорисовка меню
                 }
+                
             }
         }
+        public static Color descriptionColour;
+        public static Color descriptionTipColour;
         public void Draw()
         {
             spriteBatch.Begin();
             if (_isHovering)
+            {
+                descriptionColour = Color.White;
+                descriptionTipColour = Color.Black;
                 color = Color.Gray;
+            }
             else
+            {
                 color = Color.White;
+            }
             if (checkerCurrentClassOfItem == 0)
                 SlotCheckerRectangleValue = new Rectangle(8 * 64 + 8, 0, 64, 64);
             Inventory.spriteBatch.Draw(texture, new Vector2(Pos.X, Pos.Y), Rectangle2, color);
             Inventory.spriteBatch.Draw(texture, new Vector2(_currentMouse.X - 32, _currentMouse.Y - 32), SlotCheckerRectangleValue, Color.White); //прорисовка Невидимого слота
+         //   Inventory.spriteBatch.Draw(texture, new Rectangle(_currentMouse.X + 25,_currentMouse.Y, Slots[idSlot].description.Length * 8, 64),new Rectangle(8 * 64 + 8, 0, 64, 64), Color.Black);
+          //  Inventory.spriteBatch.DrawString(font, description, new Vector2(_currentMouse.X + 25, _currentMouse.Y), Color.White);
             spriteBatch.End();
+        }
+        public int countOfRows = 1;
+        public Rectangle DescriptionSize(int idSlot)
+        {
+            
+            return new Rectangle(_currentMouse.X + 25, _currentMouse.Y, Slots[idSlot].description.Length * 8, 64);
         }
         public void EmptySlot()
         {
@@ -257,6 +279,7 @@ namespace RPG
                             Slots[idSlotForCheck].isEmpty = false;
                             Slots[idSlotForCheck].currentClassOfItem = 1;
                             Slots[idSlotForCheck].currentTypeOfItem = 0;
+                            Slots[idSlotForCheck].description = "Wooden Sword";
                             break;
                     }    
                     break;
@@ -269,6 +292,7 @@ namespace RPG
                             Slots[idSlotForCheck].currentClassOfItem = 2;
                             Slots[idSlotForCheck].currentTypeOfItem = 0;
                             Slots[idSlotForCheck].currentKindOfItem = 0;
+                            Slots[idSlotForCheck].description = "Iron Helmet";
                             break;
                         case 1: //iron shield
                             Slots[idSlotForCheck].Rectangle2 = new Rectangle(65 * 5, 65, 64, 64);
@@ -276,6 +300,7 @@ namespace RPG
                             Slots[idSlotForCheck].currentClassOfItem = 2;
                             Slots[idSlotForCheck].currentTypeOfItem = 1;
                             Slots[idSlotForCheck].currentKindOfItem = 0;
+                            Slots[idSlotForCheck].description = "Iron Shield";
                             break;
                         case 2: //breastplate
                             Slots[idSlotForCheck].Rectangle2 = new Rectangle(65 * 6, 65, 64, 64);
@@ -283,6 +308,7 @@ namespace RPG
                             Slots[idSlotForCheck].currentClassOfItem = 2;
                             Slots[idSlotForCheck].currentTypeOfItem = 2;
                             Slots[idSlotForCheck].currentKindOfItem = 0;
+                            Slots[idSlotForCheck].description = "Iron BreastPlate";
                             break;
                         case 3: //leggins
                             Slots[idSlotForCheck].Rectangle2 = new Rectangle(65 * 7, 65, 64, 64);
@@ -290,6 +316,7 @@ namespace RPG
                             Slots[idSlotForCheck].currentClassOfItem = 2;
                             Slots[idSlotForCheck].currentTypeOfItem = 3;
                             Slots[idSlotForCheck].currentKindOfItem = 0;
+                            Slots[idSlotForCheck].description = "Iron Leggings";
                             break;
                     }
                     break;
@@ -301,22 +328,25 @@ namespace RPG
                             Slots[idSlotForCheck].isEmpty = false;
                             Slots[idSlotForCheck].currentClassOfItem = 3;
                             Slots[idSlotForCheck].currentTypeOfItem = 0;
+                            Slots[idSlotForCheck].description = "Small HealthPotion";
                             break;
                         case 1:
                             Slots[idSlotForCheck].Rectangle2 = new Rectangle(8 * 65 + 65, 0, 64, 64);
                             Slots[idSlotForCheck].isEmpty = false;
                             Slots[idSlotForCheck].currentClassOfItem = 3;
                             Slots[idSlotForCheck].currentTypeOfItem = 1;
+                            Slots[idSlotForCheck].description = "Medium HealthPotion";
                             break;
                         case 2:
                             Slots[idSlotForCheck].Rectangle2 = new Rectangle(65, 65, 64, 64);
                             Slots[idSlotForCheck].isEmpty = false;
                             Slots[idSlotForCheck].currentClassOfItem = 3;
                             Slots[idSlotForCheck].currentTypeOfItem = 2;
+                            Slots[idSlotForCheck].description = "Strange potion";
                             break;
                     }
                     break;
-                case 4:
+                case 4: //artefacts
                     switch (currentTypeOfItem)
                     {
                         case 0:
@@ -325,6 +355,28 @@ namespace RPG
                             Slots[idSlotForCheck].currentClassOfItem = 4;
                             Slots[idSlotForCheck].currentTypeOfItem = 0;
                             Slots[idSlotForCheck].currentKindOfItem = 0;
+                            Slots[idSlotForCheck].description = "Greatly increases damage and decreases armour";
+                            break;
+                        case 1:
+                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(65 * 9, 65, 64, 64);
+                            Slots[idSlotForCheck].isEmpty = false;
+                            Slots[idSlotForCheck].currentClassOfItem = 4;
+                            Slots[idSlotForCheck].currentTypeOfItem = 1;
+                            Slots[idSlotForCheck].description = "Gives resist to fire";
+                            break;
+                        case 2:
+                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(65 * 1, 65 * 2, 64, 64);
+                            Slots[idSlotForCheck].isEmpty = false;
+                            Slots[idSlotForCheck].currentClassOfItem = 4;
+                            Slots[idSlotForCheck].currentTypeOfItem = 2;
+                            Slots[idSlotForCheck].description = "Gives resist to cold";
+                            break;
+                        case 3:
+                            Slots[idSlotForCheck].Rectangle2 = new Rectangle(65 * 2, 65 * 2, 64, 64);
+                            Slots[idSlotForCheck].isEmpty = false;
+                            Slots[idSlotForCheck].currentClassOfItem = 4;
+                            Slots[idSlotForCheck].currentTypeOfItem = 3;
+                            Slots[idSlotForCheck].description = "Bloody injection";
                             break;
                     }
                     break;

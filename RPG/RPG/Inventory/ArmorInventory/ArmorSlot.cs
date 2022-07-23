@@ -73,7 +73,9 @@ namespace RPG
             ArmorSlots[5].isBreastPlateSlot = true;
             ArmorSlots[6].isShieldSlot = true;
             ArmorSlots[9].isLeggingsSlot = true;
-            IsArmorOn();
+            //  IsArmorOn();
+            Player.player.BuffsControl();
+            Player.player.IsArmorOn();
             for (int id = 0; id < SecondInventory.CountSlotX * SecondInventory.CountSlotY; id++)
             {
                 if (id == 0 || id == 2 || id == 8 || id == 10)
@@ -106,17 +108,20 @@ namespace RPG
                         {
                             if (Slot.checkerCurrentTypeOfItem == 0 && ArmorSlots[currentId].isAtrefactSlot == true)
                                 ItemScramble(this.idSlot, Rectangle2);
-                            IsArmorOn();
+                            if (Slot.checkerCurrentTypeOfItem == 1 && ArmorSlots[currentId].isAtrefactSlot == true)
+                                ItemScramble(this.idSlot, Rectangle2);
+                            if (Slot.checkerCurrentTypeOfItem == 2 && ArmorSlots[currentId].isAtrefactSlot == true)
+                                ItemScramble(this.idSlot, Rectangle2);
+                            if (Slot.checkerCurrentTypeOfItem == 3 && ArmorSlots[currentId].isAtrefactSlot == true)
+                                ItemScramble(this.idSlot, Rectangle2);
                         }
                         else if (Slot.checkerCurrentClassOfItem == 1)
                         {
                             if (Slot.checkerCurrentTypeOfItem == 0 && ArmorSlots[currentId].isWeaponSlot == true)
                                 ItemScramble(this.idSlot, Rectangle2);
-                            IsArmorOn();
                         }
                         else
                         ItemScramble(this.idSlot, Rectangle2);
-                        IsArmorOn();
                     }
                 /*    if (Slot.checkerCurrentClassOfItem == 4 || Slot.checkerCurrentClassOfItem == 0)
                     {
@@ -181,44 +186,6 @@ namespace RPG
             Slot.self.varCurrentTypeOfItem = Slot.Slots[currentId].currentTypeOfItem;
             Slot.Slots[currentId].currentTypeOfItem = ArmorSlots[idSlotForCheck].currentTypeOfItem;
             ArmorSlots[idSlotForCheck].currentTypeOfItem = Slot.self.varCurrentTypeOfItem;
-        }
-        public void IsArmorOn()
-        {
-            for(int id = 0; id < SecondInventory.CountSlotX * SecondInventory.CountSlotY; id++)
-            {
-                switch (ArmorSlots[id].currentClassOfItem)
-                {
-                    case 0:
-                        Game1.self.PlayerDefence = 0;
-                        break;
-                    case 1:
-                        Player.player.Attack += 5;
-                        break;
-                    case 2:
-                        switch (ArmorSlots[id].currentTypeOfItem)
-                        {
-                            case 0:
-                                Player.headDefense = 2;
-                                break;
-                            case 2:
-                                Player.bodyDefense = 4;
-                                break;
-                            case 3:
-                                Player.leggingsDefense = 2;
-                                break;
-                        }
-                        break;
-                    case 4:
-                        switch (ArmorSlots[id].currentTypeOfItem)
-                        {
-                            case 0:
-                                Game1.self.PlayerDefence /= 2;
-                                Player.player.AttackSpeed -= 500;
-                                break;
-                        }
-                        break;
-                }
-            }
         }
     }
 }

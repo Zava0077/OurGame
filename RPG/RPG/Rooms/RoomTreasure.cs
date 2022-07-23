@@ -132,26 +132,32 @@ namespace RPG
                                 Player.player.PlayerMoney += 15; //тут крч монетки падают с сундука ок?
                             if (!Slot.self.isInventoryFull)
                             {
-                                if (rndItem < 10)
+                                if (rndItem < 5)
                                     Slot.self.ClassOfItem(3, 2, 0);
-                                else if (rndItem < 15)
+                                else if (rndItem < 10)
                                 {
                                     Slot.self.ClassOfItem(3, 0, 0);
                                 }
-                                else if (rndItem < 20)
+                                else if (rndItem < 15)
                                     Slot.self.ClassOfItem(3, 1, 0);
-                                else if (rndItem < 25)
+                                else if (rndItem < 20)
                                     Slot.self.ClassOfItem(2, 0, 0);
-                                else if (rndItem < 35)
+                                else if (rndItem < 25)
                                     Slot.self.ClassOfItem(2, 1, 0);
-                                else if (rndItem < 45)
+                                else if (rndItem < 35)
                                     Slot.self.ClassOfItem(1, 0, 0);
-                                else if (rndItem < 65)
+                                else if (rndItem < 45)
                                     Slot.self.ClassOfItem(2, 2, 0);
-                                else if (rndItem < 85)
+                                else if (rndItem < 60)
                                     Slot.self.ClassOfItem(2, 3, 0);
-                                else
+                                else if (rndItem < 65)
                                     Slot.self.ClassOfItem(4, 0, 0);
+                                else if (rndItem < 75)
+                                    Slot.self.ClassOfItem(4, 1, 0);
+                                else if (rndItem < 85)
+                                    Slot.self.ClassOfItem(4, 2, 0);
+                                else 
+                                    Slot.self.ClassOfItem(4, 3, 0);
                             }
                         }
                         this.ButtonPressede = true;

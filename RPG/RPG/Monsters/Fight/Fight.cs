@@ -37,7 +37,7 @@ namespace RPG
             TimerCallback tm = new TimerCallback(AttackMonstr);
             AM = new Timer(tm, null, (int)AttackaSpeedMonstra, (int)AttackaSpeedMonstra);
             TimerCallback attackPlayer = new TimerCallback(AttackPlayer);
-            AP = new Timer (attackPlayer, null, (int)Player.player.AttackSpeed, (int)Player.player.AttackSpeed);
+            AP = new Timer (attackPlayer, null, (int)(Player.player.AttackSpeed /* Player.Buffs[0].buff2 * Player.Buffs[8].buff2 */), (int)Player.player.AttackSpeed);
             Timer = true;
         }
 
@@ -51,7 +51,7 @@ namespace RPG
         }
         private static void AttackPlayer(object sender)
         {
-            HPaMonstra = HPaMonstra - (int)Player.player.Attack;
+            HPaMonstra = HPaMonstra - (int)Player.player.Attack - (int)(Player.Buffs[4].buff1 * (Player.Buffs[0].buff1 + Player.Buffs[8].buff1)) - CriticalAttack(Player.player.critChance);
             if (HPaMonstra <= 0)
             {
                 HPaMonstra = 10;
@@ -59,7 +59,15 @@ namespace RPG
                 isFight = false;
             }
         }
-
+        static Random rnd = new Random();
+        private static int CriticalAttack(int critChance)
+        {
+            if (rnd.Next(0, 100) <= critChance)
+            {
+                return rnd.Next(5, 20);
+            }
+            else return 0;
+        }
         public static void Draw(SpriteBatch sprite)
         {
             if (isFight == true)
